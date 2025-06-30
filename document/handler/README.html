@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="command-handler-module">Command Handler Module</h1>
+<h2 id="overview">Overview</h2>
+<p>The Command Handler module is a core component of the automation framework, designed to handle UI automation commands across different platforms (Android, iOS, Mac) through a unified interface. It provides a standardized way to interact with UI elements, capture screenshots, perform template matching, and execute platform-specific commands.</p>
+<p>The module follows a factory pattern to instantiate appropriate handlers based on the command type, making it easy to extend with new functionality while maintaining a consistent interface.</p>
+<h2 id="architecture">Architecture</h2>
+<h3 id="core-components">Core Components</h3>
+<ol>
+<li>
+<p><strong>BaseHandler</strong>: An abstract base class that defines the common interface for all handlers. Each handler must implement the <code>processCommand</code> method.</p>
+</li>
+<li>
+<p><strong>WidgetFactory</strong>: A factory class that maps widget types to their corresponding handler classes and instantiates the appropriate handler based on the command.</p>
+</li>
+<li>
+<p><strong>WidgetUtils</strong>: A utility class providing common functionality used across handlers, such as finding elements, clicking, entering text, and retry operations.</p>
+</li>
+<li>
+<p><strong>Handler Classes</strong>: Specialized classes that implement the BaseHandler interface to handle specific types of commands.</p>
+</li>
+</ol>
+<h3 id="command-execution-flow">Command Execution Flow</h3>
+<ol>
+<li>A command is received as a dictionary with parameters.</li>
+<li>The <code>process_command</code> function in <code>execute_command.py</code> extracts the widget type.</li>
+<li>The WidgetFactory creates an instance of the appropriate handler.</li>
+<li>The handler's <code>processCommand</code> method is called with the command data.</li>
+<li>The handler processes the command and returns a success/failure result.</li>
+</ol>
+<h3 id="retry-mechanism">Retry Mechanism</h3>
+<p>Most handlers support a retry mechanism through the <code>WidgetUtils.retry_operation</code> utility. This allows operations to be retried a specified number of times with configurable intervals between attempts, improving reliability in unstable environments.</p>
+<h2 id="handler-types">Handler Types</h2>
+<p>The Command Handler module includes several categories of handlers:</p>
+<h3 id="ui-interaction-handlers">UI Interaction Handlers</h3>
+<p>These handlers interact with UI elements through standard operations:</p>
+<ul>
+<li><strong>ButtonHandler</strong>: Clicks buttons identified by XPath</li>
+<li><strong>TextHandler</strong>: Enters text into input fields</li>
+<li><strong>RadioButtonHandler</strong>: Selects radio buttons</li>
+<li><strong>MacDropDownButtonHandler</strong>: Interacts with dropdown menus on macOS</li>
+</ul>
+<h3 id="template-matching-handlers">Template Matching Handlers</h3>
+<p>These handlers use image recognition to identify UI elements:</p>
+<ul>
+<li><strong>SingleTemplateHandler</strong>: Matches a single template image against a screenshot</li>
+<li><strong>MultiTemplateHandler</strong>: Matches multiple template images against a screenshot</li>
+<li><strong>ImageClickHandler</strong>: Finds and clicks on UI elements using image recognition</li>
+</ul>
+<h3 id="device-control-handlers">Device Control Handlers</h3>
+<p>These handlers control device-specific functionality:</p>
+<ul>
+<li><strong>ADBHandler</strong>: Executes ADB commands on Android devices</li>
+<li><strong>ADBLaunchHandler</strong>: Launches Android applications</li>
+<li><strong>ADBShellHandler</strong>: Executes shell commands on Android devices</li>
+<li><strong>ADBInstallHandler</strong>: Installs APKs on Android devices</li>
+<li><strong>ADBSwipeHandler</strong>: Performs directional swipes on Android devices</li>
+<li><strong>ADBSwipeXYHandler</strong>: Performs precise coordinate swipes on Android devices</li>
+<li><strong>ActivateAppHandler</strong>: Activates applications using Appium</li>
+<li><strong>TerminateAppHandler</strong>: Terminates applications using Appium</li>
+<li><strong>ScrollIosHandler</strong>: Performs scrolling operations on iOS devices</li>
+</ul>
+<h3 id="utility-handlers">Utility Handlers</h3>
+<p>These handlers provide utility functions:</p>
+<ul>
+<li><strong>ScreenshotHandler</strong>: Captures screenshots</li>
+<li><strong>PageSourceHandler</strong>: Retrieves page source XML</li>
+<li><strong>TextSearchHandler</strong>: Searches for text in page source</li>
+<li><strong>FacetPageSourceSearchHandler</strong>: Specialized search for Facet page source</li>
+</ul>
+<h2 id="common-parameters">Common Parameters</h2>
+<p>Most handlers support the following common parameters:</p>
+<ul>
+<li><strong>base_path</strong>: Target application identifier (required)</li>
+<li><strong>widget_type</strong>: Type of widget/command to execute (required)</li>
+<li><strong>max_retry</strong>: Maximum number of retry attempts (default: 1 - no retry)</li>
+<li><strong>attempt_interval</strong>: Interval between retry attempts in seconds (default: 0 - no delay)</li>
+<li><strong>delay_before</strong>: Delay before executing the command in seconds (varies by handler)</li>
+<li><strong>validation</strong>: Optional section for commands to execute based on operation result:
+<ul>
+<li><strong>success</strong>: Commands to execute if operation succeeds</li>
+<li><strong>failed</strong>: Commands to execute if operation fails</li>
+</ul>
+</li>
+</ul>
+<h2 id="handler-reference">Handler Reference</h2>
+<h3 id="buttonhandler">ButtonHandler</h3>
+<p>Clicks a button identified by XPath.</p>
+<pre class="hljs"><code><div>{
+   <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"Target application"</span>,
+   <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"button"</span>,
+   <span class="hljs-attr">"xpath"</span>: <span class="hljs-string">"//button[@id='submit']"</span>,
+   <span class="hljs-attr">"wait"</span>: <span class="hljs-number">10</span>,
+   <span class="hljs-attr">"delay_before"</span>: <span class="hljs-number">4</span>,
+   <span class="hljs-attr">"max_retry"</span>: <span class="hljs-number">1</span>,
+   <span class="hljs-attr">"attempt_interval"</span>: <span class="hljs-number">0</span>
+}
+</div></code></pre>
+<h3 id="texthandler">TextHandler</h3>
+<p>Enters text into an input field.</p>
+<pre class="hljs"><code><div>{
+   <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"Target application"</span>,
+   <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"text"</span>,
+   <span class="hljs-attr">"xpath"</span>: <span class="hljs-string">"//input[@id='username']"</span>,
+   <span class="hljs-attr">"text"</span>: <span class="hljs-string">"user123"</span>,
+   <span class="hljs-attr">"clear_first"</span>: <span class="hljs-literal">true</span>,
+   <span class="hljs-attr">"wait"</span>: <span class="hljs-number">10</span>,
+   <span class="hljs-attr">"max_retry"</span>: <span class="hljs-number">1</span>,
+   <span class="hljs-attr">"attempt_interval"</span>: <span class="hljs-number">0</span>
+}
+</div></code></pre>
+<h3 id="radiobuttonhandler">RadioButtonHandler</h3>
+<p>Selects a radio button.</p>
+<pre class="hljs"><code><div>{
+   <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"Target application"</span>,
+   <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"radio_button"</span>,
+   <span class="hljs-attr">"xpath"</span>: <span class="hljs-string">"//input[@type='radio' and @value='option1']"</span>,
+   <span class="hljs-attr">"wait"</span>: <span class="hljs-number">10</span>,
+   <span class="hljs-attr">"max_retry"</span>: <span class="hljs-number">1</span>,
+   <span class="hljs-attr">"attempt_interval"</span>: <span class="hljs-number">0</span>
+}
+</div></code></pre>
+<h3 id="macdropdownbuttonhandler">MacDropDownButtonHandler</h3>
+<p>Interacts with dropdown menus on macOS.</p>
+<pre class="hljs"><code><div>{
+   <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"Target application"</span>,
+   <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"mac_popup_button"</span>,
+   <span class="hljs-attr">"popup_xpath"</span>: <span class="hljs-string">"//XCUIElementTypePopUpButton"</span>,
+   <span class="hljs-attr">"menu_xpath"</span>: <span class="hljs-string">"//XCUIElementTypeMenuItem[@name='Option 1']"</span>,
+   <span class="hljs-attr">"wait"</span>: <span class="hljs-number">10</span>,
+   <span class="hljs-attr">"max_retry"</span>: <span class="hljs-number">1</span>,
+   <span class="hljs-attr">"attempt_interval"</span>: <span class="hljs-number">0</span>
+}
+</div></code></pre>
+<h3 id="screenshothandler">ScreenshotHandler</h3>
+<p>Captures a screenshot.</p>
+<pre class="hljs"><code><div>{
+   <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"Target application"</span>,
+   <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"screenshot"</span>,
+   <span class="hljs-attr">"file_name"</span>: <span class="hljs-string">"screenshot.png"</span>,
+   <span class="hljs-attr">"delay_before"</span>: <span class="hljs-number">4</span>,
+   <span class="hljs-attr">"max_retry"</span>: <span class="hljs-number">1</span>,
+   <span class="hljs-attr">"attempt_interval"</span>: <span class="hljs-number">0</span>
+}
+</div></code></pre>
+<h3 id="singletemplatehandler">SingleTemplateHandler</h3>
+<p>Matches a single template image against a screenshot.</p>
+<pre class="hljs"><code><div>{
+   <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"Target application"</span>,
+   <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"single_template"</span>,
+   <span class="hljs-attr">"template_name"</span>: <span class="hljs-string">"button.png"</span>,
+   <span class="hljs-attr">"ref_img_name"</span>: <span class="hljs-string">"reference.png"</span>,
+   <span class="hljs-attr">"output_name"</span>: <span class="hljs-string">"result.png"</span>,
+   <span class="hljs-attr">"threshold"</span>: <span class="hljs-number">0.7</span>,
+   <span class="hljs-attr">"delay_before"</span>: <span class="hljs-number">4</span>,
+   <span class="hljs-attr">"max_retry"</span>: <span class="hljs-number">1</span>,
+   <span class="hljs-attr">"attempt_interval"</span>: <span class="hljs-number">0</span>
+}
+</div></code></pre>
+<h3 id="multitemplatehandler">MultiTemplateHandler</h3>
+<p>Matches multiple template images against a screenshot.</p>
+<pre class="hljs"><code><div>{
+   <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"Target application"</span>,
+   <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"multi_template"</span>,
+   <span class="hljs-attr">"image_one"</span>: <span class="hljs-string">"state_on.png"</span>,
+   <span class="hljs-attr">"image_two"</span>: <span class="hljs-string">"state_off.png"</span>,
+   <span class="hljs-attr">"image_three"</span>: <span class="hljs-string">"state_disabled.png"</span>,
+   <span class="hljs-attr">"ref_img_name"</span>: <span class="hljs-string">"reference.png"</span>,
+   <span class="hljs-attr">"output_name"</span>: <span class="hljs-string">"result.png"</span>,
+   <span class="hljs-attr">"threshold"</span>: <span class="hljs-number">0.7</span>,
+   <span class="hljs-attr">"delay_before"</span>: <span class="hljs-number">4</span>,
+   <span class="hljs-attr">"max_retry"</span>: <span class="hljs-number">1</span>,
+   <span class="hljs-attr">"attempt_interval"</span>: <span class="hljs-number">0</span>
+}
+</div></code></pre>
+<h3 id="imageclickhandler">ImageClickHandler</h3>
+<p>Finds and clicks on UI elements using image recognition.</p>
+<pre class="hljs"><code><div>{
+   <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"Target application"</span>,
+   <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"image_click"</span>,
+   <span class="hljs-attr">"template_name"</span>: <span class="hljs-string">"button.png"</span>,
+   <span class="hljs-attr">"platform_type"</span>: <span class="hljs-string">"ios"</span>,
+   <span class="hljs-attr">"threshold"</span>: <span class="hljs-number">0.8</span>,
+   <span class="hljs-attr">"delay_before"</span>: <span class="hljs-number">1</span>,
+   <span class="hljs-attr">"ref_img_name"</span>: <span class="hljs-string">"reference.png"</span>,
+   <span class="hljs-attr">"max_retry"</span>: <span class="hljs-number">1</span>,
+   <span class="hljs-attr">"attempt_interval"</span>: <span class="hljs-number">0</span>
+}
+</div></code></pre>
+<h3 id="scrollioshandler">ScrollIosHandler</h3>
+<p>Performs scrolling operations on iOS devices.</p>
+<pre class="hljs"><code><div>{
+   <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"Target application"</span>,
+   <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"ios_scroll"</span>,
+   <span class="hljs-attr">"direction"</span>: <span class="hljs-string">"down"</span>,
+   <span class="hljs-attr">"duration"</span>: <span class="hljs-number">0.5</span>,
+   <span class="hljs-attr">"delay_before"</span>: <span class="hljs-number">1</span>,
+   <span class="hljs-attr">"max_retry"</span>: <span class="hljs-number">1</span>,
+   <span class="hljs-attr">"attempt_interval"</span>: <span class="hljs-number">0</span>
+}
+</div></code></pre>
+<h3 id="pagesourcehandler">PageSourceHandler</h3>
+<p>Retrieves page source XML.</p>
+<pre class="hljs"><code><div>{
+   <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"Target application"</span>,
+   <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"page_source"</span>,
+   <span class="hljs-attr">"file_name"</span>: <span class="hljs-string">"page_source.xml"</span>,
+   <span class="hljs-attr">"delay_before"</span>: <span class="hljs-number">2</span>,
+   <span class="hljs-attr">"max_retry"</span>: <span class="hljs-number">1</span>,
+   <span class="hljs-attr">"attempt_interval"</span>: <span class="hljs-number">0</span>
+}
+</div></code></pre>
+<h3 id="textsearchhandler">TextSearchHandler</h3>
+<p>Searches for text in page source.</p>
+<pre class="hljs"><code><div>{
+   <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"Target application"</span>,
+   <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"text_search"</span>,
+   <span class="hljs-attr">"text"</span>: <span class="hljs-string">"Login"</span>,
+   <span class="hljs-attr">"case_sensitive"</span>: <span class="hljs-literal">false</span>,
+   <span class="hljs-attr">"max_retry"</span>: <span class="hljs-number">1</span>,
+   <span class="hljs-attr">"attempt_interval"</span>: <span class="hljs-number">0</span>
+}
+</div></code></pre>
+<h3 id="adblaunchhandler">ADBLaunchHandler</h3>
+<p>Launches Android applications.</p>
+<pre class="hljs"><code><div>{
+   <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"android"</span>,
+   <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"adb_launch"</span>,
+   <span class="hljs-attr">"package_name"</span>: <span class="hljs-string">"com.android.settings"</span>,
+   <span class="hljs-attr">"activity_name"</span>: <span class="hljs-string">".Settings"</span>,
+   <span class="hljs-attr">"wait"</span>: <span class="hljs-number">2</span>,
+   <span class="hljs-attr">"max_retry"</span>: <span class="hljs-number">1</span>,
+   <span class="hljs-attr">"attempt_interval"</span>: <span class="hljs-number">0</span>
+}
+</div></code></pre>
+<h3 id="adbshellhandler">ADBShellHandler</h3>
+<p>Executes shell commands on Android devices.</p>
+<pre class="hljs"><code><div>{
+   <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"android"</span>,
+   <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"adb_shell"</span>,
+   <span class="hljs-attr">"command"</span>: <span class="hljs-string">"settings put global airplane_mode_on 1"</span>,
+   <span class="hljs-attr">"max_retry"</span>: <span class="hljs-number">1</span>,
+   <span class="hljs-attr">"attempt_interval"</span>: <span class="hljs-number">0</span>
+}
+</div></code></pre>
+<h3 id="adbinstallhandler">ADBInstallHandler</h3>
+<p>Installs APKs on Android devices.</p>
+<pre class="hljs"><code><div>{
+   <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"android"</span>,
+   <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"adb_install"</span>,
+   <span class="hljs-attr">"apk_path"</span>: <span class="hljs-string">"project_config/demo/apps/test_app.apk"</span>,
+   <span class="hljs-attr">"max_retry"</span>: <span class="hljs-number">1</span>,
+   <span class="hljs-attr">"attempt_interval"</span>: <span class="hljs-number">0</span>
+}
+</div></code></pre>
+<h3 id="adbswipehandler">ADBSwipeHandler</h3>
+<p>Performs directional swipes on Android devices.</p>
+<pre class="hljs"><code><div>{
+   <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"android"</span>,
+   <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"adb_swipe"</span>,
+   <span class="hljs-attr">"direction"</span>: <span class="hljs-string">"left"</span>,
+   <span class="hljs-attr">"duration"</span>: <span class="hljs-number">300</span>,
+   <span class="hljs-attr">"screen_width"</span>: <span class="hljs-number">1080</span>,
+   <span class="hljs-attr">"screen_height"</span>: <span class="hljs-number">1920</span>,
+   <span class="hljs-attr">"max_retry"</span>: <span class="hljs-number">1</span>,
+   <span class="hljs-attr">"attempt_interval"</span>: <span class="hljs-number">0</span>
+}
+</div></code></pre>
+<h3 id="adbswipexyhandler">ADBSwipeXYHandler</h3>
+<p>Performs precise coordinate swipes on Android devices.</p>
+<pre class="hljs"><code><div>{
+   <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"android"</span>,
+   <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"adb_swipe_xy"</span>,
+   <span class="hljs-attr">"start_x"</span>: <span class="hljs-number">500</span>,
+   <span class="hljs-attr">"start_y"</span>: <span class="hljs-number">1000</span>,
+   <span class="hljs-attr">"end_x"</span>: <span class="hljs-number">100</span>,
+   <span class="hljs-attr">"end_y"</span>: <span class="hljs-number">1000</span>,
+   <span class="hljs-attr">"duration"</span>: <span class="hljs-number">300</span>,
+   <span class="hljs-attr">"max_retry"</span>: <span class="hljs-number">1</span>,
+   <span class="hljs-attr">"attempt_interval"</span>: <span class="hljs-number">0</span>
+}
+</div></code></pre>
+<h3 id="activateapphandler">ActivateAppHandler</h3>
+<p>Activates applications using Appium.</p>
+<pre class="hljs"><code><div>{
+   <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"android"</span>,
+   <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"activate_app"</span>,
+   <span class="hljs-attr">"bundle_id"</span>: <span class="hljs-string">"com.android.settings"</span>,
+   <span class="hljs-attr">"delay_before"</span>: <span class="hljs-number">2</span>,
+   <span class="hljs-attr">"max_retry"</span>: <span class="hljs-number">1</span>,
+   <span class="hljs-attr">"attempt_interval"</span>: <span class="hljs-number">0</span>
+}
+</div></code></pre>
+<h3 id="terminateapphandler">TerminateAppHandler</h3>
+<p>Terminates applications using Appium.</p>
+<pre class="hljs"><code><div>{
+   <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"android"</span>,
+   <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"terminate_app"</span>,
+   <span class="hljs-attr">"bundle_id"</span>: <span class="hljs-string">"com.android.settings"</span>,
+   <span class="hljs-attr">"delay_before"</span>: <span class="hljs-number">2</span>,
+   <span class="hljs-attr">"max_retry"</span>: <span class="hljs-number">1</span>,
+   <span class="hljs-attr">"attempt_interval"</span>: <span class="hljs-number">0</span>
+}
+</div></code></pre>
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="error-handling">Error Handling</h3>
+<ul>
+<li>Always check the success status returned by handlers</li>
+<li>Use the validation section to handle success and failure cases</li>
+<li>Log errors for debugging purposes</li>
+</ul>
+<h3 id="retry-strategies">Retry Strategies</h3>
+<ul>
+<li>Set appropriate <code>max_retry</code> values based on the stability of the operation</li>
+<li>Use <code>attempt_interval</code> to add delays between retries for operations that may need time to stabilize</li>
+<li>Consider increasing wait times for elements that may take longer to appear</li>
+</ul>
+<h3 id="command-composition">Command Composition</h3>
+<ul>
+<li>Break complex operations into multiple commands</li>
+<li>Use the validation section to create conditional flows</li>
+<li>Keep commands focused on a single operation</li>
+</ul>
+<h3 id="performance-considerations">Performance Considerations</h3>
+<ul>
+<li>Minimize the use of image recognition operations when XPath is available</li>
+<li>Use appropriate thresholds for template matching to balance accuracy and reliability</li>
+<li>Add delays only when necessary to improve stability</li>
+</ul>
+<h2 id="integration-with-test-cases">Integration with Test Cases</h2>
+<p>The Command Handler module is typically used within test cases defined in JSON format. Here's an example of a test case that uses multiple commands:</p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"test_case_id"</span>: <span class="hljs-string">"login_test"</span>,
+  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"Test login functionality"</span>,
+  <span class="hljs-attr">"commands"</span>: [
+    {
+      <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"login_app"</span>,
+      <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"button"</span>,
+      <span class="hljs-attr">"xpath"</span>: <span class="hljs-string">"//button[@id='login_button']"</span>,
+      <span class="hljs-attr">"wait"</span>: <span class="hljs-number">10</span>
+    },
+    {
+      <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"login_app"</span>,
+      <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"text"</span>,
+      <span class="hljs-attr">"xpath"</span>: <span class="hljs-string">"//input[@id='username']"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"user123"</span>,
+      <span class="hljs-attr">"clear_first"</span>: <span class="hljs-literal">true</span>
+    },
+    {
+      <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"login_app"</span>,
+      <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"text"</span>,
+      <span class="hljs-attr">"xpath"</span>: <span class="hljs-string">"//input[@id='password']"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"password123"</span>,
+      <span class="hljs-attr">"clear_first"</span>: <span class="hljs-literal">true</span>
+    },
+    {
+      <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"login_app"</span>,
+      <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"button"</span>,
+      <span class="hljs-attr">"xpath"</span>: <span class="hljs-string">"//button[@id='submit']"</span>,
+      <span class="hljs-attr">"wait"</span>: <span class="hljs-number">10</span>,
+      <span class="hljs-attr">"validation"</span>: {
+        <span class="hljs-attr">"success"</span>: [
+          {
+            <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"login_app"</span>,
+            <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"text_search"</span>,
+            <span class="hljs-attr">"text"</span>: <span class="hljs-string">"Welcome"</span>
+          }
+        ],
+        <span class="hljs-attr">"failed"</span>: [
+          {
+            <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"login_app"</span>,
+            <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"text_search"</span>,
+            <span class="hljs-attr">"text"</span>: <span class="hljs-string">"Invalid credentials"</span>
+          }
+        ]
+      }
+    }
+  ]
+}
+</div></code></pre>
+<h2 id="extending-the-framework">Extending the Framework</h2>
+<p>To add a new handler:</p>
+<ol>
+<li>Create a new handler class that inherits from BaseHandler</li>
+<li>Implement the processCommand method</li>
+<li>Register the handler in WidgetFactory._handlers dictionary</li>
+<li>Add the handler to the appropriate <strong>init</strong>.py files</li>
+</ol>
+<p>Example of a new handler:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> ..widget_utils <span class="hljs-keyword">import</span> WidgetUtils
+<span class="hljs-keyword">from</span> .base <span class="hljs-keyword">import</span> BaseHandler
+<span class="hljs-keyword">from</span> logger <span class="hljs-keyword">import</span> LogManager
+<span class="hljs-keyword">import</span> time
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NewHandler</span><span class="hljs-params">(BaseHandler)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">processCommand</span><span class="hljs-params">(self, command_data: dict)</span>:</span>
+        tlog = LogManager.get_instance().get_test_case_logger()
+        
+        <span class="hljs-comment"># Validate required fields</span>
+        required_fields = [<span class="hljs-string">"base_path"</span>, <span class="hljs-string">"custom_param"</span>]
+        success, error = WidgetUtils.validate_required_fields(command_data, required_fields, tlog)
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> success:
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>, error
+            
+        <span class="hljs-comment"># Extract command parameters</span>
+        base_path = command_data.get(<span class="hljs-string">"base_path"</span>)
+        custom_param = command_data.get(<span class="hljs-string">"custom_param"</span>)
+        max_retry = int(command_data.get(<span class="hljs-string">"max_retry"</span>, <span class="hljs-number">1</span>))
+        attempt_interval = int(command_data.get(<span class="hljs-string">"attempt_interval"</span>, <span class="hljs-number">0</span>))
+        
+        <span class="hljs-comment"># Define operation function</span>
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">operation</span><span class="hljs-params">()</span>:</span>
+            <span class="hljs-keyword">try</span>:
+                <span class="hljs-comment"># Implement custom operation</span>
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>, <span class="hljs-string">"OPERATION_SUCCESS"</span>
+            <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>, <span class="hljs-string">f"OPERATION_FAILED: <span class="hljs-subst">{str(e)}</span>"</span>
+        
+        <span class="hljs-comment"># Use retry utility</span>
+        <span class="hljs-keyword">return</span> WidgetUtils.retry_operation(operation, max_retry, attempt_interval, tlog)
+</div></code></pre>
+
+</body>
+</html>

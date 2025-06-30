@@ -1,0 +1,49 @@
+{
+    "command": [
+      {
+        "base_path": "cpta",
+        "widget_type": "activate_app",
+        "bundle_id": "com.apple.carplaytests",
+        "delay_before": 1
+      },
+      {
+        "base_path": "cpta",
+        "widget_type": "button",
+        "xpath": "//XCUIElementTypeStaticText[@name=\"LOGIN\"]",
+        "wait": 10
+      },
+      {
+        "base_path": "cpta",
+        "widget_type": "button",
+        "xpath": "//XCUIElementTypeButton[@name=\"Sign In\"]",
+        "wait": 30
+    },
+    {
+        "base_path": "cpta",
+        "widget_type": "single_template",
+        "template_name": "cpta.png",
+        "ref_img_name": "cptascreenshot.png",
+        "threshold": 0.7,
+        "expect_match": true,
+        "max_attempts": 3,
+        "validation": {
+          "success": [],
+          "failed": [
+            {
+              "base_path": "cpta",
+              "widget_type": "button",
+              "xpath": "//XCUIElementTypeStaticText[@name='LOGIN']",
+              "wait": 4
+            },
+            {
+              "base_path": "cpta",
+              "widget_type": "button",
+              "xpath": "//XCUIElementTypeButton[@name='Sign In']",
+              "wait": 30
+            }
+          ]
+        }
+    }
+      
+    ]
+  }

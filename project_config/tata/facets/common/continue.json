@@ -1,0 +1,25 @@
+{
+  "command": [
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@label=\"Continue\"]",
+      "wait": 3,
+      "delay_before": 4,
+      "max_retry": 3,
+      "validation": {
+        "success": [
+        ],
+        "failed": [
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label=\"Continue\"])[1]",
+            "wait": 5,
+            "max_retry": 3
+          }
+        ]
+      }
+    }
+  ]
+}

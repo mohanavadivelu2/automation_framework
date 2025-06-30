@@ -1,0 +1,42 @@
+@startuml
+actor User
+participant "ProcessTestCase" as PTC
+participant "TestCaseValidator" as TCV
+participant "Handler" as HND
+participant "CommandProcessor" as CP
+participant "CommonCommand" as CC
+participant "ScreenRecorder" as SR
+participant "ApplicationManager" as AM
+participant "LogManager" as LM
+
+User -> PTC: test_case_processor()
+PTC -> PTC: get_test_case_list()
+PTC -> Helper: load_json(TEST_CASE_GROUP_FILE)
+Helper -> LM: get_application_logger()
+
+PTC -> TCV: validate_test_case_group()
+PTC -> PTC: _process_single_test_case()
+
+PTC -> LM: initialize_test_case_logger()
+PTC -> HND: process_test_case(test_case_id, log_path)
+
+HND -> Helper: load_test_case_data()
+HND -> TCV: validate_test_case_data()
+
+HND -> CC: expand_common_commands()
+CC -> Helper: load_json() (recursively if common_command)
+
+HND -> AM: get_driver_instance_by_base_path()
+HND -> SR: start_recording()
+
+HND -> CP: expand_and_process_command()
+CP -> CC: expand_common_commands() (if needed)
+CP -> HND: process_command(command)
+HND -> external: execute_command(command)
+
+CP -> CP: process_command_with_validation()
+CP --> CP: handle validation success/failure
+
+HND -> SR: stop_recording()
+PTC -> LM: log result
+@enduml

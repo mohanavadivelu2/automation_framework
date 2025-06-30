@@ -1,0 +1,26 @@
+{
+    "facet_id": "C1E94",
+    "command": [
+      {
+        "common_command": "cp_disconnect.json"
+      },
+      {
+        "base_path": "facets",
+        "widget_type": "text",
+        "xpath": "//XCUIElementTypeTextField[1]",
+        "wait": 4,
+        "text": "C1E94"
+      },
+      {
+        "common_command": "start_test.json"
+      },
+      
+      {
+        "common_command": "cp_connect.json"
+      },
+  
+      {
+        "common_command": "end_test.json"
+      }
+    ]
+  }

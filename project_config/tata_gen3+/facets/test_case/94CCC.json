@@ -1,0 +1,225 @@
+{
+  "facet_id": "94CCC",
+  "command": [
+    
+    {
+      "common_command": "cp_disconnect.json"
+    },
+    
+    {
+      "base_path": "facets",
+      "widget_type": "text",
+      "xpath": "//XCUIElementTypeTextField[1]",
+      "wait": 4,
+      "text": "94CCC"
+    },
+
+    {
+      "common_command": "start_test.json"
+    },
+
+    {
+      "common_command": "cp_connect.json"
+    },
+
+    {
+      "base_path": "hu_device_manager",
+      "widget_type": "adb",
+      "package_name": "com.harman.home",    
+      "activity_name": "com.harman.home.homescreen.HomeScreenActivity",  
+      "wait": 2                            
+    },
+
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "(//XCUIElementTypeButton[@label=\"Confirm\"])[1]",
+      "wait": 3 
+    },
+
+    {
+      "base_path": "hu_device_manager",
+      "widget_type": "adb_swipe_xy",
+      "start_x": 500,
+      "start_y": 1,
+      "end_x": 500,
+      "end_y": 150,
+      "duration": 100
+    },
+
+    {
+        "base_path": "hu_device_manager",
+        "widget_type": "text_search",
+        "search_text": "Source",
+        "search_method": "pytesseract",
+        "partial_match": false,
+        "click_element": true,
+        "wait": 6,
+        "max_attempts": 3,
+        "attempt_interval": 1
+    },
+
+    {
+      "base_path": "hu_device_manager",
+      "widget_type": "button",
+      "xpath": "(//android.widget.ImageView[@resource-id='com.harman.e12.app:id/list_item_icon'])[5]",
+      "wait": 3 
+    },
+    
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "(//XCUIElementTypeButton[@label=\"Confirm\"])[last()]",
+      "wait": 3 
+    },
+
+    {
+      "base_path": "hu_device_manager",
+      "widget_type": "adb",
+      "package_name": "com.harman.connectivity.carplay.app",    
+      "activity_name": "com.harman.connectivity.carplay.app.TmlCPActivity",  
+      "wait": 2                            
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "(//XCUIElementTypeButton[@label=\"Confirm\"])[last()]",
+      "wait": 3 
+    },
+
+    {
+      "base_path": "hu_device_manager",
+      "widget_type": "adb",
+      "package_name": "com.harman.home",    
+      "activity_name": "com.harman.home.homescreen.HomeScreenActivity",  
+      "wait": 2                            
+    },
+
+    {
+      "base_path": "hu_device_manager",
+      "widget_type": "adb_swipe_xy",
+      "start_x": 500,
+      "start_y": 1,
+      "end_x": 500,
+      "end_y": 150,
+      "duration": 100,
+      "wait": 2
+    },
+
+    {
+        "base_path": "hu_device_manager",
+        "widget_type": "text_search",
+        "search_text": "Media OFF",
+        "search_method": "pytesseract",
+        "partial_match": false,
+        "click_element": true,
+        "wait": 4,
+        "max_attempts": 3,
+        "attempt_interval": 1
+    },
+
+    {
+      "base_path": "hu_device_manager",
+      "widget_type": "adb_swipe_xy",
+      "start_x": 500,
+      "start_y": 1,
+      "end_x": 500,
+      "end_y": 150,
+      "duration": 100,
+      "wait": 3
+    },
+
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "(//XCUIElementTypeButton[@label=\"Confirm\"])[last()]",
+      "wait": 3 
+    },
+
+    {
+      "base_path": "hu_device_manager",
+      "widget_type": "adb",
+      "package_name": "com.harman.connectivity.carplay.app",    
+      "activity_name": "com.harman.connectivity.carplay.app.TmlCPActivity",  
+      "wait": 2                            
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "(//XCUIElementTypeButton[@label=\"Confirm\"])[last()]",
+      "wait": 3   
+    },
+
+    {
+      "base_path": "hu_device_manager",
+      "widget_type": "adb_swipe_xy",
+      "start_x": 500,
+      "start_y": 1,
+      "end_x": 500,
+      "end_y": 150,
+      "duration": 100,
+      "wait": 2
+    },
+
+    {
+      "base_path": "hu_device_manager",
+      "widget_type": "adb_swipe_xy",
+      "start_x": 500,
+      "start_y": 1,
+      "end_x": 500,
+      "end_y": 150,
+      "duration": 100,
+      "wait": 2
+    },
+
+    {
+        "base_path": "hu_device_manager",
+        "widget_type": "text_search",
+        "search_text": "Source",
+        "search_method": "pytesseract",
+        "partial_match": false,
+        "click_element": true,
+        "wait": 4,
+        "max_attempts": 3,
+        "attempt_interval": 1,
+        "validation": {
+            "success": [
+            {
+                "base_path": "hu_device_manager",
+                "widget_type": "button", 
+                "xpath": "(//android.widget.ImageView[@resource-id='com.harman.e12.app:id/list_item_icon'])[2]",
+                "wait": 5
+            },
+            {
+               "base_path": "facets",
+               "widget_type": "button", 
+               "xpath": "(//XCUIElementTypeButton[@label=\"Confirm\"])[last()]",
+               "wait": 5
+            }
+        ],
+            "failed": []
+      }
+    },
+
+    {
+      "base_path": "hu_device_manager",
+      "widget_type": "adb",
+      "package_name": "com.harman.home",    
+      "activity_name": "com.harman.home.homescreen.HomeScreenActivity",  
+      "wait": 2                            
+    },
+
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "(//XCUIElementTypeButton[@label=\"Confirm\"])[last()]",
+      "wait": 3 
+    },
+
+    {
+      "common_command": "end_test.json"
+    }
+  ]
+}
+
+ 

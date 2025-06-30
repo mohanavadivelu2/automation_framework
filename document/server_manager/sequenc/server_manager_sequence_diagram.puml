@@ -1,0 +1,53 @@
+@startuml
+actor User
+participant AppiumServerManagerFactory
+participant WindowsAppiumServer
+participant UnixAppiumServer
+
+note right of AppiumServerManagerFactory
+    Create manager instance takes ServerConfiguration.json as input.
+    This configuration defines platform, ports, base paths, etc.
+end note
+
+User -> AppiumServerManagerFactory: Create manager instance
+
+alt Windows Platform
+    AppiumServerManagerFactory -> WindowsAppiumServer: Create instance
+    User -> WindowsAppiumServer: start_appium_server()
+    WindowsAppiumServer -> WindowsAppiumServer: _init_appium_server()
+    note right of WindowsAppiumServer
+        Appium command: 
+        cmd /c appium -a 127.0.0.1 -p <port> --base-path <base_path> --log-level debug
+    end note
+    WindowsAppiumServer -> User: Return (success, urls)
+else Unix/Linux/macOS Platform
+    AppiumServerManagerFactory -> UnixAppiumServer: Create instance
+    User -> UnixAppiumServer: start_appium_server()
+    UnixAppiumServer -> UnixAppiumServer: _init_appium_server()
+    note right of UnixAppiumServer
+        Appium command: 
+        appium -a 127.0.0.1 -p <port> --base-path <base_path> --log-level debug
+    end note
+    UnixAppiumServer -> User: Return (success, urls)
+end
+
+User -> AppiumServerManagerFactory: stop_appium_server()
+
+alt Windows Platform
+    AppiumServerManagerFactory -> WindowsAppiumServer: stop_appium_server()
+    WindowsAppiumServer -> WindowsAppiumServer: force_deinit_appium_server()
+    note right of WindowsAppiumServer
+        Termination command:
+        tasklist /FI "IMAGENAME eq node.exe"
+        taskkill /F /PID <pid>
+    end note
+else Unix/Linux/macOS Platform
+    AppiumServerManagerFactory -> UnixAppiumServer: stop_appium_server()
+    UnixAppiumServer -> UnixAppiumServer: force_deinit_appium_server()
+    note right of UnixAppiumServer
+        Termination command:
+        pgrep -x node
+        kill -9 <pid>
+    end note
+end
+@enduml

@@ -1,0 +1,35 @@
+{
+  "ServerConfiguration": [
+    {
+      "platform_name": "Android",
+      "port": "4529",
+      "base_path": "hu_device_manager",
+      "platform_version": "11",
+      "device_name": "f75a993e",
+      "app_package": "com.harman.devicemanager",
+      "app_activity": "com.harman.devicemanager.ui.MainActivity",
+      "automation_name": "UiAutomator2"
+    },
+    {
+      "platform_name": "mac",
+      "port": "4539",
+      "base_path": "facets",
+      "bundle_id": "com.apple.Facets3",
+      "automation_name": "mac2"
+    },
+    {
+      "platform_name": "ios",
+      "platform_version": "18.5",
+      "device_name": "Device 1",
+      "udid": "00008130-001449110142001C",
+      "automation_name": "XCUITest",
+      "bundle_id": "com.apple.carplaytests",
+      "showXcodeLog": true,
+      "noReset": true,
+      "base_path": "cpta",
+      "port": "4751",
+      "wdaLocalPort": 800,
+      "wait": 20
+   }
+  ]
+}

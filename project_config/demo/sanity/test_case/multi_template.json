@@ -1,0 +1,38 @@
+{
+  "command": [
+    {
+      "base_path": "settings",
+      "widget_type": "multi_template",
+      "image_one": "data_saver_on.png",
+      "image_two": "data_saver_off.png",
+      "image_three": "screen.png",
+      "ref_img_name": "reference.png",
+      "output_name": "result.png",
+      "valid_match": {
+        "image_one": [
+          {
+            "base_path": "settings",
+            "widget_type": "screenshot",
+            "file_name": "custom_screenshot_11.png"
+          }
+        ],
+        "image_two": [
+          {
+            "base_path": "settings",
+            "widget_type": "button",
+            "xpath": "(//android.widget.RelativeLayout[@resource-id=\"com.android.settings:id/text_frame\"])[2]",
+            "wait": 4
+          }
+        ],
+        "image_three": [
+          {
+            "base_path": "settings",
+            "widget_type": "button",
+            "xpath": "(//android.widget.RelativeLayout[@resource-id=\"com.android.settings:id/text_frame\"])[2]",
+            "wait": 4
+          }
+        ]
+      }
+    }
+  ]
+}

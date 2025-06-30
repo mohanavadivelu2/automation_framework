@@ -1,0 +1,62 @@
+{
+  "facet_id": "4C0D8",
+  "command": [
+    
+    {
+      "common_command": "cp_disconnect.json"
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "text",
+      "xpath": "//XCUIElementTypeTextField[1]",
+      "wait": 4,
+      "text": "4C0D8"
+    },
+    {
+      "common_command": "start_test.json"
+    },
+    
+    {
+      "common_command": "cp_connect.json"
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "scroll",
+      "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+      "direction": "down",
+      "distance": 100,
+      "wait": 6
+    },
+  
+    {
+      "base_path": "facets",
+      "widget_type": "single_template",
+      "ref_img_name": "pass_result.png",
+      "template_name": "pass_result.png",
+      "output_name": "pass_result.png",
+      "threshold": 0.2,
+      "expect_match": true,
+      "validation": {
+        "success": [
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeRadioButton[@label=\"Yes\" and @value=\"0\"]",
+            "wait": 10
+          }
+        ],
+        "failed": [
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeRadioButton[@label=\"No\" and @value=\"0\"]",
+            "wait": 10
+          }
+        ]
+      }
+    },
+    {
+      "common_command": "end_test.json"
+    }
+  ]
+}

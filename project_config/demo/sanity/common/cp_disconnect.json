@@ -1,0 +1,33 @@
+{
+    "command": [
+      {
+        "base_path": "hu_device_manager",
+        "widget_type": "single_template",
+        "ref_img_name": "cp_disconnect.png",
+        "template_name": "cp_disconnect.png", 
+        "output_name": "cp_disconnect.png",
+        "threshold": 0.09, 
+        "expect_match": true,
+        "validation": {
+          "success": [
+            {
+              "base_path": "hu_device_manager",
+              "widget_type": "button",
+              "xpath": "//android.widget.ImageView[@resource-id=\"com.harman.devicemanager:id/list_item_icon_secondary\"]",
+              "wait": 6 
+            },
+            {
+              "base_path": "hu_device_manager",
+              "widget_type": "button",
+              "xpath": "//android.widget.TextView[@resource-id='com.harman.devicemanager:id/list_item_text_primary' and @text='Disconnect']",
+              "wait": 2
+            }
+            
+          ],
+          "failed": [
+            
+          ]
+        }
+      }
+    ]
+  }

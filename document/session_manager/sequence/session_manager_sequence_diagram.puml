@@ -1,0 +1,84 @@
+@startuml
+
+actor User
+
+participant "AppiumSessionManager" as ASM
+participant "PlatformSessionHandler" as PSH
+participant "AndroidSessionHandler" as ASH
+participant "MacSessionHandler" as MSH
+participant "AndroidValidator" as AV
+participant "MacValidator" as MV
+participant "webdriver" as WD
+
+note right of ASM
+server_config contains configurations for multiple platforms.
+Each configuration includes:
+- platform_name (Android/Mac)
+- base_path (unique identifier for the session)
+- Other required parameters specific to the platform.
+end note
+
+User -> ASM : create_session()
+ASM -> ASM : Iterate over server_config
+
+loop For each config entry
+    ASM -> ASM : Get platform_name and base_path
+    
+    alt Platform handler exists
+        ASM -> ASM : Get handler_class from _platform_handlers
+        ASM -> PSH : Create handler instance
+        
+        alt Platform is Android
+            ASM -> ASH : setup_session(logger, config, base_path, url)
+            
+            note right of ASH
+            Validation steps:
+            1. validate_config(logger, config) - Checks JSON structure.
+            2. validate_environment(logger, config) - Validates device, version, and app.
+            end note
+            
+            ASH -> AV : validate_config(logger, config)
+            AV -> AV : validate_config_structure(logger, config, EXPECTED_CONFIG)
+            AV --> ASH : Return validation result
+            
+            ASH -> AV : validate_environment(logger, config)
+            AV -> AV : validate_android_device(logger, device_name)
+            AV -> AV : get_android_version(logger, device_name)
+            AV -> AV : is_app_installed(logger, device_name, app_package)
+            AV --> ASH : Return validation result
+            
+            ASH -> WD : Remote(command_executor, options)
+            ASH --> ASM : Return driver
+            ASM -> ASM : _add_session(base_path, driver)
+            
+        else Platform is Mac
+            ASM -> MSH : setup_session(logger, config, base_path, url)
+            
+            note right of MSH
+            Validation steps:
+            1. validate_config(logger, config) - Checks JSON structure.
+            2. validate_environment(logger, config) - Validates app installation.
+            end note
+            
+            MSH -> MV : validate_config(logger, config)
+            MV -> MV : validate_config_structure(logger, config, EXPECTED_CONFIG)
+            MV --> MSH : Return validation result
+            
+            MSH -> MV : validate_environment(logger, config)
+            MV -> MV : validate_mac_app(logger, bundle_id)
+            MV --> MSH : Return validation result
+            
+            MSH -> WD : Remote(command_executor, options)
+            MSH --> ASM : Return driver
+            ASM -> ASM : _add_session(base_path, driver)
+        end
+        
+    else Unsupported Platform
+        ASM -> ASM : _cleanup_sessions()
+        ASM -> User : return False, driver_instances
+    end
+end
+
+ASM -> User : return True, driver_instances
+
+@enduml

@@ -1,0 +1,68 @@
+@startuml
+abstract class PlatformSessionHandler {
+    + {abstract} validate_config(logger, config) : bool
+    + {abstract} validate_environment(logger, config) : bool
+    + {abstract} setup_session(logger, config, base_path, command_executor) : webdriver.Remote
+}
+
+class BaseValidator {
+    + {static} validate_config_structure(logger, config, expected_config) : bool
+}
+
+class AndroidValidator {
+    - EXPECTED_CONFIG : dict
+    + validate_config(logger, config) : bool
+    + validate_environment(logger, config) : bool
+    + validate_android_device(logger, device_name) : bool
+    + get_android_version(logger, device_name) : str
+    + is_app_installed(logger, device_name, app_package) : bool
+}
+
+class MacValidator {
+    - EXPECTED_CONFIG : dict
+    + validate_config(logger, config) : bool
+    + validate_environment(logger, config) : bool
+    + validate_mac_app(logger, bundle_id) : bool
+}
+
+class AndroidSessionHandler {
+    - validator : AndroidValidator
+    + validate_config(logger, config) : bool
+    + validate_environment(logger, config) : bool
+    + setup_session(logger, config, base_path, command_executor) : webdriver.Remote
+}
+
+class MacSessionHandler {
+    - validator : MacValidator
+    + validate_config(logger, config) : bool
+    + validate_environment(logger, config) : bool
+    + setup_session(logger, config, base_path, command_executor) : webdriver.Remote
+}
+
+class AppiumSessionManager {
+    - {static} driver_instances : dict
+    - {static} _platform_handlers : dict
+    - hlog : Logger
+    - urls : dict
+    - server_config : list
+    - driver_list : dict
+    + {static} register_platform_handler(platform_name, handler_class)
+    + create_session() : tuple
+    + retrieve_session(base_path) : driver
+    + retrieve_all_sessions() : dict
+    + quit_all_sessions()
+    + get_driver_instance_by_base_path(base_path) : driver
+    + get_url_by_base_path(base_path) : str
+    - _add_session(base_path, driver)
+    - _cleanup_sessions()
+    - _register_default_handlers()
+}
+
+BaseValidator <|-- AndroidValidator
+BaseValidator <|-- MacValidator
+PlatformSessionHandler <|-- AndroidSessionHandler
+PlatformSessionHandler <|-- MacSessionHandler
+AndroidSessionHandler --> AndroidValidator : Uses
+MacSessionHandler --> MacValidator : Uses
+AppiumSessionManager --> PlatformSessionHandler : Uses
+@enduml

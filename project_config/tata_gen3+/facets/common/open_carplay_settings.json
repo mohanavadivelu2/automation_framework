@@ -1,0 +1,11 @@
+{
+    "command": [
+      {
+        "base_path": "hu_device_manager",
+        "widget_type": "adb",
+        "package_name": "com.harman.connectivity.carplay.app",  
+        "activity_name": "com.harman.connectivity.carplay.app.TmlCPActivity", 
+        "wait": 4                             
+     }
+    ]
+  }

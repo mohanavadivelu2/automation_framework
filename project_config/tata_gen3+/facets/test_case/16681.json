@@ -1,0 +1,30 @@
+{
+  "facet_id": "16681",
+  "command": [
+    {
+      "common_command": "cp_disconnect.json"
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "text",
+      "xpath": "//XCUIElementTypeTextField[1]",
+      "wait": 4,
+      "text": "16681"
+    },
+    {
+      "common_command": "start_test.json"
+    },
+    
+    {
+      "common_command": "cp_connect.json"
+    },
+
+    {
+      "common_command": "end_test.json"
+    }
+    
+  ]
+}
+
+
+

@@ -1,0 +1,47 @@
+@startuml
+class AppiumServerBase {
+    - HLog hlog
+    - dict server_process_list
+    - dict urls
+    - str ip_address
+    - list server_config
+    - list base_path_port_list
+    + AppiumServerBase(str config_file)
+    + stop_appium_server()
+    + start_appium_server(int port, str base_path)
+    + force_deinit_appium_server()
+    - _load_config(str config_file)
+}
+
+class WindowsAppiumServer {
+    + WindowsAppiumServer(str config_file)
+    + start_appium_server()
+    + stop_appium_server()
+    + force_deinit_appium_server()
+    - _init_appium_server(int port, str base_path)
+    - _deinit_appium_server()
+}
+
+class UnixAppiumServer {
+    + UnixAppiumServer(str config_file)
+    + start_appium_server()
+    + stop_appium_server()
+    + force_deinit_appium_server()
+    - _init_appium_server(int port, str base_path)
+    - _deinit_appium_server()
+}
+
+class AppiumServerManagerFactory {
+    + AppiumServerManagerFactory(str config_file)
+}
+
+class Main {
+    + main()
+}
+
+AppiumServerBase <|-- WindowsAppiumServer
+AppiumServerBase <|-- UnixAppiumServer
+AppiumServerManagerFactory ..> WindowsAppiumServer
+AppiumServerManagerFactory ..> UnixAppiumServer
+Main ..> AppiumServerManagerFactory
+@enduml

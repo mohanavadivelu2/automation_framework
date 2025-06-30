@@ -1,0 +1,30 @@
+{
+    "command": [
+      {
+        "base_path": "facets",
+        "widget_type": "scroll",
+        "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+        "direction": "down",
+        "distance": 100,
+        "wait": 6
+      },
+      {
+        "base_path": "facets",
+        "widget_type": "button",
+        "xpath": "//XCUIElementTypeButton[@label=\"Continue\"]",
+        "wait": 5
+      },
+      {
+        "base_path": "facets",
+        "widget_type": "button",
+        "xpath": "//XCUIElementTypeButton[@label=\"OK\"]",
+        "wait": 5
+      },
+      {
+        "base_path": "facets",
+        "widget_type": "button",
+        "xpath": "//XCUIElementTypeButton[@label=\"All\"]",
+        "wait": 2
+      }
+    ]
+  }

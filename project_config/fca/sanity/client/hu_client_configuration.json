@@ -1,0 +1,14 @@
+{
+  "ServerConfiguration": [
+    {
+      "platform_name": "Android",
+      "port": "4529",
+      "base_path": "hu_device_manager",
+      "platform_version": "11",
+      "device_name": "29fac7c3",
+      "app_package": "com.harman.devicemanager",
+      "app_activity": "com.harman.devicemanager.ui.MainActivity",
+      "automation_name": "UiAutomator2"
+    }
+  ]
+}

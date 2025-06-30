@@ -1,0 +1,64 @@
+{
+  "facet_id": "96DAC",
+  "command": [
+    {
+      "common_command": "cp_disconnect.json"
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "text",
+      "xpath": "//XCUIElementTypeTextField[1]",
+      "wait": 4,
+      "text": "96DAC"
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "(//XCUIElementTypeButton[@label=\"Play\"])[2]",
+      "wait": 4
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@label=\"Start Test\"]",
+      "wait": 4
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "(//XCUIElementTypeButton[@label=\"Confirm\"])[1]",
+      "wait": 4
+    },
+    {
+      
+       "base_path": "facets",
+      "widget_type": "mac_popup_button",
+      "select_capture": "//XCUIElementTypePopUpButton[@label=\"Select Capture\" and @value=\"Select Capture\"]",
+      "select_item": "//XCUIElementTypeMenuItem[@title=\"Wireless CarPlay\"]",
+      "wait": 4
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@label=\"Start Capture\"]",
+      "wait": 4
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@label=\"Continue\"]",
+      "wait": 1
+    },
+    {
+      "common_command": "cp_connect.json"
+    },
+
+    {
+      "common_command": "end_test.json"
+    }
+    
+  ]
+}
+
+
+

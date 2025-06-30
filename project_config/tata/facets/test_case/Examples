@@ -1,0 +1,157 @@
+IMAGE COMPARISON AND CLICKING RADIO BUTTON 
+
+
+ BUTTON
+
+       "base_path": "hu_device_manager",
+      "widget_type": "button",
+      "xpath": "//android.widget.ImageView[@resource-id=\"com.harman.devicemanager:id/list_item_icon_secondary\"]",
+      "wait": 3 
+    },
+
+
+TEXT ENTER 
+
+     {
+        "base_path": "facets",
+        "widget_type": "text",
+        "xpath": "//XCUIElementTypeTextField[1]",
+        "wait": 4,
+        "text": "E7E50"
+      },
+
+
+  POPUP BUTTON
+
+      {
+      
+    "base_path": "facets",
+   "widget_type": "mac_popup_button",
+   "select_capture": "//XCUIElementTypePopUpButton[@label=\"Select Capture\" and @value=\"Select Capture\"]",
+   "select_item": "//XCUIElementTypeMenuItem[@title=\"Wireless CarPlay\"]",
+   "wait": 4
+     },
+
+SCROLL
+     {
+        "base_path": "facets",
+        "widget_type": "scroll",
+        "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+        "direction": "down",
+        "distance": 100,
+        "wait": 6
+      },
+
+{
+      "base_path": "facets",
+      "widget_type": "single_template",
+      "ref_img_name": "pass_result.png", MANDATORY
+      "template_name": "pass_result.png", MANDATORY
+      "output_name": "pass_result.png",MANDATORY
+      "threshold": 0.2, THIS CAN BE CHNAGED 
+      "expect_match": true,
+      "validation": {
+        "success": [
+          {
+            "base_path": "facets",
+            "widget_type": "button", 
+            "xpath": "//XCUIElementTypeRadioButton[@label=\"Yes\" and @value=\"0\"]",
+            "wait": 10
+          }
+        ],
+        "failed": [
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeRadioButton[@label=\"No\" and @value=\"0\"]",
+            "wait": 10
+          }
+        ]
+      }
+    },
+
+TEXT SEARCH 
+
+,
+      {
+        "base_path": "facets",
+        "widget_type": "text_search",
+        "search_text": "Failed",
+        "search_method": "native",
+        "partial_match": false,
+        "click_element": true,
+        "wait": 4,
+        "max_attempts": 3,
+        "attempt_interval": 1,
+        "validation": {
+          "success": [
+            {
+              "base_path": "facets",
+              "widget_type": "button",
+              "xpath": "//XCUIElementTypeRadioButton[@label=\"No\" and @value=\"0\"]",
+              "wait": 10
+            }
+          ],
+          "failed": [
+            {
+              "base_path": "facets",
+              "widget_type": "button",
+              "xpath": "//XCUIElementTypeRadioButton[@label=\"Yes\" and @value=\"0\"]",
+              "wait": 10
+            }
+          ]
+        }
+      },
+
+PACKAGE NAME CALLING 
+
+
+      {
+        "base_path": "hu_device_manager",
+        "widget_type": "adb",
+        "package_name": "com.harman.connectivity.carplay.app",  
+        "activity_name": "com.harman.connectivity.carplay.app.TmlCPActivity", 
+        "wait": 4                             
+     },
+
+
+BUTTON
+
+       "base_path": "hu_device_manager",
+      "widget_type": "button",
+      "xpath": "//android.widget.ImageView[@resource-id=\"com.harman.devicemanager:id/list_item_icon_secondary\"]",
+      "wait": 3 
+    },
+
+
+TEXT ENTER 
+
+     {
+        "base_path": "facets",
+        "widget_type": "text",
+        "xpath": "//XCUIElementTypeTextField[1]",
+        "wait": 4,
+        "text": "E7E50"
+      },
+
+
+POPUP BUTTON
+
+      {
+      
+    "base_path": "facets",
+   "widget_type": "mac_popup_button",
+   "select_capture": "//XCUIElementTypePopUpButton[@label=\"Select Capture\" and @value=\"Select Capture\"]",
+   "select_item": "//XCUIElementTypeMenuItem[@title=\"Wireless CarPlay\"]",
+   "wait": 4
+     },
+
+SCROLL
+     {
+        "base_path": "facets",
+        "widget_type": "scroll",
+        "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+        "direction": "down",
+        "distance": 100,
+        "wait": 6
+      },

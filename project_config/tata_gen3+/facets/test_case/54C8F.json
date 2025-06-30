@@ -1,0 +1,51 @@
+{
+  "facet_id": "54C8F",
+  "command": [
+    {
+      "common_command": "cp_disconnect.json"
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "text",
+      "xpath": "//XCUIElementTypeTextField[1]",
+      "wait": 4,
+      "text": "54C8F"
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "(//XCUIElementTypeButton[@label=\"Play\"])[2]",
+      "wait": 4
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@label=\"Start Test\"]",
+      "wait": 4
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@label=\"Start Capture\"]",
+      "wait": 4,
+      "delay_before": 2
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@label=\"Continue\"]",
+      "wait": 6
+    },
+    
+    {
+      "common_command": "cp_connect.json"
+    },
+
+    {
+      "common_command": "end_test.json"
+    }
+  ]
+}
+
+
+

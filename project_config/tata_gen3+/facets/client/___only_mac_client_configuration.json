@@ -1,0 +1,11 @@
+{
+  "ServerConfiguration": [
+    {
+      "platform_name": "mac",
+      "port": "4539",
+      "base_path": "facets",
+      "bundle_id": "com.apple.Facets3",
+      "automation_name": "mac2"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "facet_id": "AEAB0",
+  "command": [
+    {
+      "common_command": "cp_disconnect.json"
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "text",
+      "xpath": "//XCUIElementTypeTextField[1]",
+      "wait": 4,
+      "text": "AEAB0"
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "(//XCUIElementTypeButton[@label=\"Play\"])[2]",
+      "wait": 4
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@label=\"Start Test\"]",
+      "wait": 8
+    },
+    {
+      "base_path": "cpta",
+      "widget_type": "activate_app",
+      "bundle_id": "com.apple.carplaytests",
+      "delay_before": 1
+    },
+    
+    {
+      "base_path": "cpta",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeStaticText[@name=\"LOGIN\"]",
+      "wait": 10
+    },
+    {
+      "base_path": "cpta",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@name=\"Sign In\"]",
+      "wait": 30
+    },
+    
+    {
+      "base_path": "cpta",
+      "widget_type": "single_template",
+      "template_name": "cpta.png",
+      "ref_img_name": "cptascreenshot.png",
+      "threshold": 0.7,
+      "expect_match": true,
+      "max_attempts": 3,
+      "validation": {
+        "success": [],
+        "failed": [
+          {
+            "base_path": "cpta",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeStaticText[@name='LOGIN']",
+            "wait": 4
+          },
+          {
+            "base_path": "cpta",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@name='Sign In']",
+            "wait": 30
+          }
+        ]
+      }
+    },
+    {
+      "base_path": "cpta",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeImage[@name=\"icon_utilities\"]",  
+      "wait": 5,                        
+      "delay_before": 25
+    },
+    {
+      "base_path": "cpta",
+      "widget_type": "ios_scroll",
+      "direction": "up",
+      "duration": 0.1,
+      "delay_before": 1
+    },
+    {
+      "base_path": "cpta",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeStaticText[@name=\"Check Feature String\"]",  
+      "wait": 5,                        
+      "delay_before": 25
+    },
+    
+    {
+      "base_path": "cpta",
+      "widget_type": "single_template",
+      "template_name": "hevc.png",
+      "ref_img_name": "hevc.png",
+      "threshold": 0.7,
+      "expect_match": true,
+      "max_attempts": 2,
+      "validation": {
+        "success": [
+          {
+            "base_path": "cpta",
+            "widget_type": "button",
+            "xpath": "(//XCUIElementTypeSwitch[@value=\"0\"])[2]",
+            "wait": 4
+          },
+          {
+            "base_path": "cpta",
+            "widget_type": "button",
+            "xpath": "(//XCUIElementTypeSwitch[@value=\"1\"])[18]",
+            "wait": 4
+          }
+        ],
+        "failed": [
+          
+        ]
+      }
+    },
+    {
+      "base_path": "cpta",
+      "widget_type": "button",
+      "xpath": "(//XCUIElementTypeSwitch[@value=\"0\"])[2]",
+      "wait": 5,                        
+     "delay_before": 2
+    },
+    {
+      "base_path": "cpta",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@name=\"CHECK FEATURE STRING\"]",
+      "wait": 4
+  },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@label=\"Confirm\"]",
+      "wait": 4,
+      "delay_before": 4
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "mac_popup_button",
+      "select_capture": "//XCUIElementTypePopUpButton[@label=\"Select Capture\" and @value=\"Select Capture\"]",
+      "select_item": "//XCUIElementTypeMenuItem[@title=\"Wireless CarPlay\"]",
+      "wait": 4
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@label=\"Start Capture\"]",
+      "wait": 4,
+      "delay_before": 4
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@label=\"Continue\"]",
+      "wait": 6
+    },
+    {
+      "common_command": "cp_connect.json"
+    },
+    {
+      "common_command": "end_test.json"
+    },
+    {
+      "base_path": "cpta",
+      "widget_type": "terminate_app",
+      "bundle_id": "com.apple.carplaytests",
+      "delay_before": 2
+    }
+  ]
+}
