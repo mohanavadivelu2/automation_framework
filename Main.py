@@ -11,7 +11,7 @@ def main():
     #Initialize application logger
     log_manager = LogManager.get_instance()
     alog = log_manager.initialize_application_logger(APP_LOG_FOLDER_PATH, APP_LOG_FILE_NAME)
-    alog.i("Automation tool version - 2.1.2 - Initial release")
+    alog.i("Automation tool version - 2.1.3 - facet_page_source_search release ")
 
     # Initialize the application
     manager = ApplicationManager.get_instance()
