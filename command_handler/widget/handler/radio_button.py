@@ -10,7 +10,7 @@ Command format:
 {
    "base_path": "Target application",
    "widget_type": "radio_button",
-   "check_for": "DRIVER_SIDE_LEFT",           # Configuration option to check (currently only DRIVER_SIDE_LEFT supported)
+   "check_for": "DRIVER_SIDE_LEFT",           # Configuration option to check (any valid OEM_CONFIGURATION field)
    "yes_xpath": "//input[@id='left-side']",   # XPath to be clicked when option is YES
    "no_xpath": "//input[@id='right-side']",   # XPath to be clicked when option is NO
    "wait": 4,                                 # Optional: Wait time for widget to load in seconds (default: 4)
@@ -27,6 +27,67 @@ Command format:
     }
 }
 """
+
+def is_yes_value(value):
+    """
+    Check if value represents a 'yes' state.
+    
+    Args:
+        value: The value to check (can be string, boolean, int, tuple, list, etc.)
+        
+    Returns:
+        bool: True if value represents a 'yes' state, False otherwise
+    """
+    print(f"DEBUG is_yes_value: Original value = {value}, type = {type(value)}")
+    
+    if value is None:
+        print("DEBUG is_yes_value: Value is None, returning False")
+        return False
+    
+    # Handle tuple/list values by extracting the first element
+    if isinstance(value, (tuple, list)):
+        print(f"DEBUG is_yes_value: Value is tuple/list with length {len(value)}")
+        if len(value) == 0:
+            print("DEBUG is_yes_value: Empty tuple/list, returning False")
+            return False
+        original_value = value
+        value = value[0]
+        print(f"DEBUG is_yes_value: Extracted first element: {original_value} -> {value}")
+    
+    final_string = str(value).upper()
+    result = final_string in ["YES", "TRUE", "ON", "ENABLED", "1", "Y"]
+    print(f"DEBUG is_yes_value: Final string = '{final_string}', result = {result}")
+    
+    return result
+
+
+def get_target_xpath(check_for: str, yes_xpath: str, no_xpath: str) -> tuple[bool, str]:
+    """
+    Determine the correct XPath based on a flag in ApplicationManager.OEM_CONFIGURATION.
+
+    Args:
+        check_for (str): The name of the configuration field to check (e.g., "DRIVER_SIDE_LEFT").
+        yes_xpath (str): XPath if the field value is "YES".
+        no_xpath (str): XPath if the field value is not "YES".
+
+    Returns:
+        tuple: (True, target_xpath) if check_for is valid, else (False, error_message)
+    """
+    from app_manager import ApplicationManager  # Optional: for clarity / avoid circular imports
+    
+    tlog = LogManager.get_instance().get_test_case_logger()
+    
+    tlog.d(f"Checking for xpath yes: [{yes_xpath}] xpath no: [{no_xpath}] based on check_for [{check_for}]")
+    
+    if not hasattr(ApplicationManager.OEM_CONFIGURATION, check_for):
+        tlog.e(f"Unsupported check_for value: {check_for}")
+        return False, "UNSUPPORTED_CHECK_FOR_VALUE"
+    
+    value = getattr(ApplicationManager.OEM_CONFIGURATION, check_for)
+    target_xpath = yes_xpath if is_yes_value(value) else no_xpath
+    tlog.d(f"Checking for [{check_for}] value [{value}] is_yes_value: [{is_yes_value(value)}] xpath [{target_xpath}]")
+    return True, target_xpath
+
 
 class RadioButtonHandler(BaseHandler):
     def processCommand(self, command_data: dict):
@@ -65,15 +126,11 @@ class RadioButtonHandler(BaseHandler):
         driver = result
         
         # Step 3: Determine which xpath to use based on configuration
-        if check_for == "DRIVER_SIDE_LEFT":
-            if ApplicationManager.OEM_CONFIGURATION.DRIVER_SIDE_LEFT == "YES":
-                target_xpath = yes_xpath
-            else:
-                target_xpath = no_xpath
-            tlog.d(f"Checking for [DRIVER_SIDE_LEFT] value [{ApplicationManager.OEM_CONFIGURATION.DRIVER_SIDE_LEFT}] xpath [{target_xpath}]")
+        success, result = get_target_xpath(check_for=check_for, yes_xpath=yes_xpath,no_xpath=no_xpath)
+        if success:
+            target_xpath = result
         else:
-            tlog.e(f"Unsupported check_for value: {check_for}")
-            return False, "UNSUPPORTED_CHECK_FOR_VALUE"
+            return False, result
         
         # Step 4: Apply optional delay before clicking
         if delay_before > 0:
