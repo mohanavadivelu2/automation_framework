@@ -64,12 +64,16 @@ class ImageClickHandler(BaseHandler):
         cv2.imwrite(output_path, img)
         return True, output_path
 
-    def tap_on_device(self, driver, x, y):
+    def tap_on_device(self, driver, x, y, platform_type="ios"):
         """
         Modern way to tap on iOS device using Appium v2.
         """
         try:
-            driver.execute_script("mobile: tap", {"x": x, "y": y})
+            if platform_type == "android":
+                driver.execute_script("mobile: clickGesture", {"x": x, "y": y})
+            else:
+                driver.execute_script("mobile: tap", {"x": x, "y": y})
+
         except Exception as e:
             raise RuntimeError(f"Tap failed using mobile: tap script: {e}")
 
@@ -184,7 +188,7 @@ class ImageClickHandler(BaseHandler):
                         tlog.w(f"Failed to mark click point: {msg_mark}")
 
                     try:
-                        self.tap_on_device(driver, click_x, click_y)
+                        self.tap_on_device(driver, click_x, click_y, platform_type)
                     except Exception as e:
                         tlog.e(f"Device tap failed: {e}")
                         return False, f"Device tap failed: {str(e)}"
