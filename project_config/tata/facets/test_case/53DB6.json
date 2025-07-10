@@ -26,8 +26,8 @@
       {
         "base_path": "facets",
         "widget_type": "button",
-        "xpath": "(//XCUIElementTypeButton[@label=\"Confirm\"])[1]",
-        "wait": 4
+        "xpath": "//XCUIElementTypeButton[@label=\"Confirm\"]",
+        "wait": 1
       },
       {
         "base_path": "facets",
@@ -51,6 +51,7 @@
         "xpath": "//XCUIElementTypeButton[@label=\"Continue\"]",
         "wait": 6
       },
+     
       
       {
         "common_command": "cp_connect.json"

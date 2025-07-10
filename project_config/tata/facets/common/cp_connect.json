@@ -4,7 +4,7 @@
       "base_path": "hu_device_manager",
       "widget_type": "adb",
       "package_name": "com.harman.devicemanager",  
-      "activity_name": "com.harman.devicemanager.ui.MainActivity", 
+      "activity_name": "com.harman.devicemanager.ui.MainActivity",
       "wait": 4,   
       "max_retries":3                          
    },
@@ -17,7 +17,6 @@
       "ref_img_name": "reference.png",
       "output_name": "result.png",
       "threshold":0.4,
-
       "valid_match": {
         "image_one": [
           {
@@ -65,11 +64,6 @@
             "wait": 4,
             "max_retries":3  
           }
-          
-
-
-
-
         ],
         "image_three": [
           {
@@ -100,10 +94,6 @@
             "wait": 4,
             "max_retries":3  
           }
-
-
-
-
 
         ]
       }

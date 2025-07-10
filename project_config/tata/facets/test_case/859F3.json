@@ -1,6 +1,6 @@
 {
  
-    "facet_id": "D573E",
+    "facet_id": "859F3",
  
     "command": [
       {
@@ -18,7 +18,7 @@
         "widget_type": "text",
         "xpath": "//XCUIElementTypeTextField[1]",
         "wait": 4,
-        "text": "D573E"
+        "text": "859F3"
       },
       {
         "base_path": "facets",
@@ -32,7 +32,6 @@
         "xpath": "//XCUIElementTypeButton[@label=\"Start Test\"]",
         "wait": 4
       },
-      
       {
         "common_command": "open_carplay_testapp.json"
 
@@ -60,25 +59,25 @@
     {
         "base_path": "cpta",
         "widget_type": "single_template",
-        "template_name": "mainbuffered.png",
-        "ref_img_name": "mainbuffered_ref.png",
-        "output_name": "result.png",
+        "template_name": "h.264level5.1.png",
+        "ref_img_name": "h.264level5.1.png",
         "threshold": 0.5,
         "expect_match": true,
         "max_attempts": 2,
         "validation": {
           "success": [
+            
           ],
           "failed": [
             {
-              "base_path": "cpta",
-              "widget_type": "button",
-              "xpath": "(//XCUIElementTypeSwitch[@value=\"1\"])[14]",
-              "wait": 4
+                "base_path": "cpta",
+                "widget_type": "button",
+                "xpath": "(//XCUIElementTypeSwitch[@value=\"1\"])[16]",
+                "wait": 4
             }
           ]
         }
-      },
+    },
     {
         "base_path": "cpta",
         "widget_type": "button",
@@ -118,17 +117,10 @@
     },
     {
         "base_path": "cpta",
-        "widget_type": "button",
-        "xpath": "//XCUIElementTypeButton[@name=\"DONE\"]",
-        "wait": 4
-    },
-    {
-      "base_path": "cpta",
-      "widget_type": "terminate_app",
-      "bundle_id": "com.apple.carplaytests",
-      "delay_before": 2
-    }
-    
+        "widget_type": "terminate_app",
+        "bundle_id": "com.apple.carplaytests",
+        "delay_before": 2
+      }
  
     ]
  

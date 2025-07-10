@@ -1,0 +1,198 @@
+{
+  "facet_id": "377EC",
+  "command": [
+    
+    {
+      "common_command": "cp_disconnect.json"
+    },
+    
+    {
+      "base_path": "facets",
+      "widget_type": "text",
+      "xpath": "//XCUIElementTypeTextField[1]",
+      "wait": 4,
+      "text": "377EC"
+    },
+
+    {
+      "common_command": "start_test.json"
+    },
+
+    {
+      "common_command": "cp_connect.json"
+    },
+
+    {
+      "base_path": "facets",
+      "widget_type": "scroll",
+      "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+      "direction": "down",
+      "distance": 1200,
+      "delay_before": 2,
+      "wait": 4
+    },
+
+    {
+      "base_path": "cnext",
+      "widget_type": "activate_app",
+      "bundle_id": "com.tml.connectnext",
+      "delay_before": 2,
+      "wait": 4
+    },
+
+    {
+        "base_path": "cnext",
+        "widget_type": "ios_scroll",
+        "direction": "up",
+        "duration": 0.6,
+        "delay_before": 3
+    },
+
+    {
+      "base_path": "cnext",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeStaticText[@name=\"Search for any 3 word address\"]",
+      "wait": 4
+    },
+
+    {
+      "base_path": "cnext",
+      "widget_type": "text",
+      "xpath": "//XCUIElementTypeSearchField[@name=\"Search for any 3 word address\"]",
+      "wait": 4,
+      "text": "mango.orange.pa"
+    },
+
+    {
+      "base_path": "cnext",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeStaticText[@name=\"mango.orange.pans\"]",
+      "wait": 5 
+    },
+
+    {
+      "base_path": "cnext",
+      "widget_type": "image_click",
+      "template_name": "navigate_cnext.png",
+      "ref_img_name": "navigate_cnext.png",
+      "output_name": "navigate_cnext.png",
+      "platform_type": "ios",
+      "threshold": 0.7,
+      "max_attempts": 3,
+      "delay_before": 1,
+      "attempt_interval" : 5,
+      "wait": 15
+    },
+
+    {
+      "base_path": "cnext",
+      "widget_type": "image_click",
+      "template_name": "start_navigate_cnext.png",
+      "ref_img_name": "start_navigate_cnext.png",
+      "output_name": "start_navigate_cnext.png",
+      "platform_type": "ios",
+      "wait": 10,
+      "threshold": 0.7,
+      "max_attempts": 3,
+      "delay_before": 10,
+      "attempt_interval": 10
+    },
+
+    {
+      "base_path": "cnext",
+      "widget_type": "terminate_app",
+      "bundle_id": "com.tml.connectnext",
+      "delay_before": 2,
+      "wait": 4
+    },
+
+    {
+      "base_path": "facets",
+      "widget_type": "scroll",
+      "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+      "direction": "down",
+      "distance": 1200,
+      "delay_before": 2,
+      "wait": 4
+    },
+
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@label='Confirm']",
+      "wait": 4,
+      "max_retries": 3
+    },
+
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@label=\"Continue\"]",
+      "wait": 5,
+      "validation": {
+        "type": "exists",
+        "xpath": "//XCUIElementTypeButton[@label=\"Continue\"]",
+        "success": [
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "common_command": "end_test.json",
+            "wait": 2
+          }
+        ],
+        "failed": [
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "(//XCUIElementTypeButton[@label=\"Fail Step\"])[1]",
+            "wait": 2
+          },
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "(//XCUIElementTypeScrollBar[@value=\"0\"])[2]/XCUIElementTypeButton[1]",
+            "wait": 4
+          },
+          {
+            "base_path": "facets",
+            "widget_type": "text",
+            "xpath": "//XCUIElementTypeTextField",
+            "wait": 4,
+            "text": "Fail"
+          },
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label=\"Done\"]",
+            "wait": 4
+          },
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "(//XCUIElementTypeButton[@label=\"Fail Step\"])",
+            "wait": 2
+          },
+          {
+            "base_path": "facets",
+            "widget_type": "text",
+            "xpath": "//XCUIElementTypeSplitGroup/XCUIElementTypeGroup[2]/XCUIElementTypeScrollView/XCUIElementTypeTextField[2]",
+            "wait": 4,
+            "text": "Fail"
+          },
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label=\"Done\"][2]",
+            "wait": 4
+          },
+          {
+            "common_command": "end_test.json"
+          }         
+        ]
+      }
+    }
+    
+  ]
+}
+
+ 

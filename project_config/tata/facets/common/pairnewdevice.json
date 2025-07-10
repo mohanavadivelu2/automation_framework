@@ -1,62 +1,102 @@
 {
-  "facet_id": "pairnewdevice",
-  "command": [
-
-      {
-          "base_path": "hu_device_manager",
-          "widget_type": "button",
-          "xpath": "//android.widget.TextView[@resource-id=\"com.harman.devicemanager:id/list_item_text_primary\" and @text=\"Pair New Device\"]",
-          "wait": 2
-       },
-       {
-          "base_path": "ios-iphone_settings",
-          "widget_type": "button",
-          "xpath": "//XCUIElementTypeButton[@name=\"com.apple.settings.bluetooth\"]",
-          "wait": 4
-        },
-        {
-          "base_path": "hu_device_manager",
-          "widget_type": "text_search",
-          "search_text": "Device 1",
-          "search_method": "native",
-          "partial_match": false,
-          "click_element": true,
-          "wait": 4,
-          "max_attempts": 1,
-          "attempt_interval": 1
-        },
-        {
-          "base_path": "ios-iphone_settings",
-          "widget_type": "terminate_app",
-          "bundle_id": "com.apple.Preferences",
-          "delay_before": 5
-        },  
-        {
-          "base_path": "ios-iphone_settings",
-          "widget_type": "button",
-          "xpath": "//XCUIElementTypeStaticText[@name=\"Pair\"]",
-          "wait": 5,
-          "delay_before": 1
-        },
-        {
-          "base_path": "ios-iphone_settings",
-          "widget_type": "button",
-          "xpath": "//XCUIElementTypeStaticText[@name=\"Allow\"]",
-          "wait": 5,
-          "delay_before": 1
-        },
-        {
-          "base_path": "ios-iphone_settings",
-          "widget_type": "button",
-          "xpath": "//XCUIElementTypeStaticText[@name=\"Connect\"]",
-          "wait": 5,
-          "delay_before": 1
-        },
-        {
-          "base_path": "hu_device_manager",
-          "widget_type": "button",
-          "xpath": "//android.widget.Button[@resource-id=\"com.harman.devicemanager:id/yes_button\"]",
-          "wait": 1
-        }
-  ]
-}
+    "facet_id": "pairnewdevice",
+    "command": [
+          {
+            "base_path": "ios-iphone_settings",
+            "widget_type": "activate_app",
+            "bundle_id": "com.apple.Preferences",
+            "delay_before": 20
+          },
+          {
+            "base_path": "hu_device_manager",
+            "widget_type": "button",
+            "xpath": "//android.widget.TextView[@resource-id=\"com.harman.devicemanager:id/list_item_text_primary\" and @text=\"Pair New Device\"]",
+            "wait": 2
+          },
+          {
+            "base_path": "ios-iphone_settings",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@name=\"com.apple.settings.bluetooth\"]",
+            "wait": 1
+          },
+          {
+            "base_path": "hu_device_manager",
+            "widget_type": "text_search",
+            "search_text": "Device 1",
+            "search_method": "native",         
+            "partial_match": false,            
+            "click_element": true,             
+            "wait": 4,                         
+            "max_attempts": 3,                
+            "attempt_interval": 1,             
+            "validation": {                    
+               "success": [                    
+                  {
+                
+                  }
+               ],
+               "failed": [                     
+                {
+                  "base_path": "hu_device_manager",
+                  "widget_type": "scroll",
+                  "xpath": "//androidx.recyclerview.widget.RecyclerView",
+                  "direction": "up",
+                  "distance": 900,
+                  "wait": 10,
+                  "delay_before": 2
+              },
+              {
+                   "base_path": "hu_device_manager",
+                   "widget_type": "text_search",
+                   "search_text": "Device 1",
+                   "search_method": "native",
+                   "partial_match": false,
+                   "click_element": true,
+                   "wait": 4,
+                   "max_attempts": 3,
+                   "attempt_interval": 1
+                 }
+               ]
+            }
+          },
+          {
+            "widget_type": "image_click",
+            "base_path": "ios-iphone_settings",
+            "template_name": "pair.png",
+            "platform_type": "ios",
+            "threshold": 0.8,
+            "max_retry": 3,
+            "delay_before": 1,
+            "attempt_interval" :8,
+            "ref_img_name": "pair_ref.png"
+          },
+          {
+            "widget_type": "image_click",
+            "base_path": "ios-iphone_settings",
+            "template_name": "allow.png",
+            "platform_type": "ios",
+            "threshold": 0.8,
+            "max_retry": 3,
+            "delay_before": 1,
+            "attempt_interval" :8,
+            "ref_img_name": "allow_ref.png"
+          },
+          {
+            "widget_type": "image_click",
+            "base_path": "ios-iphone_settings",
+            "template_name": "connect.png",
+            "platform_type": "ios",
+            "threshold": 0.8,
+            "max_retry": 3,
+            "delay_before": 1,
+            "attempt_interval" :8,
+            "ref_img_name": "connect_ref.png"
+          },
+          {
+            "base_path": "hu_device_manager",
+            "widget_type": "button",
+            "xpath": "//android.widget.Button[@resource-id=\"com.harman.devicemanager:id/yes_button\"]",
+            "wait": 1
+          }
+    ]
+  }

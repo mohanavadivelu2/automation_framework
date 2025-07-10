@@ -2,6 +2,12 @@
   "facet_id": "39FC5",
   "command": [
     {
+      "base_path": "cpta",
+      "widget_type": "terminate_app",
+      "bundle_id": "com.apple.carplaytests",
+      "delay_before": 2
+    },
+    {
       "common_command": "cp_disconnect.json"
     },
     {
@@ -52,17 +58,14 @@
       "widget_type": "single_template",
       "template_name": "hevc.png",
       "ref_img_name": "hevc.png",
-      "threshold": 0.7,
+      "threshold": 0.5,
       "expect_match": true,
       "max_attempts": 2,
       "validation": {
         "success": [
-          {
-            "base_path": "cpta",
-            "widget_type": "button",
-            "xpath": "(//XCUIElementTypeSwitch[@value=\"1\"])[18]",
-            "wait": 4
-          },
+         
+        ],
+        "failed": [
           {
 
             "base_path": "cpta",
@@ -71,9 +74,7 @@
              "wait": 5, 
               "delay_before": 2
            
-             }
-        ],
-        "failed": [
+          }
           
         ]
       }

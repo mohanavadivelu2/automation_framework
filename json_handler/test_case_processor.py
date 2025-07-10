@@ -72,6 +72,11 @@ class ProcessTestCase:
         log_dir = self._get_log_directory(test_case_id)
         
         result, message = process_test_case(test_case_id, log_dir)
+        
+        if not result and message == "FILE_NOT_FOUND_OR_INVALID_JSON":
+            tlog.w(f"Test Case ID '{test_case_id}' definition not found or is invalid. Skipping execution for that case")
+            return
+        
         if result:
             tlog.i(f"Test case {test_case_id} processed successfully: {message}")
         else:

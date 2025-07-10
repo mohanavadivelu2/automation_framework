@@ -20,18 +20,33 @@
     {
       "platform_name": "ios",
       "platform_version": "18.5",
-      "device_name": "Device 1",
-      "udid": "00008130-001449110142001C",
+      "device_name": "iPhone 15",
+      "udid": "00008120-000279620269A01E",
       "automation_name": "XCUITest",
-      "bundle_id": "com.apple.carplaytests",
+      "bundle_id": "com.apple.Preferences",
       "showXcodeLog": true,
       "noReset": true,
-      "base_path": "cpta",
-      "port": "4751",
-      "wdaLocalPort": 8004,
+      "base_path": "ios-iphone_settings",
       "usePrebuiltWDA": false,
       "useNewWDA": true,
-      "wait": 20
-   }
+      "wdaLocalPort": 8118,
+      "port": "4734"
+   },
+   {
+    "platform_name": "ios",
+    "platform_version": "18.5",
+    "device_name": "Device 1",
+    "udid": "00008120-000279620269A01E",
+    "automation_name": "XCUITest",
+    "bundle_id": "com.apple.carplaytests",
+    "showXcodeLog": true,
+    "noReset": true,
+    "base_path": "cpta",
+    "port": "4751",
+    "wdaLocalPort": 8019,
+    "usePrebuiltWDA": false,
+    "useNewWDA": true,
+    "wait": 10
+ }
   ]
 }

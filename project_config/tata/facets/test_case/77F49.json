@@ -4,6 +4,12 @@
  
     "command": [
       {
+        "base_path": "cpta",
+        "widget_type": "terminate_app",
+        "bundle_id": "com.apple.carplaytests",
+        "delay_before": 2
+      },
+      {
             "common_command": "cp_disconnect.json"
       },
  
@@ -64,17 +70,11 @@
             {
               "base_path": "cpta",
               "widget_type": "button",
-              "xpath": "(//XCUIElementTypeSwitch[@value=\"0\"])[2]",
+              "xpath": "(//XCUIElementTypeSwitch[@value=\"1\"])[14]",
               "wait": 4
             }
           ],
           "failed": [
-            {
-                "base_path": "cpta",
-                "widget_type": "button",
-                "xpath": "(//XCUIElementTypeSwitch[@value=\"1\"])[14]",
-                "wait": 4
-            }
 
           ]
         }

@@ -1,0 +1,48 @@
+{
+  "facet_id": "48BDF",
+  "command": [
+    
+    {
+      "common_command": "cp_disconnect.json"
+    },
+    
+    {
+      "base_path": "facets",
+      "widget_type": "text",
+      "xpath": "//XCUIElementTypeTextField[1]",
+      "wait": 4,
+      "text": "48BDF"
+    },
+
+    {
+      "common_command": "start_test.json"
+    },
+
+    {
+      "common_command": "cp_connect.json"
+    },
+
+    {
+      "base_path": "facets",
+      "widget_type": "scroll",
+      "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+      "direction": "down",
+      "distance": 600,
+      "wait": 6
+    },
+    
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "(//XCUIElementTypeButton[@label=\"Confirm\"])[1]",
+      "wait": 3 
+    },
+
+    {
+      "common_command": "end_test.json"
+    }
+    
+  ]
+}
+
+ 

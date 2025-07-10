@@ -1,0 +1,158 @@
+{
+    "facet_id": "1392A",
+    "command": [
+        {
+            "base_path": "facets",
+            "widget_type": "text",
+            "xpath": "//XCUIElementTypeTextField[1]",
+            "wait": 4,
+            "text": "1392A"
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "(//XCUIElementTypeButton[@label=\"Play\"])[2]",
+            "wait": 4
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label=\"Start Test\"]",
+            "wait": 4
+        },
+        {
+            "base_path": "hu_device_manager",
+            "widget_type": "button",
+            "xpath": "//android.widget.TextView[@resource-id=\"com.harman.devicemanager:id/list_item_text_primary\" and @text=\"Delete All devices\"]",
+            "wait": 2
+        },
+        {
+            "base_path": "hu_device_manager",
+            "widget_type": "button",
+            "xpath": "//android.view.ViewGroup[@resource-id=\"com.harman.popupmanager:id/wrapped_view\"]",
+            "wait": 2
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label='Confirm']",
+            "wait": 4,
+            "max_retries": 3
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "mac_popup_button",
+            "select_capture": "//XCUIElementTypePopUpButton[@label=\"Select Capture\" and @value=\"Select Capture\"]",
+            "select_item": "//XCUIElementTypeMenuItem[@title=\"Wireless CarPlay\"]",
+            "wait": 4,
+            "max_retries":3  
+        },  
+        {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label=\"Start Capture\"]",
+            "wait": 4,
+            "delay_before": 2,
+            "max_retries":3  
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label=\"Continue\"]",
+            "wait": 6,
+            "delay_before": 2,
+            "max_retries":3  
+          },
+          {
+            "common_command": "pairnewdevice.json"
+          },
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "(//XCUIElementTypeButton[@label=\"Confirm\"])[2]",
+            "wait": 4,
+            "max_retries": 3
+          },
+          {
+            "base_path": "hu_device_manager",
+            "widget_type": "adb",
+            "package_name": "com.harman.home",    
+            "activity_name": "com.harman.home.homescreen.HomeScreenActivity",  
+            "wait": 4                            
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "(//XCUIElementTypeButton[@label=\"Confirm\"])[last()]",
+            "wait": 4 
+        },
+          {
+            "base_path": "hu_device_manager",
+            "widget_type": "adb_swipe_xy",
+            "start_x": 500,
+            "start_y": 1,
+            "end_x": 500,
+            "end_y": 150,
+            "duration": 100
+          },
+      
+          {
+              "base_path": "hu_device_manager",
+              "widget_type": "text_search",
+              "search_text": "Source",
+              "search_method": "pytesseract",
+              "partial_match": false,
+              "click_element": true,
+              "wait": 6,
+              "max_attempts": 3,
+              "attempt_interval": 1
+          },
+          {
+            "widget_type": "image_click",
+            "base_path": "hu_device_manager",
+            "template_name": "carplayicon.png",
+            "platform_type": "android",
+            "threshold": 0.8,
+            "max_retry": 3,
+            "delay_before": 1,
+            "attempt_interval" :8,
+            "ref_img_name": "carplayicon_ref.png"
+          },
+         {
+          "base_path": "hu_device_manager",
+          "widget_type": "single_template",
+          "ref_img_name": "pass_result.png", 
+          "template_name": "Cpmusic.png", 
+          "output_name": "Cpmusic_result.png",
+          "threshold": 0.5,  
+          "expect_match": true,
+          "validation": {
+            "success": [
+              {
+                "base_path": "facets",
+                "widget_type": "button", 
+                "xpath": "//XCUIElementTypeRadioButton[@label=\"Yes\" and @value=\"0\"]",
+                "wait": 10
+              }
+            ],
+            "failed": [
+              {
+                "base_path": "facets",
+                "widget_type": "button",
+                "xpath": "//XCUIElementTypeRadioButton[@label=\"No\" and @value=\"0\"]",
+                "wait": 10
+              }
+            ]
+          }
+        },
+        
+        {
+            "common_command": "end_test.json"
+        } 
+   
+    ]
+  }
+  
+  
+  
+  

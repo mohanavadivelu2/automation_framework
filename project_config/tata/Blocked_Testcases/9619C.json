@@ -1,6 +1,6 @@
 {
  
-    "facet_id": "D573E",
+    "facet_id": "9619C",
  
     "command": [
       {
@@ -18,7 +18,7 @@
         "widget_type": "text",
         "xpath": "//XCUIElementTypeTextField[1]",
         "wait": 4,
-        "text": "D573E"
+        "text": "9619C"
       },
       {
         "base_path": "facets",
@@ -32,12 +32,17 @@
         "xpath": "//XCUIElementTypeButton[@label=\"Start Test\"]",
         "wait": 4
       },
-      
       {
+        "base_path": "facets",
+        "widget_type": "button",
+        "xpath": "(//XCUIElementTypeButton[@label=\"Done\"])[last()]",
+        "wait": 4
+    },
+    {
         "common_command": "open_carplay_testapp.json"
 
-     },
-     {
+    },
+    {
         "base_path": "cpta",
         "widget_type": "button",
         "xpath": "//XCUIElementTypeImage[@name=\"icon_utilities\"]",  
@@ -62,20 +67,21 @@
         "widget_type": "single_template",
         "template_name": "mainbuffered.png",
         "ref_img_name": "mainbuffered_ref.png",
-        "output_name": "result.png",
         "threshold": 0.5,
+        "output_name": "result.png",
         "expect_match": true,
         "max_attempts": 2,
         "validation": {
           "success": [
-          ],
-          "failed": [
             {
               "base_path": "cpta",
               "widget_type": "button",
               "xpath": "(//XCUIElementTypeSwitch[@value=\"1\"])[14]",
               "wait": 4
             }
+          ],
+          "failed": [
+
           ]
         }
       },
@@ -88,7 +94,7 @@
     {
         "base_path": "facets",
         "widget_type": "button",
-        "xpath": "//XCUIElementTypeButton[@label=\"Confirm\"]",
+        "xpath": "(//XCUIElementTypeButton[@label=\"Confirm\"])[last()]",
         "wait": 4
     },      
     {
@@ -114,22 +120,35 @@
         "common_command": "cp_connect.json"
     },
     {
-        "common_command": "end_test.json"
+      "base_path": "facets",
+      "widget_type": "scroll",
+      "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+      "direction": "down",
+      "distance": 100,
+      "wait": 6
     },
     {
-        "base_path": "cpta",
-        "widget_type": "button",
-        "xpath": "//XCUIElementTypeButton[@name=\"DONE\"]",
-        "wait": 4
+      "base_path": "facets",
+      "widget_type": "button", 
+      "xpath": "//XCUIElementTypeRadioButton[@label=\"Yes\" and @value=\"0\"]",
+      "wait": 10
+    
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button", 
+      "xpath": "//XCUIElementTypeRadioButton[@label=\"Yes\" and @value=\"0\"]",
+      "wait": 10
+    },
+    {
+      "common_command": "end_test.json"
     },
     {
       "base_path": "cpta",
       "widget_type": "terminate_app",
       "bundle_id": "com.apple.carplaytests",
       "delay_before": 2
-    }
-    
- 
-    ]
- 
-  }
+    }  
+]   
+          
+}

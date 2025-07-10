@@ -76,8 +76,6 @@ class CommandProcessor:
                         if not sub_status and success_command.get("exit", "NO") == "YES":
                             self.tlog.i("Exit triggered inside success validation")
                             return False, "Exit Command Triggered"
-                status = True
-                message = "VALIDATION_SUCCESS_EXECUTED"
             else:
                 # Command failed, process failed validation
                 failed_commands = validation.get("failed", [])
@@ -88,8 +86,6 @@ class CommandProcessor:
                         if not sub_status and failed_command.get("exit", "NO") == "YES":
                             self.tlog.i("Exit triggered inside failed validation")
                             return False, "Exit Command Triggered"
-                status = True
-                message = "VALIDATION_FAILED_EXECUTED"
         
         # Handle exit condition
         if exit_status == "YES":

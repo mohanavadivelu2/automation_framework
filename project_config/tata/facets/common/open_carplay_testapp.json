@@ -4,7 +4,7 @@
         "base_path": "cpta",
         "widget_type": "activate_app",
         "bundle_id": "com.apple.carplaytests",
-        "delay_before": 1
+        "delay_before": 20
       },
       {
         "base_path": "cpta",

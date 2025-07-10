@@ -27,7 +27,7 @@
       "widget_type": "adb",
       "package_name": "com.harman.home",    
       "activity_name": "com.harman.home.homescreen.HomeScreenActivity",  
-      "wait": 2                            
+      "wait": 4                            
     },
 
     {
@@ -63,28 +63,28 @@
       "base_path": "hu_device_manager",
       "widget_type": "button",
       "xpath": "(//android.widget.ImageView[@resource-id='com.harman.e12.app:id/list_item_icon'])[5]",
-      "wait": 3 
+      "wait": 4 
     },
     
     {
       "base_path": "facets",
       "widget_type": "button",
       "xpath": "(//XCUIElementTypeButton[@label=\"Confirm\"])[last()]",
-      "wait": 3 
+      "wait": 4 
     },
 
     {
       "base_path": "hu_device_manager",
       "widget_type": "adb",
-      "package_name": "com.harman.connectivity.carplay.app",    
-      "activity_name": "com.harman.connectivity.carplay.app.TmlCPActivity",  
-      "wait": 2                            
+      "package_name": "com.harman.connectivity.projection.screen",    
+      "activity_name": ".TmlCPActivity",  
+      "wait": 4                            
     },
     {
       "base_path": "facets",
       "widget_type": "button",
       "xpath": "(//XCUIElementTypeButton[@label=\"Confirm\"])[last()]",
-      "wait": 3 
+      "wait": 4 
     },
 
     {
@@ -92,7 +92,7 @@
       "widget_type": "adb",
       "package_name": "com.harman.home",    
       "activity_name": "com.harman.home.homescreen.HomeScreenActivity",  
-      "wait": 2                            
+      "wait": 4                            
     },
 
     {
@@ -103,7 +103,7 @@
       "end_x": 500,
       "end_y": 150,
       "duration": 100,
-      "wait": 2
+      "wait": 4
     },
 
     {
@@ -126,22 +126,22 @@
       "end_x": 500,
       "end_y": 150,
       "duration": 100,
-      "wait": 3
+      "wait": 4
     },
 
     {
       "base_path": "facets",
       "widget_type": "button",
       "xpath": "(//XCUIElementTypeButton[@label=\"Confirm\"])[last()]",
-      "wait": 3 
+      "wait": 4 
     },
 
     {
       "base_path": "hu_device_manager",
       "widget_type": "adb",
-      "package_name": "com.harman.connectivity.carplay.app",    
-      "activity_name": "com.harman.connectivity.carplay.app.TmlCPActivity",  
-      "wait": 2                            
+      "package_name": "com.harman.connectivity.projection.screen",    
+      "activity_name": ".TmlCPActivity",  
+      "wait": 4                            
     },
     {
       "base_path": "facets",
@@ -158,7 +158,7 @@
       "end_x": 500,
       "end_y": 150,
       "duration": 100,
-      "wait": 2
+      "wait": 4
     },
 
     {
@@ -169,7 +169,7 @@
       "end_x": 500,
       "end_y": 150,
       "duration": 100,
-      "wait": 2
+      "wait": 4
     },
 
     {
@@ -206,14 +206,14 @@
       "widget_type": "adb",
       "package_name": "com.harman.home",    
       "activity_name": "com.harman.home.homescreen.HomeScreenActivity",  
-      "wait": 2                            
+      "wait": 4                            
     },
 
     {
       "base_path": "facets",
       "widget_type": "button",
       "xpath": "(//XCUIElementTypeButton[@label=\"Confirm\"])[last()]",
-      "wait": 3 
+      "wait": 4 
     },
 
     {

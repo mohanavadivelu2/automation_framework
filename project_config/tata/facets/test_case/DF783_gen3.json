@@ -1,0 +1,144 @@
+{
+    "facet_id": "DF783",
+    "command": [
+      {
+        "common_command": "cp_disconnect.json"
+      },
+      {
+        "base_path": "facets",
+        "widget_type": "text",
+        "xpath": "//XCUIElementTypeTextField[1]",
+        "wait": 4,
+        "text": "DF783"
+      },
+      {
+        "base_path": "facets",
+        "widget_type": "button",
+        "xpath": "(//XCUIElementTypeButton[@label=\"Play\"])[2]",
+        "wait": 4
+      },
+      {
+        "base_path": "facets",
+        "widget_type": "button",
+        "xpath": "//XCUIElementTypeButton[@label=\"Start Test\"]",
+        "wait": 4
+      },
+      {
+        "base_path": "facets",
+        "widget_type": "mac_popup_button",
+        "select_capture": "//XCUIElementTypePopUpButton[@label=\"Select Capture\" and @value=\"Select Capture\"]",
+        "select_item": "//XCUIElementTypeMenuItem[@title=\"Wireless CarPlay\"]",
+        "wait": 4
+      },
+  
+      {
+        "base_path": "facets",
+        "widget_type": "button",
+        "xpath": "//XCUIElementTypeButton[@label=\"Start Capture\"]",
+        "wait": 4,
+        "delay_before": 2
+      },
+      {
+        "base_path": "facets",
+        "widget_type": "button",
+        "xpath": "//XCUIElementTypeButton[@label=\"Continue\"]",
+        "wait": 6
+      },
+      
+      {
+        "common_command": "cp_connect.json"
+      },
+
+      {
+        "base_path": "hu_device_manager",
+        "widget_type": "adb",
+        "package_name": "com.harman.home",    
+        "activity_name": "com.harman.home.homescreen.HomeScreenActivity",  
+        "wait": 4  
+      },
+      {
+        "base_path": "hu_device_manager",
+        "widget_type": "adb",
+        "package_name": "com.harman.connectivity.carplay.app",    
+        "activity_name": "com.harman.connectivity.carplay.app.TmlCPActivity",  
+        "wait": 4                            
+      },
+      
+      {
+        "base_path": "hu_device_manager",
+        "widget_type": "single_template",
+        "ref_img_name": "oemicon_ref.png", 
+        "template_name": "oemicon.png", 
+        "output_name": "oemicon_result.png",
+        "threshold": 0.5, 
+        "expect_match": true,
+        "validation": {
+          "success": [
+            
+          ],
+          "failed": [
+            {
+              "base_path": "hu_device_manager",
+              "widget_type": "image_click",
+              "template_name": "dots.png",
+              "platform_type": "android",
+              "threshold": 0.8,
+              "max_attempts": 3,
+              "delay_before": 1,
+              "attempt_interval" :5,
+              "ref_img_name": "oemicon_ref.png"
+            }
+            
+          ]
+        }
+      }, 
+      
+      {
+        "base_path": "hu_device_manager",
+        "widget_type": "single_template",
+        "ref_img_name": "oemicon_ref.png", 
+        "template_name": "oemicon.png", 
+        "output_name": "oemicon_result.png",
+        "threshold": 0.5, 
+        "expect_match": true,
+        "validation": {
+          "success": [
+            {
+              "base_path": "facets",
+              "widget_type": "button", 
+              "xpath": "//XCUIElementTypeRadioButton[@label=\"Yes\" and @value=\"0\"]",
+              "wait": 10
+            },
+            {
+                "base_path": "facets",
+                "widget_type": "text",
+                "xpath": "//XCUIElementTypeTextField",
+                "wait": 4,
+                "text": "Fail"
+            },
+            {
+                "base_path": "facets",
+                "widget_type": "button",
+                "xpath": "//XCUIElementTypeButton[@label=\"Done\"]",
+                "wait": 4
+            }
+          ],
+          "failed": [
+            {
+              "base_path": "facets",
+              "widget_type": "button",
+              "xpath": "//XCUIElementTypeRadioButton[@label=\"No\" and @value=\"0\"]",
+              "wait": 4
+            }
+          ]
+        }
+      }, 
+          
+      {
+        "common_command": "end_test.json"
+      }
+        
+    ]
+  }
+  
+  

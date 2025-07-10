@@ -1,0 +1,122 @@
+{
+    "facet_id": "B66A0",
+    "command": [
+        {
+            "common_command": "cp_disconnect.json"
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "text",
+            "xpath": "//XCUIElementTypeTextField[1]",
+            "wait": 4,
+            "text": "B66A0"
+        },
+        {
+            "common_command": "start_test.json"
+        },
+        {
+            "common_command": "cp_connect.json"
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "scroll",
+            "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+            "direction": "down",
+            "distance": 1200,
+            "wait": 6
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "text_search",
+            "search_text": "Tata Motors",
+            "search_method": "native",
+            "partial_match": true,
+            "wait": 4,
+            "delay_before": 6,
+            "max_attempts": 3,
+            "attempt_interval": 1,
+            "validation": {
+                "success": [
+                    {
+                        "base_path": "facets",
+                        "widget_type": "button",
+                        "xpath": "(//XCUIElementTypeRadioButton[@label='Yes' and @value='0'])[1]",
+                        "wait": 5
+                    }
+                ],
+                "failed": [
+                    {
+                        "base_path": "facets",
+                        "widget_type": "button",
+                        "xpath": "(//XCUIElementTypeRadioButton[@label='No' and @value='0'])[1]",
+                        "wait": 5
+                    },
+                    {
+                        "base_path": "facets",
+                        "widget_type": "text",
+                        "xpath": "//XCUIElementTypeTextField",
+                        "wait": 4,
+                        "text": "Fail"
+                    },
+                    {
+                        "base_path": "facets",
+                        "widget_type": "button",
+                        "xpath": "//XCUIElementTypeButton[@label=\"Done\"]",
+                        "wait": 4
+                    }
+                ]
+            }
+        },
+        {
+            "base_path": "hu_device_manager",
+            "widget_type": "adb",
+            "package_name": "com.harman.connectivity.projection.screen",
+            "activity_name": ".TmlCPActivity",
+            "wait": 4
+        },
+        {
+            "base_path": "hu_device_manager",
+            "widget_type": "single_template",
+            "template_name": "oemicon.png",
+            "ref_img_name": "oemicon.png",
+            "output_name": "oemicon.png",
+            "threshold": 0.5,
+            "label": "Button",
+            "expect_match": true,
+            "validation": {
+                "success": [
+                    {
+                        "base_path": "facets",
+                        "widget_type": "button",
+                        "xpath": "(//XCUIElementTypeRadioButton[@label='Yes' and @value='0'])[last()]",
+                        "wait": 4
+                    }
+                ],
+                "failed": [
+                    {
+                        "base_path": "facets",
+                        "widget_type": "button",
+                        "xpath": "(//XCUIElementTypeRadioButton[@label='No' and @value='0'])[last()]",
+                        "wait": 4
+                    },
+                    {
+                        "base_path": "facets",
+                        "widget_type": "text",
+                        "xpath": "//XCUIElementTypeTextField",
+                        "wait": 4,
+                        "text": "Fail"
+                    },
+                    {
+                        "base_path": "facets",
+                        "widget_type": "button",
+                        "xpath": "//XCUIElementTypeButton[@label=\"Done\"]",
+                        "wait": 4
+                    }
+                ]
+            }
+        },
+        {
+            "common_command": "end_test.json"
+        }
+    ]
+}

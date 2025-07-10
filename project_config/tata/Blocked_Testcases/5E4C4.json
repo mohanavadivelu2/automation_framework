@@ -1,0 +1,94 @@
+{
+    "facet_id": "5E4C4",
+    "command": [
+      
+      {
+        "common_command": "cp_disconnect.json"
+      },
+      
+      {
+        "base_path": "facets",
+        "widget_type": "text",
+        "xpath": "//XCUIElementTypeTextField[1]",
+        "wait": 4,
+        "text": "5E4C4"
+      },
+  
+      {
+        "common_command": "start_test.json"
+      },
+      {
+        "base_path": "hu_device_manager",
+        "widget_type": "button",
+        "xpath": "//android.widget.ImageView[@resource-id=\"com.harman.devicemanager:id/list_item_icon2\"]",
+        "wait": 4,
+        "max_retries":3  
+      },
+      {
+        "base_path": "hu_device_manager",
+        "widget_type": "button",
+        "xpath": "//android.widget.TextView[@text='Yes']",
+        "wait": 4,
+        "max_retries":3  
+      },
+      {
+        "base_path": "ios-iphone_applemusic",
+        "widget_type": "activate_app",
+        "bundle_id": "com.apple.Music",
+        "delay_before": 20
+    },
+    {
+        "base_path": "ios-iphone_applemusic",
+        "widget_type": "button",
+        "xpath": "//XCUIElementTypeButton[@name=\"MiniPlayerPlayPauseButton\"]",
+        "wait": 3 
+      },
+      {
+        "base_path": "facets",
+        "widget_type": "button",
+        "xpath": "//XCUIElementTypeButton[@label=\"Confirm\"]",
+        "wait": 4,
+        "delay_before": 2
+      },
+  
+      {
+        "base_path": "hu_device_manager",
+        "widget_type": "adb_swipe_xy",
+        "start_x": 500,
+        "start_y": 1,
+        "end_x": 500,
+        "end_y": 150,
+        "duration": 100
+      },
+  
+      {
+          "base_path": "hu_device_manager",
+          "widget_type": "text_search",
+          "search_text": "Source",
+          "search_method": "pytesseract",
+          "partial_match": false,
+          "click_element": true,
+          "wait": 6,
+          "max_attempts": 3,
+          "attempt_interval": 1
+      },
+      {
+        "base_path": "hu_device_manager",
+        "widget_type": "text_search",
+        "search_text": "Radio",
+        "search_method": "pytesseract",
+        "partial_match": false,
+        "click_element": true,
+        "wait": 6,
+        "max_attempts": 3,
+        "attempt_interval": 1
+    },
+  
+      
+      {
+        "common_command": "end_test.json"
+      }
+    ]
+  }
+  
+   

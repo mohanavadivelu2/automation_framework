@@ -1,0 +1,209 @@
+{
+    "facet_id": "DADC2",
+    "command": [
+        {
+            "base_path": "hu_device_manager",
+            "widget_type": "button",
+            "xpath": "//android.widget.TextView[@resource-id=\"com.harman.devicemanager:id/list_item_text_primary\" and @text=\"Delete All devices\"]",
+            "wait": 2
+        },
+        {
+            "base_path": "hu_device_manager",
+            "widget_type": "button",
+            "xpath": "//android.view.ViewGroup[@resource-id=\"com.harman.popupmanager:id/wrapped_view\"]",
+            "wait": 2
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "text",
+            "xpath": "//XCUIElementTypeTextField[1]",
+            "wait": 4,
+            "text": "DADC2"
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "(//XCUIElementTypeButton[@label=\"Play\"])[2]",
+            "wait": 4
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label=\"Start Test\"]",
+            "wait": 4
+        },  
+        {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label=\"Start Capture\"]",
+            "wait": 4,
+            "delay_before": 2,
+            "max_retries":3  
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label=\"Continue\"]",
+            "wait": 6,
+            "delay_before": 2,
+            "max_retries":3  
+        },
+        {
+            "base_path": "ios-iphone_settings",
+            "widget_type": "ios_scroll",
+            "direction": "up",
+            "duration": 0.3,
+            "delay_before": 1
+        },
+        {
+            "base_path": "ios-iphone_settings",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@name=\"com.apple.settings.general\"]",
+            "wait": 4
+        },
+        {
+            "base_path": "ios-iphone_settings",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeCell[@name=\"CarPlay\"]",
+            "wait": 4
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label='Confirm']",
+            "wait": 4,
+            "max_retries": 3
+        },
+        {
+            "base_path": "hu_device_manager",
+            "widget_type": "button",
+            "xpath": "//android.widget.TextView[@resource-id=\"com.harman.devicemanager:id/list_item_text_primary\" and @text=\"Pair New Device\"]",
+            "wait": 2
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "(//XCUIElementTypeButton[@label=\"Confirm\"])[last()]",
+            "wait": 4,
+            "max_retries": 3
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "button", 
+            "xpath": "//XCUIElementTypeRadioButton[@label=\"Yes\" and @value=\"0\"]",
+            "wait": 10
+        },
+        {
+            "base_path": "hu_device_manager",
+            "widget_type": "text_search",
+            "search_text": "Device 1",
+            "search_method": "native",         
+            "partial_match": false,            
+            "click_element": true,             
+            "wait": 4,                         
+            "max_attempts": 3,                
+            "attempt_interval": 1,             
+            "validation": {                    
+               "success": [                    
+                  {
+                
+                  }
+               ],
+               "failed": [                     
+                {
+                  "base_path": "hu_device_manager",
+                  "widget_type": "scroll",
+                  "xpath": "//androidx.recyclerview.widget.RecyclerView",
+                  "direction": "up",
+                  "distance": 900,
+                  "wait": 10,
+                  "delay_before": 2
+              },
+              {
+                   "base_path": "hu_device_manager",
+                   "widget_type": "text_search",
+                   "search_text": "Device 1",
+                   "search_method": "native",
+                   "partial_match": false,
+                   "click_element": true,
+                   "wait": 4,
+                   "max_attempts": 3,
+                   "attempt_interval": 1
+             }
+               ]
+            }
+        },
+        {
+            "widget_type": "image_click",
+            "base_path": "ios-iphone_settings",
+            "template_name": "pair.png",
+            "platform_type": "ios",
+            "threshold": 0.8,
+            "max_attempts": 3,
+            "delay_before": 1,
+            "retry_delay" :5,
+            "ref_img_name": "pair_ref.png"
+        },
+        {
+            "widget_type": "image_click",
+            "base_path": "ios-iphone_settings",
+            "template_name": "connect.png",
+            "platform_type": "ios",
+            "threshold": 0.8,
+            "max_attempts": 3,
+            "delay_before": 1,
+            "retry_delay" :5,
+            "ref_img_name": "connect_ref.png"
+        },
+        {
+            "base_path": "hu_device_manager",
+            "widget_type": "button",
+            "xpath": "//android.widget.Button[@resource-id=\"com.harman.devicemanager:id/yes_button\"]",
+            "wait": 1
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "scroll",
+            "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+            "direction": "down",
+            "distance": 1000,
+            "wait": 6
+        },
+        {
+            "base_path": "hu_device_manager",
+            "widget_type": "single_template",
+            "ref_img_name": "pass_result.png", 
+            "template_name": "CPscreen.png", 
+            "output_name": "Cpscreen_result.png",
+            "threshold": 0.5,  
+            "expect_match": true,
+            "validation": {
+              "success": [
+                {
+                  "base_path": "facets",
+                  "widget_type": "button", 
+                  "xpath": "//XCUIElementTypeRadioButton[@label=\"Yes\" and @value=\"0\"]",
+                  "wait": 10
+                }
+              ],
+              "failed": [
+                {
+                  "base_path": "facets",
+                  "widget_type": "button",
+                  "xpath": "//XCUIElementTypeRadioButton[@label=\"No\" and @value=\"0\"]",
+                  "wait": 10
+                }
+              ]
+            }
+        },
+        
+        {
+            "common_command": "end_test.json"
+        } 
+   
+    ]
+  }
+  
+  
+  
+  

@@ -6,6 +6,22 @@
       "base_path": "facets",
       "bundle_id": "com.apple.Facets3",
       "automation_name": "mac2"
-    }
+    },
+    {
+      "platform_name": "ios",
+      "platform_version": "18.5",
+      "device_name": "Device 1",
+      "udid": "00008130-001449110142001C",
+      "automation_name": "XCUITest",
+      "bundle_id": "com.apple.carplaytests",
+      "showXcodeLog": true,
+      "noReset": true,
+      "base_path": "cpta",
+      "port": "4751",
+      "wdaLocalPort": 8008,
+      "usePrebuiltWDA": false,
+      "useNewWDA": true,
+      "wait": 10
+   }
   ]
 }

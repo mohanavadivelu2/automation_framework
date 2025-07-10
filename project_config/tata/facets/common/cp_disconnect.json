@@ -4,7 +4,7 @@
       "base_path": "hu_device_manager",
       "widget_type": "adb",
       "package_name": "com.harman.devicemanager",  
-      "activity_name": "com.harman.devicemanager.ui.MainActivity", 
+      "activity_name": "com.harman.devicemanager.ui.MainActivity",
       "wait": 4    ,
       "max_retries":3                           
    },

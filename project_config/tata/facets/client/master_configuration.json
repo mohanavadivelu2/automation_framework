@@ -1,0 +1,47 @@
+{
+   "ServerConfiguration": [
+      {
+         "platform_name": "mac",
+         "port": "4539",
+         "base_path": "facets",
+         "bundle_id": "com.apple.Facets3",
+         "automation_name": "mac2"
+      },
+      {
+         "platform_name": "Android",
+         "port": "4529",
+         "base_path": "hu_device_manager",
+         "platform_version": "11",
+         "device_name": "5f5e354",
+         "app_package": "com.harman.devicemanager",
+         "app_activity": "com.harman.devicemanager.ui.MainActivity",
+         "automation_name": "UiAutomator2"
+      },
+      {
+         "platform_name": "ios",
+         "platform_version": "18.5",
+         "device_name": "iPhone 15 Plus",
+         "udid": "00008120-000C44AE2212201E",
+         "automation_name": "XCUITest",
+         "bundle_id": "com.apple.Preferences",
+         "showXcodeLog": true,
+         "noReset": true,
+         "base_path": "ios-iphone_settings",
+         "wdaLocalPort": 8101,
+         "port": "4730"
+      },
+      {
+         "platform_name": "ios",
+         "platform_version": "18.5",
+         "device_name": "iPhone 15 Plus",
+         "udid": "00008120-000C44AE2212201E",
+         "automation_name": "XCUITest",
+         "bundle_id": "com.apple.carplaytests",
+         "showXcodeLog": true,
+         "noReset": true,
+         "base_path": "cpta",
+         "port": "4750",
+         "wdaLocalPort": 8100,
+         "wait": 20
+      }
+}

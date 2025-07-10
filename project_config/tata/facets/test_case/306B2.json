@@ -1,0 +1,83 @@
+{
+    "facet_id": "306B2",
+    "command": [
+        {
+            "common_command": "cp_disconnect.json"
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "text",
+            "xpath": "//XCUIElementTypeTextField",
+            "wait": 4,
+            "text": "306B2"
+        },
+        {
+            "common_command": "start_test.json"
+        },
+        {
+            "common_command": "cp_connect.json"
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "scroll",
+            "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+            "direction": "down",
+            "distance": 1000,
+            "wait": 5
+        },
+        {             
+            "base_path": "facets",
+            "widget_type": "button",
+            "search_text": "Passed",
+            "xpath": "//XCUIElementTypeStaticText[@value='Passed']",
+            "max_attempts": 3,          
+            "wait": 3,
+            "validation": {
+                "success": [
+                    {
+                        "base_path": "facets",
+                        "widget_type": "button",
+                        "xpath": "//XCUIElementTypeRadioButton[@label=\"Yes\" and (@value=\"0\" or @value=\"1\")]",
+                        "max_attempts": 3,
+                        "wait": 2
+                    },
+                    {
+                        "widget_type": "command",
+                        "common_command": "end_test.json"
+                    }
+                ],
+                "failed": [
+                    {
+                        "base_path": "facets",
+                        "widget_type": "button",
+                        "xpath": "//XCUIElementTypeRadioButton[@label=\"No\" and (@value=\"0\" or @value=\"1\")]",
+                        "wait": 2
+                    },
+                    {
+                        "base_path": "facets",
+                        "widget_type": "button",
+                        "xpath": "(//XCUIElementTypeButton[@label=\"Fail Step\"])[2]",
+                        "wait": 2
+                    },
+                    {
+                        "base_path": "facets",
+                        "widget_type": "text",
+                        "xpath": "//XCUIElementTypeTextField",
+                        "wait": 4,
+                        "text": "Fail"
+                    },
+                    {
+                        "base_path": "facets",
+                        "widget_type": "button",
+                        "xpath": "//XCUIElementTypeButton[@label=\"Done\"]",
+                        "wait": 4
+                    },
+                    {
+                        "common_command": "end_test.json"
+                    }
+                ]
+            }
+        }
+    ]
+}
+

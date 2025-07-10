@@ -15,6 +15,13 @@
         "max_retries":3  
       },
       {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label='Confirm']",
+            "wait": 4,
+            "max_retries": 3
+      },
+      {
         "base_path": "facets",
         "widget_type": "mac_popup_button",
         "select_capture": "//XCUIElementTypePopUpButton[@label=\"Select Capture\" and @value=\"Select Capture\"]",
@@ -36,7 +43,6 @@
         "widget_type": "button",
         "xpath": "//XCUIElementTypeButton[@label=\"Continue\"]",
         "wait": 6,
-        "delay_before": 2,
         "max_retries":3  
       }
     ]

@@ -1,0 +1,96 @@
+{
+    "facet_id": "D45BE",
+    "command": [
+        {
+            "common_command": "cp_disconnect.json"
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "text",
+            "xpath": "//XCUIElementTypeTextField[1]",
+            "wait": 4,
+            "text": "D45BE"
+        },
+        {
+            "common_command": "start_test_with_confirm.json"
+        },
+        {
+            "common_command": "cp_connect.json"
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "scroll",
+            "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+            "direction": "down",
+            "distance": 100,
+            "wait": 6
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "radio_button",
+            "check_for": "AUDIO_FORMAT_7",
+            "yes_xpath": "//XCUIElementTypeRadioButton[@label='Yes' and (@value='1' or @value='0')]",
+            "no_xpath": "//XCUIElementTypeRadioButton[@label='No' and (@value='1' or @value='0')]",
+            "wait": 4,
+            "max_retry": 3,
+            "validation": {
+                "success": [
+                    {
+                        "base_path": "facets",
+                        "widget_type": "button",
+                        "xpath": "//XCUIElementTypeButton[@label='Done']"
+                    }
+                ],
+                "failed": [
+                    {
+                        "base_path": "facets",
+                        "widget_type": "scroll",
+                        "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+                        "direction": "down",
+                        "distance": 100,
+                        "wait": 6
+                    }
+                ]
+            }
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "scroll",
+            "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+            "direction": "down",
+            "distance": 100,
+            "wait": 6
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "radio_button",
+            "check_for": "AUDIO_FORMAT_5",
+            "yes_xpath": "//XCUIElementTypeRadioButton[@label='Yes' and (@value='1' or @value='0')][last()]",
+            "no_xpath": "//XCUIElementTypeRadioButton[@label='No' and (@value='1' or @value='0')][last()]",
+            "wait": 4,
+            "max_retry": 3,
+            "validation": {
+                "success": [
+                    {
+                        "base_path": "facets",
+                        "widget_type": "button",
+                        "xpath": "//XCUIElementTypeButton[@label='Done']"
+                    }
+                ],
+                "failed": [
+                    {
+                        "base_path": "facets",
+                        "widget_type": "scroll",
+                        "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+                        "direction": "down",
+                        "distance": 100,
+                        "wait": 6
+                    }
+                ]
+            }
+        },
+        {
+            "common_command": "end_test.json"
+        }
+    ]
+}
