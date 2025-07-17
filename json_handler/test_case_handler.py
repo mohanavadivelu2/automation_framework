@@ -9,11 +9,11 @@ from typing import Tuple, Dict, Any, List, Optional
 import time
 import os
 
-from .test_case_helper import load_test_case_data
+from .test_case_helper import load_test_case_data, load_json
 from .validation.test_case_validator import TestCaseValidator
 from .test_case_common_command import expand_common_commands
 from .test_case_command_processor import CommandProcessor
-from global_config.project_configuration import ENABLE_VIDEO_ENABLED
+from global_config.project_configuration import ENABLE_VIDEO_ENABLED, TEST_CASE_CLEAN_UP
 from command_handler.widget.execute_command import process_command
 from logger import LogManager
 from screen_recorder import ScreenRecorder
@@ -71,11 +71,27 @@ def stop_video_recording(screen_recorders: Dict[str, ScreenRecorder]) -> None:
     time.sleep(2)  # Allow time for recording to stop
 
 
+def _execute_cleanup(cleanup_file: str, command_processor: CommandProcessor, log_path: str) -> None:
+    """Helper function to execute cleanup commands."""
+    alog = LogManager.get_instance().get_test_case_logger()
+    alog.i(f"--- Executing cleanup file: {cleanup_file} ---")
+    
+    cleanup_path = os.path.join(TEST_CASE_CLEAN_UP, cleanup_file)
+    cleanup_data = load_json(cleanup_path)
+    
+    if not cleanup_data or "command" not in cleanup_data:
+        alog.e(f"Cleanup file not found or invalid: {cleanup_path}")
+        return
+
+    cleanup_commands = expand_common_commands(cleanup_data["command"])
+    for command in cleanup_commands:
+        # We don't care about the status of cleanup commands, just execute them
+        command_processor.expand_and_process_command(command)
+
+
 def process_test_case(test_case_id: str, log_path: str) -> Tuple[bool, str]:
     """
-    Process a test case by loading its data, expanding common commands, and executing them.
-    
-    This function supports validation sections and exit conditions in commands.
+    Process a test case by loading its data, handling cleanup blocks, and executing commands.
     
     Args:
         test_case_id: ID of the test case to process
@@ -87,12 +103,10 @@ def process_test_case(test_case_id: str, log_path: str) -> Tuple[bool, str]:
     alog = LogManager.get_instance().get_test_case_logger()
     command_processor = CommandProcessor()
 
-    # Load and validate test case data
     test_case_data = load_test_case_data(test_case_id)
     if not test_case_data:
         return False, "FILE_NOT_FOUND_OR_INVALID_JSON"
 
-    # Validate test case structure
     validator = TestCaseValidator()
     valid, message = validator.validate_test_case_data(test_case_data, test_case_id)
     if not valid:
@@ -100,31 +114,40 @@ def process_test_case(test_case_id: str, log_path: str) -> Tuple[bool, str]:
         return False, message
 
     try:
-        # Expand common commands
-        commands = expand_common_commands(test_case_data["command"])
+        commands = test_case_data["command"]
         alog.i(f">>> Log path [{log_path}] test case ID [{test_case_id}]")
-        alog.i(f">>> Total commands [{len(commands)}]")
-        alog.i(f">>> ENABLE_VIDEO_ENABLED commands [{ENABLE_VIDEO_ENABLED}]")
+        alog.i(f">>> Total commands/directives [{len(commands)}]")
         
-        # Set up video recording if enabled
         screen_recorders = {}
         if ENABLE_VIDEO_ENABLED == "YES":
-            screen_recorders = setup_video_recording(commands, test_case_id, log_path)
+            # We need to expand common commands first to find all base_paths for recording
+            expanded_for_video = expand_common_commands(commands)
+            screen_recorders = setup_video_recording(expanded_for_video, test_case_id, log_path)
 
-        # Execute commands with validation and exit handling
         message = "SUCCESS"
         status = True
-        for command in commands:
-            status, message = command_processor.expand_and_process_command(command)
-            if not status:
-                if message == "Exit Command Triggered":
-                    alog.i(f">>> Execution stopped due to exit command")
-                    break
-                else:
-                    alog.i(f">>> Execution Failed {test_case_id}: {message} <<<")
-                    break
+        current_cleanup_file = None
 
-        # Stop video recording if enabled
+        for command in commands:
+            if "clean_up" in command:
+                current_cleanup_file = command["clean_up"]
+                alog.i(f"Setting cleanup file to: {current_cleanup_file}")
+                continue
+
+            # Expand common commands at the point of execution
+            expanded_commands = expand_common_commands([command])
+            for expanded_command in expanded_commands:
+                status, message = command_processor.expand_and_process_command(expanded_command)
+                if not status:
+                    alog.e(f">>> Command failed: {message} <<<")
+                    if current_cleanup_file:
+                        _execute_cleanup(current_cleanup_file, command_processor, log_path)
+                    # Stop processing further commands in this test case
+                    break
+            
+            if not status:
+                break
+
         if ENABLE_VIDEO_ENABLED == "YES":
             stop_video_recording(screen_recorders)
 

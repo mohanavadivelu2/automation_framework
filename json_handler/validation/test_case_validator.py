@@ -64,16 +64,18 @@ class TestCaseValidator(BaseValidator):
         if not isinstance(command, dict):
             self.hlog.e(f"Command at {command_path} must be a dictionary.")
             return False
-            
-        # Validate exit and validation coexistence
-        if "exit" in command and command["exit"] == "YES" and "validation" in command:
-            self.hlog.e(f"Command at {command_path} cannot have both 'exit: YES' and 'validation'.")
-            return False
-            
-        # Validate validation structure if present
-        #if "validation" in command:
-        #    return self.validate_validation_section(command["validation"], f"{command_path}.validation")
-            
+
+        # Handle cleanup directive validation
+        if "clean_up" in command:
+            if not isinstance(command["clean_up"], str):
+                self.hlog.e(f"clean_up value at {command_path} must be a string.")
+                return False
+            # A cleanup directive should only contain the 'clean_up' key
+            if len(command) > 1:
+                self.hlog.e(f"Cleanup directive at {command_path} should only contain the 'clean_up' key.")
+                return False
+            return True
+
         # Validate common_command if present
         if "common_command" in command and not isinstance(command["common_command"], str):
             self.hlog.e(f"common_command at {command_path} must be a string.")

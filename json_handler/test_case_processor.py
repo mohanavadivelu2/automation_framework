@@ -80,12 +80,7 @@ class ProcessTestCase:
         if result:
             tlog.i(f"Test case {test_case_id} processed successfully: {message}")
         else:
-            if message == "Exit Command Triggered":
-                tlog.i(f"Test case {test_case_id} stopped due to exit command")
-            else:
-                tlog.e(f"Test case {test_case_id} failed: {message}")
-                if test_case_id != "facets_clean_up":
-                    process_test_case("facets_clean_up", log_dir)
+            tlog.e(f"Test case {test_case_id} failed: {message}")
 
     def test_case_processor(self) -> None:
         """

@@ -1,0 +1,115 @@
+@startuml
+' Diagram Title
+title **JSON Handler Module - Test Case Execution Sequence**
+
+' General Styling
+autonumber "<b>[00]"
+skinparam shadowing false
+skinparam roundcorner 10
+skinparam sequence {
+    ArrowColor Black
+    BorderColor Black
+    LifeLineBorderColor Black
+    ParticipantBorderColor Black
+    ParticipantBackgroundColor LightBlue
+    ActorBackgroundColor LightGreen
+}
+skinparam note {
+    BackgroundColor LightYellow
+    BorderColor Black
+}
+
+' Header & Footer
+header **Automation Framework Documentation**
+footer Generated on: %date("dd-MM-yyyy HH:mm")
+
+' Participants
+actor User
+participant "Main" as Main
+participant "ProcessTestCase" as PTC
+participant "test_case_handler()" as TCH
+participant "CommandProcessor" as CP
+participant "execute_command()" as ExecCmd
+
+' Start of Sequence
+User -> Main: run()
+activate Main
+
+box "Test Case Group Processing" #LightGrey
+    Main -> PTC: test_case_processor()
+    activate PTC
+    note right of PTC: Begins processing the entire group of test cases.
+
+    PTC -> PTC: get_test_case_list()
+    note over PTC: Loads master JSON file and gets list of test case IDs.
+
+    loop for each test_case_id
+        PTC -> TCH: process_test_case(test_case_id, log_dir)
+        activate TCH
+        note right of TCH: Orchestrates a single test case execution.
+
+        box "Test Case Initialization" #White
+            TCH -> TCH: load_test_case_data()
+            note over TCH: Loads the specific test case JSON file.
+
+            TCH -> "TestCaseValidator": validate_test_case_data()
+            note over TCH: Validates the structure of the loaded JSON.
+        end box
+
+        TCH -> TCH: current_cleanup_file = None
+        note over TCH: Initialize cleanup file for the test case.
+
+        loop for each item in command list
+            alt if item is a clean_up directive
+                TCH -> TCH: current_cleanup_file = item['clean_up']
+                note over TCH: Sets the active cleanup file for subsequent commands.
+            else item is a command
+                TCH -> CP: expand_and_process_command(item)
+                activate CP
+                note right of CP: Handles execution of one command (and its potential common command expansion).
+
+                CP -> CP: expand_common_commands()
+                note over CP: Recursively expands any 'common_command' directives.
+
+                loop for each expanded command
+                    CP -> ExecCmd: process_command(expanded_command)
+                    activate ExecCmd
+                    note over ExecCmd: The core execution of the widget action (e.g., click, find image).
+                    ExecCmd --> CP: status, message
+                    deactivate ExecCmd
+
+                    alt command fails AND has NO validation
+                        CP --> TCH: (False, "Command Failed...")
+                        deactivate CP
+                        note left of TCH #FF0000: Failure detected! Triggering cleanup.
+                        
+                        TCH -> TCH: _execute_cleanup(current_cleanup_file)
+                        note over TCH: Loads and runs the cleanup file if one is set.
+                        
+                        TCH --> PTC: (False, ...)
+                        deactivate TCH
+                        break outer loop
+                    else command fails WITH validation
+                        CP -> CP: (handles 'failed' validation block)
+                        note over CP: Executes the 'failed' section. Failure is handled gracefully.
+                        CP --> TCH: (True, "Failure Handled...")
+                    else command succeeds
+                        CP -> CP: (handles 'success' or 'valid_match' blocks)
+                        note over CP: Executes success path.
+                        CP --> TCH: (True, "Success")
+                    end
+                end
+                deactivate CP
+            end
+        end
+        TCH --> PTC: final_status, final_message
+        deactivate TCH
+    end
+    PTC --> Main:
+    deactivate PTC
+end box
+
+Main --> User:
+deactivate Main
+
+@enduml

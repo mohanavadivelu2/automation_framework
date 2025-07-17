@@ -1,0 +1,130 @@
+@startuml
+' Diagram Title
+title **JSON Handler Module - Class Diagram**
+
+' General Styling
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam roundcorner 10
+skinparam class {
+    BackgroundColor LightBlue
+    ArrowColor Black
+    BorderColor Black
+}
+skinparam note {
+    BackgroundColor LightYellow
+    BorderColor Black
+}
+
+' Header
+header
+**Automation Framework Documentation**
+endheader
+
+' Footer
+footer
+Generated on: %date("dd-MM-yyyy HH:mm")
+endfooter
+
+' Legend
+legend top right
+  **Legend**
+  | Symbol | Meaning |
+  | ..> | Uses / Dependency |
+  | --|> | Inheritance |
+  | o-- | Aggregation |
+  | *-- | Composition |
+end legend
+
+' Main Package
+package "json_handler" {
+
+    ' Class: ProcessTestCase
+    class ProcessTestCase {
+        - log_manager: LogManager
+        - alog: Logger
+        + __init__()
+        + get_test_case_list(): List[str]
+        - _get_log_directory(test_case_id: str): str
+        - _process_single_test_case(test_case_id: str): void
+        + test_case_processor(): void
+    }
+    note right of ProcessTestCase
+      **Main entry point for test execution.**
+      - Loads the master list of test cases.
+      - Iterates through each test case ID.
+      - Invokes `test_case_handler` to process each one.
+    end note
+
+    ' Class: CommandProcessor
+    class CommandProcessor {
+        - log_manager: LogManager
+        - tlog: Logger
+        + __init__()
+        + process_command_with_validation(command: Dict): Tuple[bool, str]
+        + expand_and_process_command(command: Dict): Tuple[bool, str]
+    }
+    note left of CommandProcessor
+      **The workhorse of the execution engine.**
+      - Processes a single command dictionary.
+      - Handles all conditional logic (`validation`, `valid_match`).
+      - Signals failure to the handler if cleanup is needed.
+    end note
+
+    ' Sub-package: validation
+    package "validation" {
+        ' Class: TestCaseValidator
+        class TestCaseValidator extends BaseValidator {
+            + validate_test_case_data(data: Dict, test_case_id: str): Tuple[bool, str]
+            + validate_test_case_group(data: Dict): bool
+            + validate_command(command: Dict, command_path: str): bool
+            + validate_validation_section(validation: Dict, validation_path: str): bool
+        }
+        note bottom of TestCaseValidator
+          **Ensures test case files are well-formed.**
+          - Validates the structure of test case JSON.
+          - Checks for required keys and correct data types.
+          - Validates directives like `clean_up` and `common_command`.
+        end note
+
+        ' Class: BaseValidator
+        class BaseValidator {
+            # hlog: Logger
+            + __init__()
+            # validate_is_dict(data: Any, path: str): bool
+            # validate_has_key(data: Dict, key: str, path: str): bool
+            # validate_has_list(data: Dict, key: str, path: str): bool
+            # validate_list_not_empty(data: Dict, key: str, path: str): bool
+        }
+        note top of BaseValidator
+          **Provides common, reusable validation methods.**
+        end note
+    }
+}
+
+' Relationships and Functional Dependencies
+ProcessTestCase ..> TestCaseValidator : uses for validation
+note on link: Before processing, validates the test case group file.
+
+ProcessTestCase ..> "test_case_handler()" : invokes
+note on link: Processes each test case ID sequentially.
+
+"test_case_handler()" ..> CommandProcessor : uses
+note on link: Passes each command to the processor for execution.
+
+"test_case_handler()" ..> "expand_common_commands()" : uses
+note on link: Expands reusable command blocks before execution.
+
+"test_case_handler()" ..> "load_test_case_data()" : uses
+note on link: Loads the JSON file for the test case.
+
+CommandProcessor ..> "expand_common_commands()" : uses
+note on link: Recursively expands nested common commands.
+
+CommandProcessor ..> "process_command()" : uses
+note on link: Calls the underlying function to execute the specific widget action.
+
+' Note about non-class entities
+note "The diagram includes key functions like `test_case_handler()` \nand `expand_common_commands()` to show the complete flow, \neven though they are not classes." as N1
+
+@enduml

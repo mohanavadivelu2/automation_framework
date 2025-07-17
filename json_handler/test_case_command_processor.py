@@ -26,30 +26,49 @@ class CommandProcessor:
         
     def process_command_with_validation(self, command: Dict[str, Any]) -> Tuple[bool, str]:
         """
-        Process a command with validation and exit handling.
+        Process a command with validation.
         
         Args:
             command: The command to process
             
         Returns:
-            Tuple containing success status and message
+            Tuple containing success status and a message.
+            - (True, message): Command succeeded or failure was handled by validation.
+            - (False, "Command Failed, No Validation"): Command failed and requires cleanup.
         """
-        # Check for exit condition
-        exit_status = command.get("exit", "NO")
-        
         # Process the main command
         self.tlog.d(f"Processing command for base_path: {command.get('base_path', 'N/A')}")
         status, message = process_command(command)
         
+        # Check if the command failed
         if not status:
             self.tlog.i(f"Command failed: {message}")
+            
+            # If failed, check for validation or valid_match blocks
+            validation = command.get("validation")
+            valid_match = command.get("valid_match")
+            
+            if not validation and not valid_match:
+                # No validation defined, signal to exit test case
+                return False, "Command Failed, No Validation"
+            
+            # Process failed validation if present
+            if validation:
+                failed_commands = validation.get("failed", [])
+                if failed_commands:
+                    self.tlog.d("Processing failed validation commands")
+                    for failed_command in failed_commands:
+                        sub_status, sub_message = self.expand_and_process_command(failed_command)
+                        if not sub_status:
+                            # If a command inside failed validation fails, we exit the test case
+                            return False, f"Failure in validation: {sub_message}"
+                # If failure was handled by validation, we consider it a success for continuing
+                return True, "Failure Handled by Validation"
         
         # Handle valid_match validation if present and command succeeded
         valid_match = command.get("valid_match")
         if valid_match and status:
             self.tlog.d("Valid match validation section found for command")
-            
-            # The message is now directly the matched image key (e.g., "image_one")
             matched_image = message
             
             if matched_image in valid_match:
@@ -57,41 +76,21 @@ class CommandProcessor:
                 match_commands = valid_match.get(matched_image, [])
                 for match_command in match_commands:
                     sub_status, sub_message = self.expand_and_process_command(match_command)
-                    if not sub_status and match_command.get("exit", "NO") == "YES":
-                        self.tlog.i(f"Exit triggered inside valid_match for {matched_image}")
-                        return False, "Exit Command Triggered"
+                    if not sub_status:
+                        return False, f"Failure in valid_match: {sub_message}"
             
-        # Handle validation if present
+        # Handle success validation if present
         validation = command.get("validation")
-        if validation:
+        if validation and status:
             self.tlog.d("Validation section found for command")
-            
-            if status:
-                # Command succeeded, process success validation
-                success_commands = validation.get("success", [])
-                if success_commands:
-                    self.tlog.d("Processing success validation commands")
-                    for success_command in success_commands:
-                        sub_status, sub_message = self.expand_and_process_command(success_command)
-                        if not sub_status and success_command.get("exit", "NO") == "YES":
-                            self.tlog.i("Exit triggered inside success validation")
-                            return False, "Exit Command Triggered"
-            else:
-                # Command failed, process failed validation
-                failed_commands = validation.get("failed", [])
-                if failed_commands:
-                    self.tlog.d("Processing failed validation commands")
-                    for failed_command in failed_commands:
-                        sub_status, sub_message = self.expand_and_process_command(failed_command)
-                        if not sub_status and failed_command.get("exit", "NO") == "YES":
-                            self.tlog.i("Exit triggered inside failed validation")
-                            return False, "Exit Command Triggered"
-        
-        # Handle exit condition
-        if exit_status == "YES":
-            self.tlog.i("Exit triggered. Stopping further command execution.")
-            return False, "Exit Command Triggered"
-            
+            success_commands = validation.get("success", [])
+            if success_commands:
+                self.tlog.d("Processing success validation commands")
+                for success_command in success_commands:
+                    sub_status, sub_message = self.expand_and_process_command(success_command)
+                    if not sub_status:
+                        return False, f"Failure in success validation: {sub_message}"
+                        
         return status, message
         
     def expand_and_process_command(self, command: Dict[str, Any]) -> Tuple[bool, str]:
@@ -106,11 +105,13 @@ class CommandProcessor:
         """
         if "common_command" in command:
             expanded_commands = expand_common_commands([command])
+            # Since common commands can be nested, we process them one by one
             for expanded_command in expanded_commands:
                 status, message = self.process_command_with_validation(expanded_command)
                 if not status:
+                    # If any command in the common block fails, propagate the failure
                     return False, message
             return True, "Common Command Processed"
-        else:
-            self.tlog.i("calling ---->>>> process_command_with_validation ")
-            return self.process_command_with_validation(command)
+        
+        # self.tlog.i("calling ---->>>> process_command_with_validation ")
+        return self.process_command_with_validation(command)
