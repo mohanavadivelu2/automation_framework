@@ -4,6 +4,7 @@ from io import StringIO
 from logger import LogManager
 from ..widget_utils import WidgetUtils
 from command_handler.widget.handler.base import BaseHandler
+import time
 
 """
 Handler for the 'facet_page_source_search' widget type.
@@ -85,6 +86,7 @@ class FacetPageSourceSearchHandler(BaseHandler):
             parent_string_processed = parent_string
 
         def search_operation():
+            time.sleep(command_data.get("delay_before", 5))
             try:
                 page_source = driver.page_source
                 file_path = os.path.join(folder_path, file_name)
