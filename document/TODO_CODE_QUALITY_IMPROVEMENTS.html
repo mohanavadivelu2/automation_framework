@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TODO_CODE_QUALITY_IMPROVEMENTS.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="automation-framework---code-quality-improvement-todo-list">Automation Framework - Code Quality Improvement TODO List</h1>
+<h2 id="overview">Overview</h2>
+<p>This TODO list outlines the roadmap to improve the automation framework code quality from <strong>7/10 to 9-10/10</strong>. Items are prioritized by impact and implementation difficulty.</p>
+<hr>
+<h2 id="phase-1-foundation--critical-improvements-weeks-1-2">Phase 1: Foundation &amp; Critical Improvements (Weeks 1-2)</h2>
+<h3 id="%F0%9F%94%B4-high-priority---testing-infrastructure">🔴 HIGH PRIORITY - Testing Infrastructure</h3>
+<h4 id="%E2%9C%85-todo-11-implement-unit-testing-framework">✅ TODO 1.1: Implement Unit Testing Framework</h4>
+<ul>
+<li><input type="checkbox" id="checkbox0"><label for="checkbox0">Install and configure pytest</label></li>
+<li><input type="checkbox" id="checkbox1"><label for="checkbox1">Create </label><code>tests/</code> directory structure</li>
+<li><input type="checkbox" id="checkbox2"><label for="checkbox2">Write unit tests for core components:</label>
+<ul>
+<li><input type="checkbox" id="checkbox3"><label for="checkbox3"></label><code>ApplicationManager</code> singleton pattern</li>
+<li><input type="checkbox" id="checkbox4"><label for="checkbox4"></label><code>WidgetFactory</code> handler registration</li>
+<li><input type="checkbox" id="checkbox5"><label for="checkbox5"></label><code>LogManager</code> instance management</li>
+<li><input type="checkbox" id="checkbox6"><label for="checkbox6">Individual widget handlers (button, text, scroll)</label></li>
+</ul>
+</li>
+<li><input type="checkbox" id="checkbox7"><label for="checkbox7">Achieve 80%+ code coverage for core modules</label></li>
+<li><input type="checkbox" id="checkbox8"><label for="checkbox8">Set up test fixtures for mock drivers and configurations</label></li>
+</ul>
+<p><strong>Files to create:</strong></p>
+<pre class="hljs"><code><div>tests/
+├── conftest.py
+├── test_app_manager.py
+├── test_widget_factory.py
+├── test_log_manager.py
+├── unit/
+│   └── widget_handlers/
+│       ├── test_button_handler.py
+│       ├── test_text_handler.py
+│       └── test_facet_page_source_search.py
+└── integration/
+    ├── test_multi_platform.py
+    └── test_session_lifecycle.py
+</div></code></pre>
+<h4 id="%E2%9C%85-todo-12-json-schema-validation">✅ TODO 1.2: JSON Schema Validation</h4>
+<ul>
+<li><input type="checkbox" id="checkbox9"><label for="checkbox9">Create comprehensive JSON schemas for test cases</label></li>
+<li><input type="checkbox" id="checkbox10"><label for="checkbox10">Implement schema validation in </label><code>json_handler/validation/</code></li>
+<li><input type="checkbox" id="checkbox11"><label for="checkbox11">Add validation for widget-specific parameters</label></li>
+<li><input type="checkbox" id="checkbox12"><label for="checkbox12">Create schema for client configurations</label></li>
+<li><input type="checkbox" id="checkbox13"><label for="checkbox13">Add validation error reporting with line numbers</label></li>
+</ul>
+<p><strong>Files to create:</strong></p>
+<pre class="hljs"><code><div>json_handler/
+├── schemas/
+│   ├── test_case_schema.json
+│   ├── client_config_schema.json
+│   └── common_command_schema.json
+└── validation/
+    └── schema_validator.py
+</div></code></pre>
+<h4 id="%E2%9C%85-todo-13-enhanced-exception-hierarchy">✅ TODO 1.3: Enhanced Exception Hierarchy</h4>
+<ul>
+<li><input type="checkbox" id="checkbox14"><label for="checkbox14">Create specific exception types with error codes</label></li>
+<li><input type="checkbox" id="checkbox15"><label for="checkbox15">Replace generic </label><code>Exception</code> catches with specific types</li>
+<li><input type="checkbox" id="checkbox16"><label for="checkbox16">Add exception context and correlation IDs</label></li>
+<li><input type="checkbox" id="checkbox17"><label for="checkbox17">Implement exception chaining for better debugging</label></li>
+</ul>
+<p><strong>Files to create/modify:</strong></p>
+<pre class="hljs"><code><div>exceptions/
+├── __init__.py
+├── automation_exceptions.py
+├── device_exceptions.py
+├── configuration_exceptions.py
+└── validation_exceptions.py
+</div></code></pre>
+<h3 id="%F0%9F%94%B4-high-priority---configuration-management">🔴 HIGH PRIORITY - Configuration Management</h3>
+<h4 id="%E2%9C%85-todo-14-environment-based-configuration">✅ TODO 1.4: Environment-Based Configuration</h4>
+<ul>
+<li><input type="checkbox" id="checkbox18"><label for="checkbox18">Replace hard-coded configuration switching</label></li>
+<li><input type="checkbox" id="checkbox19"><label for="checkbox19">Add support for environment variables</label></li>
+<li><input type="checkbox" id="checkbox20"><label for="checkbox20">Implement configuration inheritance/templating</label></li>
+<li><input type="checkbox" id="checkbox21"><label for="checkbox21">Add runtime configuration validation</label></li>
+<li><input type="checkbox" id="checkbox22"><label for="checkbox22">Create configuration profiles (dev, test, prod)</label></li>
+</ul>
+<p><strong>Files to create/modify:</strong></p>
+<pre class="hljs"><code><div>config/
+├── __init__.py
+├── config_manager.py
+├── models.py (Pydantic models)
+├── environments/
+│   ├── dev.yaml
+│   ├── test.yaml
+│   └── prod.yaml
+└── templates/
+    ├── android_template.json
+    ├── ios_template.json
+    └── mac_template.json
+</div></code></pre>
+<h4 id="%E2%9C%85-todo-15-type-safety-with-pydantic">✅ TODO 1.5: Type Safety with Pydantic</h4>
+<ul>
+<li><input type="checkbox" id="checkbox23"><label for="checkbox23">Define typed configuration models</label></li>
+<li><input type="checkbox" id="checkbox24"><label for="checkbox24">Add field validation and constraints</label></li>
+<li><input type="checkbox" id="checkbox25"><label for="checkbox25">Implement automatic type conversion</label></li>
+<li><input type="checkbox" id="checkbox26"><label for="checkbox26">Add configuration documentation generation</label></li>
+</ul>
+<hr>
+<h2 id="phase-2-code-quality--reliability-weeks-3-4">Phase 2: Code Quality &amp; Reliability (Weeks 3-4)</h2>
+<h3 id="%F0%9F%9F%A1-medium-priority---type-hints--documentation">🟡 MEDIUM PRIORITY - Type Hints &amp; Documentation</h3>
+<h4 id="%E2%9C%85-todo-21-comprehensive-type-hints">✅ TODO 2.1: Comprehensive Type Hints</h4>
+<ul>
+<li><input type="checkbox" id="checkbox27"><label for="checkbox27">Add type hints to all public methods</label></li>
+<li><input type="checkbox" id="checkbox28"><label for="checkbox28">Add type hints to all class attributes</label></li>
+<li><input type="checkbox" id="checkbox29"><label for="checkbox29">Use </label><code>typing</code> module for complex types</li>
+<li><input type="checkbox" id="checkbox30"><label for="checkbox30">Configure mypy for type checking</label></li>
+<li><input type="checkbox" id="checkbox31"><label for="checkbox31">Fix all type-related warnings</label></li>
+</ul>
+<p><strong>Priority files:</strong></p>
+<ul>
+<li><code>app_manager.py</code></li>
+<li><code>session_manager/session_manager.py</code></li>
+<li><code>command_handler/widget/widget_factory.py</code></li>
+<li>All widget handlers in <code>command_handler/widget/handler/</code></li>
+</ul>
+<h4 id="%E2%9C%85-todo-22-enhanced-documentation">✅ TODO 2.2: Enhanced Documentation</h4>
+<ul>
+<li><input type="checkbox" id="checkbox32"><label for="checkbox32">Add comprehensive docstrings (Google/NumPy style)</label></li>
+<li><input type="checkbox" id="checkbox33"><label for="checkbox33">Document all public APIs</label></li>
+<li><input type="checkbox" id="checkbox34"><label for="checkbox34">Add usage examples in docstrings</label></li>
+<li><input type="checkbox" id="checkbox35"><label for="checkbox35">Generate API documentation with Sphinx</label></li>
+<li><input type="checkbox" id="checkbox36"><label for="checkbox36">Create architecture decision records (ADRs)</label></li>
+</ul>
+<p><strong>Files to create:</strong></p>
+<pre class="hljs"><code><div>docs/
+├── api/
+├── architecture/
+│   ├── adr-001-singleton-pattern.md
+│   ├── adr-002-widget-factory.md
+│   └── adr-003-multi-platform-support.md
+└── examples/
+    ├── custom_widget_handler.py
+    └── advanced_test_scenarios.py
+</div></code></pre>
+<h3 id="%F0%9F%9F%A1-medium-priority---error-handling--resilience">🟡 MEDIUM PRIORITY - Error Handling &amp; Resilience</h3>
+<h4 id="%E2%9C%85-todo-23-circuit-breaker-pattern">✅ TODO 2.3: Circuit Breaker Pattern</h4>
+<ul>
+<li><input type="checkbox" id="checkbox37"><label for="checkbox37">Implement circuit breaker for unreliable operations</label></li>
+<li><input type="checkbox" id="checkbox38"><label for="checkbox38">Add failure threshold configuration</label></li>
+<li><input type="checkbox" id="checkbox39"><label for="checkbox39">Implement automatic recovery mechanisms</label></li>
+<li><input type="checkbox" id="checkbox40"><label for="checkbox40">Add circuit breaker monitoring</label></li>
+</ul>
+<p><strong>Files to create:</strong></p>
+<pre class="hljs"><code><div>utils/
+├── circuit_breaker.py
+├── retry_mechanisms.py
+└── health_checker.py
+</div></code></pre>
+<h4 id="%E2%9C%85-todo-24-enhanced-widget-handler-error-handling">✅ TODO 2.4: Enhanced Widget Handler Error Handling</h4>
+<ul>
+<li><input type="checkbox" id="checkbox41"><label for="checkbox41">Improve error context in widget handlers</label></li>
+<li><input type="checkbox" id="checkbox42"><label for="checkbox42">Add automatic screenshot capture on failures</label></li>
+<li><input type="checkbox" id="checkbox43"><label for="checkbox43">Implement element suggestion system</label></li>
+<li><input type="checkbox" id="checkbox44"><label for="checkbox44">Add recovery strategies for common failures</label></li>
+</ul>
+<p><strong>Specifically for <code>facet_page_source_search.py</code>:</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox45"><label for="checkbox45">Add specific exceptions for XML parsing errors</label></li>
+<li><input type="checkbox" id="checkbox46"><label for="checkbox46">Improve element-to-line mapping algorithm</label></li>
+<li><input type="checkbox" id="checkbox47"><label for="checkbox47">Add validation for step number ranges</label></li>
+<li><input type="checkbox" id="checkbox48"><label for="checkbox48">Implement fuzzy text matching as fallback</label></li>
+</ul>
+<hr>
+<h2 id="phase-3-advanced-features--monitoring-weeks-5-6">Phase 3: Advanced Features &amp; Monitoring (Weeks 5-6)</h2>
+<h3 id="%F0%9F%9F%A1-medium-priority---logging--monitoring">🟡 MEDIUM PRIORITY - Logging &amp; Monitoring</h3>
+<h4 id="%E2%9C%85-todo-31-structured-logging">✅ TODO 3.1: Structured Logging</h4>
+<ul>
+<li><input type="checkbox" id="checkbox49"><label for="checkbox49">Replace custom logging with structured logging (structlog)</label></li>
+<li><input type="checkbox" id="checkbox50"><label for="checkbox50">Add correlation IDs for request tracing</label></li>
+<li><input type="checkbox" id="checkbox51"><label for="checkbox51">Implement log level configuration</label></li>
+<li><input type="checkbox" id="checkbox52"><label for="checkbox52">Add JSON log formatting for machine processing</label></li>
+<li><input type="checkbox" id="checkbox53"><label for="checkbox53">Create log aggregation pipeline</label></li>
+</ul>
+<p><strong>Files to create/modify:</strong></p>
+<pre class="hljs"><code><div>logger/
+├── structured_logger.py
+├── correlation_context.py
+└── formatters/
+    ├── json_formatter.py
+    └── human_readable_formatter.py
+</div></code></pre>
+<h4 id="%E2%9C%85-todo-32-performance-metrics">✅ TODO 3.2: Performance Metrics</h4>
+<ul>
+<li><input type="checkbox" id="checkbox54"><label for="checkbox54">Add execution time tracking</label></li>
+<li><input type="checkbox" id="checkbox55"><label for="checkbox55">Monitor resource usage (CPU, memory)</label></li>
+<li><input type="checkbox" id="checkbox56"><label for="checkbox56">Track success/failure rates</label></li>
+<li><input type="checkbox" id="checkbox57"><label for="checkbox57">Implement performance alerting</label></li>
+<li><input type="checkbox" id="checkbox58"><label for="checkbox58">Create performance dashboards</label></li>
+</ul>
+<p><strong>Files to create:</strong></p>
+<pre class="hljs"><code><div>monitoring/
+├── metrics_collector.py
+├── performance_tracker.py
+├── alerts/
+│   └── performance_alerts.py
+└── dashboards/
+    └── test_execution_dashboard.py
+</div></code></pre>
+<h3 id="%F0%9F%9F%A1-medium-priority---performance-optimization">🟡 MEDIUM PRIORITY - Performance Optimization</h3>
+<h4 id="%E2%9C%85-todo-33-async-operations">✅ TODO 3.3: Async Operations</h4>
+<ul>
+<li><input type="checkbox" id="checkbox59"><label for="checkbox59">Identify I/O-bound operations for async conversion</label></li>
+<li><input type="checkbox" id="checkbox60"><label for="checkbox60">Implement parallel test execution where safe</label></li>
+<li><input type="checkbox" id="checkbox61"><label for="checkbox61">Add async file operations for large page sources</label></li>
+<li><input type="checkbox" id="checkbox62"><label for="checkbox62">Optimize image processing operations</label></li>
+</ul>
+<h4 id="%E2%9C%85-todo-34-resource-management">✅ TODO 3.4: Resource Management</h4>
+<ul>
+<li><input type="checkbox" id="checkbox63"><label for="checkbox63">Implement driver connection pooling</label></li>
+<li><input type="checkbox" id="checkbox64"><label for="checkbox64">Add resource cleanup guarantees</label></li>
+<li><input type="checkbox" id="checkbox65"><label for="checkbox65">Optimize memory usage for large XML files</label></li>
+<li><input type="checkbox" id="checkbox66"><label for="checkbox66">Add disk space monitoring for logs/screenshots</label></li>
+</ul>
+<hr>
+<h2 id="phase-4-advanced-testing--quality-assurance-weeks-7-8">Phase 4: Advanced Testing &amp; Quality Assurance (Weeks 7-8)</h2>
+<h3 id="%F0%9F%9F%A2-low-priority---advanced-testing">🟢 LOW PRIORITY - Advanced Testing</h3>
+<h4 id="%E2%9C%85-todo-41-integration-testing">✅ TODO 4.1: Integration Testing</h4>
+<ul>
+<li><input type="checkbox" id="checkbox67"><label for="checkbox67">Create end-to-end test scenarios</label></li>
+<li><input type="checkbox" id="checkbox68"><label for="checkbox68">Test multi-platform coordination</label></li>
+<li><input type="checkbox" id="checkbox69"><label for="checkbox69">Add performance regression tests</label></li>
+<li><input type="checkbox" id="checkbox70"><label for="checkbox70">Implement test data generation</label></li>
+</ul>
+<h4 id="%E2%9C%85-todo-42-property-based-testing">✅ TODO 4.2: Property-Based Testing</h4>
+<ul>
+<li><input type="checkbox" id="checkbox71"><label for="checkbox71">Add hypothesis for property-based testing</label></li>
+<li><input type="checkbox" id="checkbox72"><label for="checkbox72">Test edge cases automatically</label></li>
+<li><input type="checkbox" id="checkbox73"><label for="checkbox73">Validate JSON schema edge cases</label></li>
+<li><input type="checkbox" id="checkbox74"><label for="checkbox74">Test XPath expression variations</label></li>
+</ul>
+<h4 id="%E2%9C%85-todo-43-contract-testing">✅ TODO 4.3: Contract Testing</h4>
+<ul>
+<li><input type="checkbox" id="checkbox75"><label for="checkbox75">Define contracts between components</label></li>
+<li><input type="checkbox" id="checkbox76"><label for="checkbox76">Add contract validation tests</label></li>
+<li><input type="checkbox" id="checkbox77"><label for="checkbox77">Test API compatibility</label></li>
+<li><input type="checkbox" id="checkbox78"><label for="checkbox78">Validate configuration contracts</label></li>
+</ul>
+<hr>
+<h2 id="phase-5-development-experience--tooling-ongoing">Phase 5: Development Experience &amp; Tooling (Ongoing)</h2>
+<h3 id="%F0%9F%9F%A2-low-priority---development-tooling">🟢 LOW PRIORITY - Development Tooling</h3>
+<h4 id="%E2%9C%85-todo-51-code-quality-tools">✅ TODO 5.1: Code Quality Tools</h4>
+<ul>
+<li><input type="checkbox" id="checkbox79"><label for="checkbox79">Set up pre-commit hooks (black, flake8, mypy)</label></li>
+<li><input type="checkbox" id="checkbox80"><label for="checkbox80">Configure automated code formatting</label></li>
+<li><input type="checkbox" id="checkbox81"><label for="checkbox81">Add import sorting (isort)</label></li>
+<li><input type="checkbox" id="checkbox82"><label for="checkbox82">Set up code complexity monitoring</label></li>
+</ul>
+<p><strong>Files to create:</strong></p>
+<pre class="hljs"><code><div>.pre-commit-config.yaml
+.flake8
+.mypy.ini
+pyproject.toml
+</div></code></pre>
+<h4 id="%E2%9C%85-todo-52-cicd-pipeline">✅ TODO 5.2: CI/CD Pipeline</h4>
+<ul>
+<li><input type="checkbox" id="checkbox83"><label for="checkbox83">Set up GitHub Actions workflow</label></li>
+<li><input type="checkbox" id="checkbox84"><label for="checkbox84">Add automated testing on PR</label></li>
+<li><input type="checkbox" id="checkbox85"><label for="checkbox85">Implement code coverage reporting</label></li>
+<li><input type="checkbox" id="checkbox86"><label for="checkbox86">Add security scanning (bandit)</label></li>
+<li><input type="checkbox" id="checkbox87"><label for="checkbox87">Set up automated dependency updates</label></li>
+</ul>
+<p><strong>Files to create:</strong></p>
+<pre class="hljs"><code><div>.github/
+├── workflows/
+│   ├── ci.yml
+│   ├── code-quality.yml
+│   └── security.yml
+└── dependabot.yml
+</div></code></pre>
+<h4 id="%E2%9C%85-todo-53-dependency-management">✅ TODO 5.3: Dependency Management</h4>
+<ul>
+<li><input type="checkbox" id="checkbox88"><label for="checkbox88">Create requirements.txt with pinned versions</label></li>
+<li><input type="checkbox" id="checkbox89"><label for="checkbox89">Add development dependencies</label></li>
+<li><input type="checkbox" id="checkbox90"><label for="checkbox90">Set up virtual environment automation</label></li>
+<li><input type="checkbox" id="checkbox91"><label for="checkbox91">Add dependency vulnerability scanning</label></li>
+</ul>
+<hr>
+<h2 id="specific-improvements-for-facetpagesourcesearchpy">Specific Improvements for <code>facet_page_source_search.py</code></h2>
+<h3 id="%E2%9C%85-todo-enhance-current-implementation">✅ TODO: Enhance Current Implementation</h3>
+<h4 id="code-quality-improvements">Code Quality Improvements</h4>
+<ul>
+<li>
+<p><input type="checkbox" id="checkbox92"><label for="checkbox92"></label><strong>Add type hints throughout the class</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">find_text_between_steps</span><span class="hljs-params">(self, xml_file: str, step_number: int, 
+                          search_text: str, occurrence: int = <span class="hljs-number">1</span>)</span> -&gt; Tuple[bool, int, int, int, int]:</span>
+</div></code></pre>
+</li>
+<li>
+<p><input type="checkbox" id="checkbox93"><label for="checkbox93"></label><strong>Extract magic numbers to constants</strong></p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Constants</span>:</span>
+    LAST_OCCURRENCE_MARKER = <span class="hljs-number">99</span>
+    FULL_DOCUMENT_SEARCH = <span class="hljs-number">0</span>
+    XCUI_STATIC_TEXT_TAG = <span class="hljs-string">"XCUIElementTypeStaticText"</span>
+</div></code></pre>
+</li>
+<li>
+<p><input type="checkbox" id="checkbox94"><label for="checkbox94"></label><strong>Improve error handling with specific exceptions</strong></p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">XMLParsingError</span><span class="hljs-params">(AutomationError)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StepNotFoundError</span><span class="hljs-params">(AutomationError)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+</div></code></pre>
+</li>
+<li>
+<p><input type="checkbox" id="checkbox95"><label for="checkbox95"></label><strong>Add comprehensive logging</strong></p>
+<pre class="hljs"><code><div>tlog.d(<span class="hljs-string">f"Searching for text '<span class="hljs-subst">{search_text}</span>' in step <span class="hljs-subst">{step_number}</span>, occurrence <span class="hljs-subst">{occurrence}</span>"</span>)
+tlog.d(<span class="hljs-string">f"Found <span class="hljs-subst">{occurrence_count}</span> occurrences of step <span class="hljs-subst">{step_number}</span>"</span>)
+</div></code></pre>
+</li>
+</ul>
+<h4 id="performance-improvements">Performance Improvements</h4>
+<ul>
+<li><input type="checkbox" id="checkbox96"><label for="checkbox96"></label><strong>Optimize element-to-line mapping algorithm</strong></li>
+<li><input type="checkbox" id="checkbox97"><label for="checkbox97"></label><strong>Add caching for frequently accessed page sources</strong></li>
+<li><input type="checkbox" id="checkbox98"><label for="checkbox98"></label><strong>Implement streaming XML parsing for large files</strong></li>
+<li><input type="checkbox" id="checkbox99"><label for="checkbox99"></label><strong>Add parallel processing for multiple text searches</strong></li>
+</ul>
+<h4 id="functionality-enhancements">Functionality Enhancements</h4>
+<ul>
+<li><input type="checkbox" id="checkbox100"><label for="checkbox100"></label><strong>Add fuzzy text matching as fallback</strong></li>
+<li><input type="checkbox" id="checkbox101"><label for="checkbox101"></label><strong>Support for regular expression search patterns</strong></li>
+<li><input type="checkbox" id="checkbox102"><label for="checkbox102"></label><strong>Add case-insensitive search option</strong></li>
+<li><input type="checkbox" id="checkbox103"><label for="checkbox103"></label><strong>Implement search result highlighting in output</strong></li>
+</ul>
+<hr>
+<h2 id="success-metrics">Success Metrics</h2>
+<h3 id="code-quality-targets">Code Quality Targets</h3>
+<ul>
+<li><input type="checkbox" id="checkbox104"><label for="checkbox104"></label><strong>Test Coverage</strong>: 90%+ for critical paths</li>
+<li><input type="checkbox" id="checkbox105"><label for="checkbox105"></label><strong>Type Coverage</strong>: 95%+ with mypy</li>
+<li><input type="checkbox" id="checkbox106"><label for="checkbox106"></label><strong>Documentation Coverage</strong>: 100% for public APIs</li>
+<li><input type="checkbox" id="checkbox107"><label for="checkbox107"></label><strong>Performance</strong>: &lt;2s for typical test case execution</li>
+<li><input type="checkbox" id="checkbox108"><label for="checkbox108"></label><strong>Reliability</strong>: &lt;1% failure rate due to framework issues</li>
+</ul>
+<h3 id="quality-gates">Quality Gates</h3>
+<ul>
+<li><input type="checkbox" id="checkbox109"><label for="checkbox109">All tests pass in CI/CD</label></li>
+<li><input type="checkbox" id="checkbox110"><label for="checkbox110">Zero critical security vulnerabilities</label></li>
+<li><input type="checkbox" id="checkbox111"><label for="checkbox111">Code complexity below threshold (cyclomatic complexity &lt;10)</label></li>
+<li><input type="checkbox" id="checkbox112"><label for="checkbox112">All code formatted consistently</label></li>
+<li><input type="checkbox" id="checkbox113"><label for="checkbox113">Documentation up to date</label></li>
+</ul>
+<hr>
+<h2 id="implementation-guidelines">Implementation Guidelines</h2>
+<h3 id="best-practices">Best Practices</h3>
+<ol>
+<li><strong>Incremental Implementation</strong>: Implement one TODO item at a time</li>
+<li><strong>Backward Compatibility</strong>: Ensure existing test cases continue to work</li>
+<li><strong>Documentation First</strong>: Document design before implementation</li>
+<li><strong>Test-Driven Development</strong>: Write tests before implementation</li>
+<li><strong>Code Reviews</strong>: All changes reviewed by team members</li>
+</ol>
+<h3 id="resource-requirements">Resource Requirements</h3>
+<ul>
+<li><strong>Development Time</strong>: 8 weeks (full-time equivalent)</li>
+<li><strong>Team Size</strong>: 2-3 developers</li>
+<li><strong>External Dependencies</strong>: CI/CD setup, monitoring infrastructure</li>
+<li><strong>Training</strong>: Team training on new tools and patterns</li>
+</ul>
+<hr>
+<h2 id="risk-mitigation">Risk Mitigation</h2>
+<h3 id="technical-risks">Technical Risks</h3>
+<ul>
+<li><input type="checkbox" id="checkbox114"><label for="checkbox114"></label><strong>Breaking Changes</strong>: Implement feature flags for new functionality</li>
+<li><input type="checkbox" id="checkbox115"><label for="checkbox115"></label><strong>Performance Regression</strong>: Establish performance baselines</li>
+<li><input type="checkbox" id="checkbox116"><label for="checkbox116"></label><strong>Complexity Increase</strong>: Regular architecture reviews</li>
+<li><input type="checkbox" id="checkbox117"><label for="checkbox117"></label><strong>Dependency Issues</strong>: Pin all dependency versions</li>
+</ul>
+<h3 id="timeline-risks">Timeline Risks</h3>
+<ul>
+<li><input type="checkbox" id="checkbox118"><label for="checkbox118"></label><strong>Scope Creep</strong>: Strict adherence to TODO priority levels</li>
+<li><input type="checkbox" id="checkbox119"><label for="checkbox119"></label><strong>Resource Constraints</strong>: Focus on HIGH priority items first</li>
+<li><input type="checkbox" id="checkbox120"><label for="checkbox120"></label><strong>Integration Challenges</strong>: Early integration testing</li>
+</ul>
+<hr>
+<p><em>This TODO list represents a comprehensive roadmap to achieve enterprise-grade code quality. Priority should be given to HIGH priority items that provide the most immediate value and risk reduction.</em></p>
+
+</body>
+</html>
