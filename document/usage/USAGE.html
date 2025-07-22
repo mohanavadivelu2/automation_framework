@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>USAGE.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="automation-framework---usage-guide">Automation Framework - Usage Guide</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#quick-start-guide">Quick Start Guide</a></li>
+<li><a href="#system-overview">System Overview</a></li>
+<li><a href="#configuration-setup">Configuration Setup</a></li>
+<li><a href="#test-development">Test Development</a></li>
+<li><a href="#advanced-usage">Advanced Usage</a></li>
+<li><a href="#maintenance-and-troubleshooting">Maintenance and Troubleshooting</a></li>
+<li><a href="#reference">Reference</a></li>
+</ol>
+<hr>
+<h2 id="quick-start-guide">Quick Start Guide</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>Before using this automation framework, ensure you have the following installed:</p>
+<ol>
+<li><strong>Python 3.7+</strong> with pip</li>
+<li><strong>Appium Server</strong> (install via npm: <code>npm install -g appium</code>)</li>
+<li><strong>Device drivers</strong> for your target platforms:
+<ul>
+<li><strong>Android</strong>: Android SDK, ADB, UiAutomator2 driver</li>
+<li><strong>iOS</strong>: Xcode, iOS simulator or physical device, XCUITest driver</li>
+<li><strong>macOS</strong>: Mac2 driver for desktop automation</li>
+</ul>
+</li>
+</ol>
+<h3 id="installation-steps">Installation Steps</h3>
+<ol>
+<li>
+<p><strong>Clone the repository:</strong></p>
+<pre class="hljs"><code><div>git <span class="hljs-built_in">clone</span> &lt;repository-url&gt;
+<span class="hljs-built_in">cd</span> automation_framework
+</div></code></pre>
+</li>
+<li>
+<p><strong>Install Python dependencies:</strong></p>
+<pre class="hljs"><code><div>pip install appium-python-client selenium
+</div></code></pre>
+</li>
+<li>
+<p><strong>Install Appium drivers:</strong></p>
+<pre class="hljs"><code><div>appium driver install uiautomator2    <span class="hljs-comment"># For Android</span>
+appium driver install xcuitest        <span class="hljs-comment"># For iOS</span>
+appium driver install mac2            <span class="hljs-comment"># For macOS</span>
+</div></code></pre>
+</li>
+<li>
+<p><strong>Verify device connectivity:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># For Android</span>
+adb devices
+
+<span class="hljs-comment"># For iOS (if using simulator)</span>
+xcrun simctl list devices
+</div></code></pre>
+</li>
+</ol>
+<h3 id="first-test-execution">First Test Execution</h3>
+<ol>
+<li>
+<p><strong>Configure your test environment</strong> by editing <code>global_config/project_configuration.py</code>:</p>
+<pre class="hljs"><code><div>EXECUTE_GROUP = <span class="hljs-string">"FACETS"</span>  <span class="hljs-comment"># Options: "FACETS", "SANITY", "FCA_SANITY"</span>
+</div></code></pre>
+</li>
+<li>
+<p><strong>Update device configuration</strong> in the appropriate client config file:</p>
+<ul>
+<li>For FACETS: <code>project_config/tata/facets/client/mac_client_configuration.json</code></li>
+<li>For SANITY: <code>project_config/tata/sanity/client/android_client_configuration.json</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Run the framework:</strong></p>
+<pre class="hljs"><code><div>python Main.py
+</div></code></pre>
+</li>
+<li>
+<p><strong>Expected output:</strong></p>
+<pre class="hljs"><code><div>Automation tool version - 2.1.6 - clean_up and Refactor of json_handler
+Starting Appium server for base_path: 'facets' on port: 4539
+Driver instance count [2]
+Press Enter to stop servers and close sessions...
+</div></code></pre>
+</li>
+</ol>
+<h3 id="verification">Verification</h3>
+<ul>
+<li>Check the <code>logs/</code> directory for timestamped execution logs</li>
+<li>Verify Appium servers are running on configured ports</li>
+<li>Confirm test cases execute without driver connection errors</li>
+</ul>
+<hr>
+<h2 id="system-overview">System Overview</h2>
+<h3 id="what-this-framework-does">What This Framework Does</h3>
+<p>This is a <strong>multi-platform mobile and desktop automation framework</strong> that:</p>
+<ul>
+<li>Executes JSON-defined test cases across Android, iOS, and macOS platforms</li>
+<li>Manages multiple Appium servers and device sessions simultaneously</li>
+<li>Provides reusable widget commands for common UI interactions</li>
+<li>Supports image-based testing and page source validation</li>
+<li>Offers comprehensive logging and screen recording capabilities</li>
+</ul>
+<h3 id="key-concepts">Key Concepts</h3>
+<h4 id="oems-original-equipment-manufacturers"><strong>OEMs (Original Equipment Manufacturers)</strong></h4>
+<p>Different automotive manufacturers with their own test configurations:</p>
+<ul>
+<li><code>tata</code> - Tata Motors configurations</li>
+<li><code>fca</code> - Fiat Chrysler Automobiles</li>
+<li><code>subaru</code> - Subaru configurations</li>
+<li><code>demo</code> - Sample/demo configurations</li>
+</ul>
+<h4 id="test-groups"><strong>Test Groups</strong></h4>
+<p>Different types of test suites within each OEM:</p>
+<ul>
+<li><code>FACETS</code> - Feature acceptance tests (typically macOS-based)</li>
+<li><code>SANITY</code> - Basic functionality tests (typically Android-based)</li>
+<li><code>PCTS</code> - Performance and compliance tests</li>
+</ul>
+<h4 id="base-paths"><strong>Base Paths</strong></h4>
+<p>Logical identifiers that map to specific device/application combinations:</p>
+<ul>
+<li><code>facets</code> - macOS Facets application</li>
+<li><code>hu_device_manager</code> - Android head unit device manager</li>
+<li><code>ios-iphone_settings</code> - iOS Settings application</li>
+<li><code>cpta</code> - CarPlay test application</li>
+</ul>
+<h4 id="widget-commands"><strong>Widget Commands</strong></h4>
+<p>Standardized JSON commands for UI interactions:</p>
+<ul>
+<li><code>button</code> - Click/tap operations</li>
+<li><code>text</code> - Text input operations</li>
+<li><code>scroll</code> - Scrolling operations</li>
+<li><code>screenshot</code> - Capture screen images</li>
+<li><code>facet_page_source_search</code> - Advanced XML parsing and text search</li>
+</ul>
+<h3 id="directory-structure">Directory Structure</h3>
+<pre class="hljs"><code><div>automation_framework/
+├── Main.py                    # Entry point
+├── app_manager.py            # Singleton orchestrator
+├── global_config/
+│   └── project_configuration.py  # Environment switching
+├── project_config/           # OEM-specific configurations
+│   ├── tata/
+│   │   ├── facets/          # Test group
+│   │   │   ├── client/      # Appium server configs
+│   │   │   ├── test_case/   # Individual JSON tests
+│   │   │   ├── master/      # Test suite definitions
+│   │   │   ├── common/      # Reusable command sequences
+│   │   │   └── config/      # OEM-specific settings
+│   │   └── sanity/
+│   └── fca/
+├── command_handler/
+│   └── widget/              # Widget command implementations
+├── session_manager/         # Platform-specific drivers
+├── json_handler/           # Test case processing
+└── logs/                   # Timestamped execution logs
+</div></code></pre>
+<h3 id="execution-flow">Execution Flow</h3>
+<ol>
+<li><strong>Initialization:</strong> <code>ApplicationManager</code> loads OEM config and starts Appium servers</li>
+<li><strong>Session Creation:</strong> Platform-specific handlers create device sessions</li>
+<li><strong>Test Processing:</strong> <code>ProcessTestCase</code> loads and validates test suite</li>
+<li><strong>Command Execution:</strong> Each JSON command is processed by appropriate widget handler</li>
+<li><strong>Cleanup:</strong> Sessions are terminated and servers are stopped</li>
+</ol>
+<hr>
+<h2 id="configuration-setup">Configuration Setup</h2>
+<h3 id="switching-between-oems">Switching Between OEMs</h3>
+<p>To change the target OEM (manufacturer), update the paths in <code>global_config/project_configuration.py</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># For Tata Motors</span>
+BASE_DIRECTORY = <span class="hljs-string">"project_config/tata/facets/"</span>
+
+<span class="hljs-comment"># For FCA  </span>
+BASE_DIRECTORY = <span class="hljs-string">"project_config/fca/sanity/"</span>
+
+<span class="hljs-comment"># For Subaru</span>
+BASE_DIRECTORY = <span class="hljs-string">"project_config/subaru/sanity/"</span>
+</div></code></pre>
+<h3 id="switching-between-test-groups">Switching Between Test Groups</h3>
+<p>Change the <code>EXECUTE_GROUP</code> variable to switch test suites:</p>
+<pre class="hljs"><code><div>EXECUTE_GROUP = <span class="hljs-string">"FACETS"</span>    <span class="hljs-comment"># macOS-based feature tests</span>
+EXECUTE_GROUP = <span class="hljs-string">"SANITY"</span>    <span class="hljs-comment"># Android-based sanity tests  </span>
+EXECUTE_GROUP = <span class="hljs-string">"FCA_SANITY"</span> <span class="hljs-comment"># FCA-specific sanity tests</span>
+</div></code></pre>
+<p>Each group automatically configures:</p>
+<ul>
+<li>Client configuration file (Appium server settings)</li>
+<li>Test case directory and master file</li>
+<li>Common commands directory</li>
+<li>Image assets directory</li>
+<li>OEM-specific configuration class</li>
+</ul>
+<h3 id="configuring-device-connections">Configuring Device Connections</h3>
+<h4 id="android-configuration">Android Configuration</h4>
+<p>Edit the Android client config (e.g., <code>project_config/tata/sanity/client/android_client_configuration.json</code>):</p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"ServerConfiguration"</span>: [
+    {
+      <span class="hljs-attr">"platform_name"</span>: <span class="hljs-string">"Android"</span>,
+      <span class="hljs-attr">"port"</span>: <span class="hljs-string">"4529"</span>,
+      <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"hu_device_manager"</span>,
+      <span class="hljs-attr">"platform_version"</span>: <span class="hljs-string">"11"</span>,
+      <span class="hljs-attr">"device_name"</span>: <span class="hljs-string">"f75a993e"</span>,           <span class="hljs-comment">// Your device ID from 'adb devices'</span>
+      <span class="hljs-attr">"app_package"</span>: <span class="hljs-string">"com.harman.devicemanager"</span>,
+      <span class="hljs-attr">"app_activity"</span>: <span class="hljs-string">"com.harman.devicemanager.ui.MainActivity"</span>,
+      <span class="hljs-attr">"automation_name"</span>: <span class="hljs-string">"UiAutomator2"</span>
+    }
+  ]
+}
+</div></code></pre>
+<h4 id="ios-configuration">iOS Configuration</h4>
+<p>Edit the iOS client config:</p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"platform_name"</span>: <span class="hljs-string">"ios"</span>,
+  <span class="hljs-attr">"platform_version"</span>: <span class="hljs-string">"18.5"</span>,
+  <span class="hljs-attr">"device_name"</span>: <span class="hljs-string">"iPhone 15"</span>,
+  <span class="hljs-attr">"udid"</span>: <span class="hljs-string">"00008120-000279620269A01E"</span>,    <span class="hljs-comment">// Your device UDID</span>
+  <span class="hljs-attr">"automation_name"</span>: <span class="hljs-string">"XCUITest"</span>,
+  <span class="hljs-attr">"bundle_id"</span>: <span class="hljs-string">"com.apple.Preferences"</span>,
+  <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"ios-iphone_settings"</span>,
+  <span class="hljs-attr">"port"</span>: <span class="hljs-string">"4540"</span>
+}
+</div></code></pre>
+<h4 id="macos-configuration">macOS Configuration</h4>
+<p>Edit the macOS client config:</p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"platform_name"</span>: <span class="hljs-string">"mac"</span>,
+  <span class="hljs-attr">"port"</span>: <span class="hljs-string">"4539"</span>, 
+  <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"facets"</span>,
+  <span class="hljs-attr">"bundle_id"</span>: <span class="hljs-string">"com.apple.Facets3"</span>,       <span class="hljs-comment">// Your target application</span>
+  <span class="hljs-attr">"automation_name"</span>: <span class="hljs-string">"mac2"</span>
+}
+</div></code></pre>
+<h3 id="setting-up-appium-server-configurations">Setting Up Appium Server Configurations</h3>
+<p>Each <code>base_path</code> requires its own Appium server instance. The framework automatically:</p>
+<ol>
+<li>Reads the client configuration file</li>
+<li>Starts an Appium server for each unique port</li>
+<li>Creates device sessions using platform-specific capabilities</li>
+<li>Maps <code>base_path</code> identifiers to driver instances</li>
+</ol>
+<p><strong>Key Configuration Rules:</strong></p>
+<ul>
+<li>Each <code>base_path</code> must have a unique port number</li>
+<li>Platform capabilities must match your actual device/simulator setup</li>
+<li>Bundle IDs and package names must match installed applications</li>
+</ul>
+<hr>
+<h2 id="test-development">Test Development</h2>
+<h3 id="writing-json-test-cases">Writing JSON Test Cases</h3>
+<p>Test cases are JSON files in the <code>test_case/</code> directory. Each file represents a complete test scenario.</p>
+<h4 id="basic-test-case-structure">Basic Test Case Structure</h4>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"facet_id"</span>: <span class="hljs-string">"859F3"</span>,
+  <span class="hljs-attr">"command"</span>: [
+    {
+      <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"facets"</span>,
+      <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"text"</span>, 
+      <span class="hljs-attr">"xpath"</span>: <span class="hljs-string">"//XCUIElementTypeTextField[1]"</span>,
+      <span class="hljs-attr">"wait"</span>: <span class="hljs-number">4</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"859F3"</span>
+    },
+    {
+      <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"facets"</span>,
+      <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"button"</span>,
+      <span class="hljs-attr">"xpath"</span>: <span class="hljs-string">"//XCUIElementTypeButton[@label='Play']"</span>,
+      <span class="hljs-attr">"wait"</span>: <span class="hljs-number">4</span>
+    }
+  ]
+}
+</div></code></pre>
+<h4 id="required-fields">Required Fields</h4>
+<ul>
+<li><code>facet_id</code>: Unique identifier (must match filename without .json)</li>
+<li><code>command</code>: Array of widget commands to execute sequentially</li>
+</ul>
+<h4 id="common-command-parameters">Common Command Parameters</h4>
+<ul>
+<li><code>base_path</code>: Maps to driver instance (from client configuration)</li>
+<li><code>widget_type</code>: Determines which handler processes the command</li>
+<li><code>xpath</code>: Element locator (XPath, ID, etc.)</li>
+<li><code>wait</code>: Maximum seconds to wait for element</li>
+<li><code>delay_before</code>: Seconds to wait before executing command</li>
+</ul>
+<h3 id="using-common-commands-for-reusability">Using Common Commands for Reusability</h3>
+<p>Create reusable command sequences in the <code>common/</code> directory:</p>
+<p><strong>common/cp_connect.json:</strong></p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"command"</span>: [
+    {
+      <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"hu_device_manager"</span>,
+      <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"adb"</span>,
+      <span class="hljs-attr">"package_name"</span>: <span class="hljs-string">"com.harman.devicemanager"</span>,
+      <span class="hljs-attr">"activity_name"</span>: <span class="hljs-string">"com.harman.devicemanager.ui.MainActivity"</span>,
+      <span class="hljs-attr">"wait"</span>: <span class="hljs-number">4</span>
+    },
+    {
+      <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"hu_device_manager"</span>, 
+      <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"button"</span>,
+      <span class="hljs-attr">"xpath"</span>: <span class="hljs-string">"//android.widget.Button[@text='Connect']"</span>,
+      <span class="hljs-attr">"wait"</span>: <span class="hljs-number">10</span>
+    }
+  ]
+}
+</div></code></pre>
+<p><strong>Include in test cases:</strong></p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"facet_id"</span>: <span class="hljs-string">"TEST001"</span>,
+  <span class="hljs-attr">"command"</span>: [
+    {
+      <span class="hljs-attr">"common_command"</span>: <span class="hljs-string">"cp_connect.json"</span>
+    },
+    {
+      <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"facets"</span>,
+      <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"screenshot"</span>,
+      <span class="hljs-attr">"file_name"</span>: <span class="hljs-string">"after_connection.png"</span>
+    }
+  ]
+}
+</div></code></pre>
+<h3 id="widget-types-and-their-parameters">Widget Types and Their Parameters</h3>
+<h4 id="button-widget">Button Widget</h4>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"facets"</span>,
+  <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"button"</span>,
+  <span class="hljs-attr">"xpath"</span>: <span class="hljs-string">"//XCUIElementTypeButton[@label='Start Test']"</span>,
+  <span class="hljs-attr">"wait"</span>: <span class="hljs-number">4</span>,
+  <span class="hljs-attr">"delay_before"</span>: <span class="hljs-number">2</span>
+}
+</div></code></pre>
+<h4 id="text-input-widget">Text Input Widget</h4>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"facets"</span>, 
+  <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"text"</span>,
+  <span class="hljs-attr">"xpath"</span>: <span class="hljs-string">"//XCUIElementTypeTextField[1]"</span>,
+  <span class="hljs-attr">"text"</span>: <span class="hljs-string">"Test Input"</span>,
+  <span class="hljs-attr">"wait"</span>: <span class="hljs-number">4</span>
+}
+</div></code></pre>
+<h4 id="screenshot-widget">Screenshot Widget</h4>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"facets"</span>,
+  <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"screenshot"</span>, 
+  <span class="hljs-attr">"file_name"</span>: <span class="hljs-string">"test_result.png"</span>,
+  <span class="hljs-attr">"folder_path"</span>: <span class="hljs-string">"custom_folder"</span>
+}
+</div></code></pre>
+<h4 id="scroll-widget">Scroll Widget</h4>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"facets"</span>,
+  <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"scroll"</span>,
+  <span class="hljs-attr">"direction"</span>: <span class="hljs-string">"up"</span>,
+  <span class="hljs-attr">"duration"</span>: <span class="hljs-number">0.3</span>
+}
+</div></code></pre>
+<h4 id="advanced-page-source-search">Advanced Page Source Search</h4>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"facets"</span>,
+  <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"facet_page_source_search"</span>,
+  <span class="hljs-attr">"parent_string"</span>: <span class="hljs-string">"Step 2"</span>,
+  <span class="hljs-attr">"text_to_find"</span>: <span class="hljs-string">"Failed"</span>, 
+  <span class="hljs-attr">"occurrence"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"file_name"</span>: <span class="hljs-string">"page_source.xml"</span>
+}
+</div></code></pre>
+<p>This widget performs sophisticated XML parsing to search for text within specific &quot;Step&quot; boundaries in the page source, making it ideal for validation of multi-step test scenarios.</p>
+<h3 id="image-based-testing-patterns">Image-Based Testing Patterns</h3>
+<h4 id="single-template-matching">Single Template Matching</h4>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"facets"</span>,
+  <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"single_template"</span>,
+  <span class="hljs-attr">"template_image"</span>: <span class="hljs-string">"connect_button.png"</span>,
+  <span class="hljs-attr">"threshold"</span>: <span class="hljs-number">0.8</span>,
+  <span class="hljs-attr">"action"</span>: <span class="hljs-string">"click"</span>
+}
+</div></code></pre>
+<h4 id="multi-template-matching">Multi-Template Matching</h4>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"hu_device_manager"</span>,
+  <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"multi_template"</span>,
+  <span class="hljs-attr">"image_one"</span>: <span class="hljs-string">"cp_connected.png"</span>,
+  <span class="hljs-attr">"image_two"</span>: <span class="hljs-string">"cp_disconnected.png"</span>, 
+  <span class="hljs-attr">"image_three"</span>: <span class="hljs-string">"bt_connected.png"</span>,
+  <span class="hljs-attr">"ref_img_name"</span>: <span class="hljs-string">"reference.png"</span>,
+  <span class="hljs-attr">"output_name"</span>: <span class="hljs-string">"result.png"</span>,
+  <span class="hljs-attr">"threshold"</span>: <span class="hljs-number">0.4</span>
+}
+</div></code></pre>
+<h3 id="validation-and-debugging-test-cases">Validation and Debugging Test Cases</h3>
+<h4 id="built-in-validation">Built-in Validation</h4>
+<p>Add validation blocks to commands:</p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"facets"</span>,
+  <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"button"</span>,
+  <span class="hljs-attr">"xpath"</span>: <span class="hljs-string">"//XCUIElementTypeButton[@label='Submit']"</span>,
+  <span class="hljs-attr">"wait"</span>: <span class="hljs-number">4</span>,
+  <span class="hljs-attr">"validation"</span>: {
+    <span class="hljs-attr">"expected_result"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"failure_action"</span>: <span class="hljs-string">"continue"</span>
+  }
+}
+</div></code></pre>
+<h4 id="test-case-validation">Test Case Validation</h4>
+<p>The framework automatically validates:</p>
+<ul>
+<li>Required fields in JSON structure</li>
+<li>Base path mapping to active driver instances</li>
+<li>Widget type registration in WidgetFactory</li>
+<li>XPath syntax and element availability</li>
+</ul>
+<h4 id="debugging-failed-tests">Debugging Failed Tests</h4>
+<ol>
+<li><strong>Check application logs</strong> in <code>logs/{timestamp}/application.log</code></li>
+<li><strong>Review test case logs</strong> in <code>logs/{timestamp}/test_case.log</code></li>
+<li><strong>Examine captured screenshots</strong> in <code>image_log/</code></li>
+<li><strong>Verify page source dumps</strong> saved during facet_page_source_search operations</li>
+</ol>
+<hr>
+<h2 id="advanced-usage">Advanced Usage</h2>
+<h3 id="screen-recording-during-tests">Screen Recording During Tests</h3>
+<p>Enable video recording for test documentation:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># In Main.py or custom test script</span>
+<span class="hljs-keyword">from</span> screen_recorder <span class="hljs-keyword">import</span> ScreenRecorder
+<span class="hljs-keyword">from</span> app_manager <span class="hljs-keyword">import</span> ApplicationManager
+
+manager = ApplicationManager.get_instance()
+driver_instance = manager.get_driver_instance_by_base_path(<span class="hljs-string">"facets"</span>)
+
+record = ScreenRecorder(driver_instance, <span class="hljs-string">"logs"</span>, <span class="hljs-string">"test_execution.mp4"</span>)
+<span class="hljs-comment"># Execute your test cases</span>
+<span class="hljs-comment"># record.stop_recording()  # Uncomment when ready to stop</span>
+</div></code></pre>
+<p>Configure recording in <code>global_config/project_configuration.py</code>:</p>
+<pre class="hljs"><code><div>ENABLE_VIDEO_ENABLED = <span class="hljs-string">"YES"</span>  <span class="hljs-comment"># Enable recording</span>
+</div></code></pre>
+<h3 id="custom-widget-handlers">Custom Widget Handlers</h3>
+<p>Create new widget types by extending the base handler:</p>
+<p><strong>command_handler/widget/handler/custom_widget.py:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> command_handler.widget.handler.base <span class="hljs-keyword">import</span> BaseHandler
+<span class="hljs-keyword">from</span> logger <span class="hljs-keyword">import</span> LogManager
+<span class="hljs-keyword">from</span> ..widget_utils <span class="hljs-keyword">import</span> WidgetUtils
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomWidgetHandler</span><span class="hljs-params">(BaseHandler)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">processCommand</span><span class="hljs-params">(self, command_data: dict)</span>:</span>
+        tlog = LogManager.get_instance().get_test_case_logger()
+        
+        <span class="hljs-comment"># Validate required fields</span>
+        required_fields = [<span class="hljs-string">"base_path"</span>, <span class="hljs-string">"custom_param"</span>]
+        success, error_msg = WidgetUtils.validate_required_fields(
+            command_data, required_fields, tlog
+        )
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> success:
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>, error_msg
+            
+        <span class="hljs-comment"># Get driver instance</span>
+        success, driver_or_msg = WidgetUtils.get_driver(
+            command_data.get(<span class="hljs-string">"base_path"</span>), tlog
+        )
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> success:
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>, driver_or_msg
+        driver = driver_or_msg
+        
+        <span class="hljs-comment"># Implement custom logic</span>
+        <span class="hljs-keyword">try</span>:
+            <span class="hljs-comment"># Your custom automation logic here</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>, <span class="hljs-string">"CUSTOM_WIDGET_SUCCESS"</span>
+        <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>, <span class="hljs-string">f"CUSTOM_WIDGET_FAILED: <span class="hljs-subst">{str(e)}</span>"</span>
+</div></code></pre>
+<p><strong>Register in widget_factory.py:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> command_handler.widget.handler.custom_widget <span class="hljs-keyword">import</span> CustomWidgetHandler
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WidgetFactory</span>:</span>
+    _handlers = {
+        <span class="hljs-comment"># ... existing handlers</span>
+        <span class="hljs-string">"custom_widget"</span>: CustomWidgetHandler,
+    }
+</div></code></pre>
+<h3 id="multi-platform-test-scenarios">Multi-Platform Test Scenarios</h3>
+<p>Design tests that span multiple platforms:</p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"facet_id"</span>: <span class="hljs-string">"MULTI001"</span>,
+  <span class="hljs-attr">"command"</span>: [
+    {
+      <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"hu_device_manager"</span>,
+      <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"adb_launch"</span>,
+      <span class="hljs-attr">"package_name"</span>: <span class="hljs-string">"com.harman.devicemanager"</span>
+    },
+    {
+      <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"facets"</span>,
+      <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"button"</span>, 
+      <span class="hljs-attr">"xpath"</span>: <span class="hljs-string">"//XCUIElementTypeButton[@label='Start Test']"</span>
+    },
+    {
+      <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"ios-iphone_settings"</span>,
+      <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"text_search"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"CarPlay"</span>
+    }
+  ]
+}
+</div></code></pre>
+<p>This approach allows coordination between:</p>
+<ul>
+<li>Android head unit applications</li>
+<li>macOS desktop test applications</li>
+<li>iOS device settings and CarPlay functionality</li>
+</ul>
+<h3 id="logging-and-performance-optimization">Logging and Performance Optimization</h3>
+<h4 id="custom-logging-levels">Custom Logging Levels</h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> logger <span class="hljs-keyword">import</span> LogManager
+
+tlog = LogManager.get_instance().get_test_case_logger()
+tlog.d(<span class="hljs-string">"Debug message"</span>)
+tlog.i(<span class="hljs-string">"Info message"</span>) 
+tlog.w(<span class="hljs-string">"Warning message"</span>)
+tlog.e(<span class="hljs-string">"Error message"</span>)
+</div></code></pre>
+<h4 id="performance-settings">Performance Settings</h4>
+<p>Optimize execution speed:</p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"facets"</span>,
+  <span class="hljs-attr">"widget_type"</span>: <span class="hljs-string">"button"</span>,
+  <span class="hljs-attr">"xpath"</span>: <span class="hljs-string">"//XCUIElementTypeButton[@label='Submit']"</span>,
+  <span class="hljs-attr">"wait"</span>: <span class="hljs-number">2</span>,           <span class="hljs-comment">// Reduce wait times for known fast elements</span>
+  <span class="hljs-attr">"delay_before"</span>: <span class="hljs-number">0</span>,   <span class="hljs-comment">// Remove unnecessary delays</span>
+  <span class="hljs-attr">"max_retry"</span>: <span class="hljs-number">1</span>       <span class="hljs-comment">// Reduce retries for non-critical operations</span>
+}
+</div></code></pre>
+<h4 id="parallel-test-execution">Parallel Test Execution</h4>
+<p>The framework supports multiple concurrent Appium sessions. Configure different ports for parallel execution:</p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"ServerConfiguration"</span>: [
+    {
+      <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"test_set_1"</span>, 
+      <span class="hljs-attr">"port"</span>: <span class="hljs-string">"4530"</span>
+    },
+    {
+      <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"test_set_2"</span>,
+      <span class="hljs-attr">"port"</span>: <span class="hljs-string">"4531"</span> 
+    }
+  ]
+}
+</div></code></pre>
+<hr>
+<h2 id="maintenance-and-troubleshooting">Maintenance and Troubleshooting</h2>
+<h3 id="common-error-scenarios-and-solutions">Common Error Scenarios and Solutions</h3>
+<h4 id="1-appium-server-startup-failures">1. Appium Server Startup Failures</h4>
+<p><strong>Error:</strong> <code>Failed to start Appium server for base_path: 'facets' on port: 4539</code></p>
+<p><strong>Solutions:</strong></p>
+<ul>
+<li>Check if port is already in use: <code>netstat -an | grep 4539</code></li>
+<li>Kill existing Appium processes: <code>pkill -f appium</code></li>
+<li>Verify Appium installation: <code>appium --version</code></li>
+<li>Check device connectivity before starting</li>
+</ul>
+<h4 id="2-driver-instance-not-found">2. Driver Instance Not Found</h4>
+<p><strong>Error:</strong> <code>No driver found for base_path: 'facets'</code></p>
+<p><strong>Solutions:</strong></p>
+<ul>
+<li>Verify base_path matches client configuration exactly</li>
+<li>Check that ApplicationManager.get_instance() was called before use</li>
+<li>Confirm device session was created successfully during initialization</li>
+<li>Review client configuration JSON for syntax errors</li>
+</ul>
+<h4 id="3-element-not-found-errors">3. Element Not Found Errors</h4>
+<p><strong>Error:</strong> <code>Element not found: //XCUIElementTypeButton[@label='Submit']</code></p>
+<p><strong>Solutions:</strong></p>
+<ul>
+<li>Capture screenshot to verify current UI state</li>
+<li>Use page source dump to inspect actual element structure</li>
+<li>Increase wait timeout for dynamic content</li>
+<li>Verify application is in expected state before element interaction</li>
+</ul>
+<h4 id="4-platform-specific-issues">4. Platform-Specific Issues</h4>
+<p><strong>macOS:</strong></p>
+<ul>
+<li>Enable accessibility permissions for Terminal/IDE</li>
+<li>Check System Preferences &gt; Security &amp; Privacy &gt; Accessibility</li>
+<li>Verify target application allows automation</li>
+</ul>
+<p><strong>iOS:</strong></p>
+<ul>
+<li>Ensure developer profile is trusted on device</li>
+<li>Check iOS version compatibility with XCUITest driver</li>
+<li>Verify WebDriverAgent installation and signing</li>
+</ul>
+<p><strong>Android:</strong></p>
+<ul>
+<li>Enable USB debugging and developer options</li>
+<li>Check ADB device authorization</li>
+<li>Verify UiAutomator2 driver installation</li>
+</ul>
+<h3 id="cleaning-up-cache-and-logs">Cleaning Up Cache and Logs</h3>
+<p>Use the provided cleanup utility:</p>
+<pre class="hljs"><code><div>python Clean.py
+</div></code></pre>
+<p>This script will:</p>
+<ul>
+<li>Remove all <code>__pycache__</code> directories recursively</li>
+<li>Clear old log files from <code>logs/</code> directory</li>
+<li>Clean temporary image files from <code>image_log/</code></li>
+</ul>
+<p>Manual cleanup:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Remove Python cache</span>
+find . -name <span class="hljs-string">"__pycache__"</span> -<span class="hljs-built_in">type</span> d -<span class="hljs-built_in">exec</span> rm -rf {} +
+
+<span class="hljs-comment"># Clear logs older than 7 days</span>
+find logs/ -name <span class="hljs-string">"*"</span> -<span class="hljs-built_in">type</span> d -mtime +7 -<span class="hljs-built_in">exec</span> rm -rf {} +
+
+<span class="hljs-comment"># Reset image log directory</span>
+rm -rf image_log/*
+</div></code></pre>
+<h3 id="updating-configurations">Updating Configurations</h3>
+<h4 id="adding-new-devices">Adding New Devices</h4>
+<ol>
+<li><strong>Update client configuration</strong> with new device details</li>
+<li><strong>Assign unique port</strong> for new Appium server instance</li>
+<li><strong>Test connectivity</strong> independently before integration</li>
+<li><strong>Update test cases</strong> to reference new base_path if needed</li>
+</ol>
+<h4 id="version-compatibility">Version Compatibility</h4>
+<ul>
+<li><strong>Appium Python Client:</strong> Keep compatible with server version</li>
+<li><strong>Platform Drivers:</strong> Update regularly for OS compatibility</li>
+<li><strong>Device OS Versions:</strong> Test with latest supported versions</li>
+</ul>
+<h3 id="performance-monitoring">Performance Monitoring</h3>
+<h4 id="log-analysis">Log Analysis</h4>
+<p>Monitor execution performance through logs:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Check average test execution time</span>
+grep <span class="hljs-string">"Test completed"</span> logs/*/test_case.log | awk <span class="hljs-string">'{print $NF}'</span> | sort -n
+
+<span class="hljs-comment"># Find frequent failure patterns  </span>
+grep <span class="hljs-string">"FAILED"</span> logs/*/test_case.log | cut -d: -f3 | sort | uniq -c | sort -nr
+
+<span class="hljs-comment"># Monitor server startup times</span>
+grep <span class="hljs-string">"Starting Appium server"</span> logs/*/application.log
+</div></code></pre>
+<h4 id="resource-usage">Resource Usage</h4>
+<ul>
+<li>Monitor CPU/memory usage during parallel test execution</li>
+<li>Check available disk space for logs and screenshots</li>
+<li>Consider implementing log rotation for long-running test suites</li>
+</ul>
+<hr>
+<h2 id="reference">Reference</h2>
+<h3 id="complete-widget-command-reference">Complete Widget Command Reference</h3>
+<h4 id="basic-interaction-widgets">Basic Interaction Widgets</h4>
+<table>
+<thead>
+<tr>
+<th>Widget Type</th>
+<th>Purpose</th>
+<th>Required Parameters</th>
+<th>Optional Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>button</code></td>
+<td>Click/tap buttons</td>
+<td><code>base_path</code>, <code>xpath</code></td>
+<td><code>wait</code>, <code>delay_before</code>, <code>max_retry</code></td>
+</tr>
+<tr>
+<td><code>text</code></td>
+<td>Input text</td>
+<td><code>base_path</code>, <code>xpath</code>, <code>text</code></td>
+<td><code>wait</code>, <code>delay_before</code>, <code>clear_first</code></td>
+</tr>
+<tr>
+<td><code>scroll</code></td>
+<td>Scroll gestures</td>
+<td><code>base_path</code>, <code>direction</code></td>
+<td><code>duration</code>, <code>start_x</code>, <code>start_y</code></td>
+</tr>
+<tr>
+<td><code>radio_button</code></td>
+<td>Select radio buttons</td>
+<td><code>base_path</code>, <code>xpath</code></td>
+<td><code>wait</code>, <code>delay_before</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="advanced-widgets">Advanced Widgets</h4>
+<table>
+<thead>
+<tr>
+<th>Widget Type</th>
+<th>Purpose</th>
+<th>Required Parameters</th>
+<th>Optional Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>screenshot</code></td>
+<td>Capture screenshots</td>
+<td><code>base_path</code></td>
+<td><code>file_name</code>, <code>folder_path</code></td>
+</tr>
+<tr>
+<td><code>single_template</code></td>
+<td>Image template matching</td>
+<td><code>base_path</code>, <code>template_image</code></td>
+<td><code>threshold</code>, <code>action</code>, <code>click_offset</code></td>
+</tr>
+<tr>
+<td><code>multi_template</code></td>
+<td>Multiple image matching</td>
+<td><code>base_path</code>, <code>image_one</code>, <code>image_two</code></td>
+<td><code>image_three</code>, <code>threshold</code>, <code>output_name</code></td>
+</tr>
+<tr>
+<td><code>page_source</code></td>
+<td>Dump XML page source</td>
+<td><code>base_path</code></td>
+<td><code>file_name</code>, <code>folder_path</code></td>
+</tr>
+<tr>
+<td><code>facet_page_source_search</code></td>
+<td>Advanced XML text search</td>
+<td><code>base_path</code>, <code>parent_string</code>, <code>text_to_find</code></td>
+<td><code>occurrence</code>, <code>file_name</code>, <code>max_retry</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="platform-specific-widgets">Platform-Specific Widgets</h4>
+<table>
+<thead>
+<tr>
+<th>Widget Type</th>
+<th>Platform</th>
+<th>Purpose</th>
+<th>Required Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ios_scroll</code></td>
+<td>iOS</td>
+<td>iOS-specific scrolling</td>
+<td><code>base_path</code>, <code>direction</code></td>
+</tr>
+<tr>
+<td><code>mac_popup_button</code></td>
+<td>macOS</td>
+<td>macOS dropdown menus</td>
+<td><code>base_path</code>, <code>xpath</code></td>
+</tr>
+<tr>
+<td><code>adb</code></td>
+<td>Android</td>
+<td>Launch Android apps</td>
+<td><code>base_path</code>, <code>package_name</code></td>
+</tr>
+<tr>
+<td><code>adb_swipe</code></td>
+<td>Android</td>
+<td>Android swipe gestures</td>
+<td><code>base_path</code>, <code>start_x</code>, <code>start_y</code>, <code>end_x</code>, <code>end_y</code></td>
+</tr>
+<tr>
+<td><code>activate_app</code></td>
+<td>Cross-platform</td>
+<td>Bring app to foreground</td>
+<td><code>base_path</code>, <code>bundle_id</code></td>
+</tr>
+<tr>
+<td><code>terminate_app</code></td>
+<td>Cross-platform</td>
+<td>Close application</td>
+<td><code>base_path</code>, <code>bundle_id</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration-file-templates">Configuration File Templates</h3>
+<h4 id="basic-android-client-configuration">Basic Android Client Configuration</h4>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"ServerConfiguration"</span>: [
+    {
+      <span class="hljs-attr">"platform_name"</span>: <span class="hljs-string">"Android"</span>,
+      <span class="hljs-attr">"port"</span>: <span class="hljs-string">"4529"</span>,
+      <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"android_app"</span>,
+      <span class="hljs-attr">"platform_version"</span>: <span class="hljs-string">"11"</span>,
+      <span class="hljs-attr">"device_name"</span>: <span class="hljs-string">"device_id_here"</span>,
+      <span class="hljs-attr">"app_package"</span>: <span class="hljs-string">"com.example.app"</span>,
+      <span class="hljs-attr">"app_activity"</span>: <span class="hljs-string">"com.example.app.MainActivity"</span>, 
+      <span class="hljs-attr">"automation_name"</span>: <span class="hljs-string">"UiAutomator2"</span>,
+      <span class="hljs-attr">"noReset"</span>: <span class="hljs-literal">true</span>
+    }
+  ]
+}
+</div></code></pre>
+<h4 id="basic-ios-client-configuration">Basic iOS Client Configuration</h4>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"ServerConfiguration"</span>: [
+    {
+      <span class="hljs-attr">"platform_name"</span>: <span class="hljs-string">"ios"</span>,
+      <span class="hljs-attr">"port"</span>: <span class="hljs-string">"4540"</span>,
+      <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"ios_app"</span>,
+      <span class="hljs-attr">"platform_version"</span>: <span class="hljs-string">"17.0"</span>,
+      <span class="hljs-attr">"device_name"</span>: <span class="hljs-string">"iPhone 15"</span>,
+      <span class="hljs-attr">"udid"</span>: <span class="hljs-string">"device_udid_here"</span>,
+      <span class="hljs-attr">"bundle_id"</span>: <span class="hljs-string">"com.example.app"</span>,
+      <span class="hljs-attr">"automation_name"</span>: <span class="hljs-string">"XCUITest"</span>,
+      <span class="hljs-attr">"noReset"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"usePrebuiltWDA"</span>: <span class="hljs-literal">false</span>
+    }
+  ]
+}
+</div></code></pre>
+<h4 id="basic-macos-client-configuration">Basic macOS Client Configuration</h4>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"ServerConfiguration"</span>: [
+    {
+      <span class="hljs-attr">"platform_name"</span>: <span class="hljs-string">"mac"</span>, 
+      <span class="hljs-attr">"port"</span>: <span class="hljs-string">"4539"</span>,
+      <span class="hljs-attr">"base_path"</span>: <span class="hljs-string">"mac_app"</span>,
+      <span class="hljs-attr">"bundle_id"</span>: <span class="hljs-string">"com.example.MacApp"</span>,
+      <span class="hljs-attr">"automation_name"</span>: <span class="hljs-string">"mac2"</span>
+    }
+  ]
+}
+</div></code></pre>
+<h3 id="command-line-operations">Command-Line Operations</h3>
+<h4 id="starting-framework">Starting Framework</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Standard execution</span>
+python Main.py
+
+<span class="hljs-comment"># With custom Python path</span>
+PYTHONPATH=/path/to/framework python Main.py
+
+<span class="hljs-comment"># Background execution with logging</span>
+nohup python Main.py &gt; execution.log 2&gt;&amp;1 &amp;
+</div></code></pre>
+<h4 id="appium-server-management">Appium Server Management</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Start Appium server manually</span>
+appium server --port 4539 --base-path /
+
+<span class="hljs-comment"># Check running Appium processes  </span>
+ps aux | grep appium
+
+<span class="hljs-comment"># Kill all Appium processes</span>
+pkill -f appium
+</div></code></pre>
+<h4 id="device-management">Device Management</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Android device management</span>
+adb devices                    <span class="hljs-comment"># List connected devices</span>
+adb logcat                    <span class="hljs-comment"># View device logs  </span>
+adb shell dumpsys activity    <span class="hljs-comment"># Check running activities</span>
+
+<span class="hljs-comment"># iOS device management  </span>
+xcrun simctl list devices     <span class="hljs-comment"># List available simulators</span>
+idevice_id -l                <span class="hljs-comment"># List connected physical devices</span>
+</div></code></pre>
+<h3 id="file-naming-conventions">File Naming Conventions</h3>
+<h4 id="test-case-files">Test Case Files</h4>
+<ul>
+<li><strong>Format:</strong> <code>{FACET_ID}.json</code> (e.g., <code>859F3.json</code>)</li>
+<li><strong>Location:</strong> <code>project_config/{oem}/{group}/test_case/</code></li>
+<li><strong>Naming:</strong> Use uppercase alphanumeric IDs matching the <code>facet_id</code> field</li>
+</ul>
+<h4 id="common-command-files">Common Command Files</h4>
+<ul>
+<li><strong>Format:</strong> <code>{purpose}.json</code> (e.g., <code>cp_connect.json</code>)</li>
+<li><strong>Location:</strong> <code>project_config/{oem}/{group}/common/</code></li>
+<li><strong>Naming:</strong> Use lowercase with underscores, descriptive names</li>
+</ul>
+<h4 id="image-files">Image Files</h4>
+<ul>
+<li><strong>Screenshots:</strong> <code>{test_id}_{timestamp}.png</code></li>
+<li><strong>Templates:</strong> <code>{element_name}.png</code> (e.g., <code>connect_button.png</code>)</li>
+<li><strong>Results:</strong> <code>{test_id}_result.png</code></li>
+</ul>
+<h4 id="log-files">Log Files</h4>
+<ul>
+<li><strong>Application:</strong> <code>application.log</code></li>
+<li><strong>Test Cases:</strong> <code>test_case.log</code></li>
+<li><strong>Directory:</strong> <code>logs/{timestamp}/</code></li>
+</ul>
+<p>This completes the comprehensive usage guide for the automation framework. The document provides step-by-step instructions for setup, configuration, test development, and troubleshooting, with real examples from your codebase.</p>
+
+</body>
+</html>
