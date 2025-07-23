@@ -129,14 +129,15 @@ def process_test_case(test_case_id: str, log_path: str) -> Tuple[bool, str]:
         current_cleanup_file = None
 
         for command in commands:
-            if "clean_up" in command:
-                current_cleanup_file = command["clean_up"]
-                alog.i(f"Setting cleanup file to: {current_cleanup_file}")
-                continue
-
             # Expand common commands at the point of execution
             expanded_commands = expand_common_commands([command])
+            
             for expanded_command in expanded_commands:
+                if "clean_up" in expanded_command:
+                    current_cleanup_file = expanded_command["clean_up"]
+                    alog.i(f"Setting cleanup file to: {current_cleanup_file}")
+                    continue
+
                 status, message = command_processor.expand_and_process_command(expanded_command)
                 if not status:
                     alog.e(f">>> Command failed: {message} <<<")
