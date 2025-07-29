@@ -11,6 +11,7 @@ from command_handler.widget.handler.image_click import ImageClickHandler
 from command_handler.widget.handler.ios_scroll import ScrollIosHandler
 from command_handler.widget.handler.page_source import PageSourceHandler
 from command_handler.widget.handler.facet_page_source_search import FacetPageSourceSearchHandler
+from command_handler.widget.handler.usb_controller import USBControllerHandler
 # Import all ADB-related handlers from the consolidated adb_commands.py
 from command_handler.widget.handler.adb_commands import (
     ADBHandler,
@@ -39,6 +40,7 @@ class WidgetFactory:
         "ios_scroll" :ScrollIosHandler,
         "page_source": PageSourceHandler,
         "facet_page_source_search": FacetPageSourceSearchHandler,
+        "port_control": USBControllerHandler,
         "adb_swipe": ADBSwipeHandler,
         "adb_install": ADBInstallHandler,
         "adb_launch": ADBLaunchHandler,
