@@ -18,7 +18,6 @@ from .image_click import ImageClickHandler
 from .ios_scroll import ScrollIosHandler
 from .page_source import PageSourceHandler
 from .facet_page_source_search import FacetPageSourceSearchHandler
-from .usb_controller import USBControllerHandler
 from .adb_commands import (
     ADBHandler,
     ADBLaunchHandler,
@@ -45,7 +44,6 @@ __all__ = [
     'ScrollIosHandler',
     'PageSourceHandler',
     'FacetPageSourceSearchHandler',
-    'USBControllerHandler',
     'ADBHandler',
     'ADBLaunchHandler',
     'ADBShellHandler',
