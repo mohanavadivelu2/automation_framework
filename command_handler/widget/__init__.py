@@ -10,6 +10,7 @@ from .handler.ios_scroll import ScrollIosHandler
 from .handler.image_click import ImageClickHandler
 from .handler.multi_template import MultiTemplateHandler
 from .handler.text_search import TextSearchHandler
+from .handler.usb_handler import USBHandler
 from .handler.adb_commands import (
     ADBHandler,
     ADBLaunchHandler,
@@ -44,5 +45,6 @@ __all__ = [
     'ActivateAppHandler',
     'ImageClickHandler',
     'MultiTemplateHandler',
-    'TextSearchHandler'
+    'TextSearchHandler',
+    'USBHandler'
 ]
