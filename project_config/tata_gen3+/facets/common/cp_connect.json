@@ -3,11 +3,11 @@
     {
       "base_path": "hu_device_manager",
       "widget_type": "adb",
-      "package_name": "com.harman.devicemanager",  
-      "activity_name": "com.harman.devicemanager.ui.MainActivity", 
-      "wait": 4,   
-      "max_retries":3                          
-   },
+      "package_name": "com.harman.devicemanager",
+      "activity_name": "com.harman.devicemanager.ui.MainActivity",
+      "wait": 4,
+      "max_retry": 3
+    },
     {
       "base_path": "hu_device_manager",
       "widget_type": "multi_template",
@@ -16,8 +16,7 @@
       "image_three": "bt_connected.png",
       "ref_img_name": "reference.png",
       "output_name": "result.png",
-      "threshold":0.4,
-
+      "threshold": 0.4,
       "valid_match": {
         "image_one": [
           {
@@ -25,29 +24,28 @@
             "widget_type": "button",
             "xpath": "//android.widget.ImageView[@resource-id='com.harman.devicemanager:id/list_item_icon_secondary']",
             "wait": 4,
-            "max_retries":3  
+            "max_retry": 3
           },
           {
             "base_path": "hu_device_manager",
             "widget_type": "button",
             "xpath": "//android.widget.TextView[@resource-id='com.harman.devicemanager:id/list_item_text_primary' and @text='Disconnect']",
             "wait": 4,
-            "max_retries":3  
+            "max_retry": 3
           },
-          
           {
             "base_path": "hu_device_manager",
             "widget_type": "button",
             "xpath": "//android.widget.ImageView[@resource-id=\"com.harman.devicemanager:id/list_item_icon2\"]",
             "wait": 4,
-            "max_retries":3  
+            "max_retry": 3
           },
           {
             "base_path": "hu_device_manager",
             "widget_type": "button",
             "xpath": "//android.widget.TextView[@text='Yes']",
             "wait": 4,
-            "max_retries":3  
+            "max_retry": 3
           }
         ],
         "image_two": [
@@ -56,14 +54,14 @@
             "widget_type": "button",
             "xpath": "//android.widget.ImageView[@resource-id=\"com.harman.devicemanager:id/list_item_icon2\"]",
             "wait": 4,
-            "max_retries":3  
+            "max_retry": 3
           },
           {
             "base_path": "hu_device_manager",
             "widget_type": "button",
             "xpath": "//android.widget.TextView[@text='Yes']",
             "wait": 4,
-            "max_retries":3  
+            "max_retry": 3
           }
         ],
         "image_three": [
@@ -72,32 +70,29 @@
             "widget_type": "button",
             "xpath": "//android.widget.ImageView[@resource-id=\"com.harman.devicemanager:id/list_item_icon_secondary\"]",
             "wait": 4,
-            "max_retries":3  
+            "max_retry": 3
           },
           {
             "base_path": "hu_device_manager",
             "widget_type": "button",
             "xpath": "//android.widget.TextView[@resource-id=\"com.harman.devicemanager:id/list_item_text_primary\" and @text=\"Switch to CarPlay\"]",
             "wait": 4,
-            "max_retries":3  
+            "max_retry": 3
           },
           {
             "base_path": "hu_device_manager",
             "widget_type": "button",
             "xpath": "//android.widget.TextView[@text='Yes']",
             "wait": 4,
-            "max_retries":3  
+            "max_retry": 3
           },
           {
             "base_path": "hu_device_manager",
             "widget_type": "button",
             "xpath": "//android.widget.TextView[@resource-id=\"com.harman.devicemanager:id/breadCrumbTextPrev\"]",
             "wait": 4,
-            "max_retries":3  
+            "max_retry": 3
           }
-
-
-          
         ]
       }
     }

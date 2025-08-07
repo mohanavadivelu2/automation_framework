@@ -1,7 +1,6 @@
 {
   "facet_id": "4C0D8",
   "command": [
-    
     {
       "common_command": "cp_disconnect.json"
     },
@@ -15,7 +14,6 @@
     {
       "common_command": "start_test.json"
     },
-    
     {
       "common_command": "cp_connect.json"
     },
@@ -27,7 +25,6 @@
       "distance": 100,
       "wait": 6
     },
-  
     {
       "base_path": "facets",
       "widget_type": "single_template",

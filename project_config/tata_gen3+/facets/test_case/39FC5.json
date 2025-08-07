@@ -24,13 +24,16 @@
       "wait": 8
     },
     {
+      "clean_up": "cleanup2.json"
+    },
+    {
       "common_command": "open_carplay_testapp.json"
     },
     {
       "base_path": "cpta",
       "widget_type": "button",
-      "xpath": "//XCUIElementTypeImage[@name=\"icon_utilities\"]",  
-      "wait": 5,                        
+      "xpath": "//XCUIElementTypeImage[@name=\"icon_utilities\"]",
+      "wait": 5,
       "delay_before": 25
     },
     {
@@ -43,8 +46,8 @@
     {
       "base_path": "cpta",
       "widget_type": "button",
-      "xpath": "//XCUIElementTypeStaticText[@name=\"Check Feature String\"]",  
-      "wait": 5,                        
+      "xpath": "//XCUIElementTypeStaticText[@name=\"Check Feature String\"]",
+      "wait": 5,
       "delay_before": 25
     },
     {
@@ -64,9 +67,7 @@
             "wait": 4
           }
         ],
-        "failed": [
-          
-        ]
+        "failed": []
       }
     },
     {
@@ -74,7 +75,7 @@
       "widget_type": "button",
       "xpath": "//XCUIElementTypeButton[@name=\"CHECK FEATURE STRING\"]",
       "wait": 4
-  },
+    },
     {
       "base_path": "facets",
       "widget_type": "button",

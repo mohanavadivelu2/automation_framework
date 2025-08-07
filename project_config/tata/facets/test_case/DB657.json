@@ -1,0 +1,361 @@
+{
+  "facet_id": "DB657",
+  "command": [
+    {
+      "base_path": "cpta",
+      "widget_type": "terminate_app",
+      "bundle_id": "com.apple.carplaytests",
+      "delay_before": 2
+    },
+    {
+      "common_command": "cp_disconnect.json"
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "text",
+      "xpath": "//XCUIElementTypeTextField[1]",
+      "wait": 4,
+      "text": "DB657"
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "(//XCUIElementTypeButton[@label=\"Play\"])[2]",
+      "wait": 4
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@label=\"Start Test\"]",
+      "wait": 4
+    },
+    {
+      "clean_up": "cleanup2.json"
+    },
+    {
+      "common_command": "open_carplay_testapp.json"
+    },
+    {
+      "base_path": "cpta",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeImage[@name=\"icon_utilities\"]",
+      "wait": 15,
+      "delay_before": 25
+    },
+    {
+      "base_path": "cpta",
+      "widget_type": "ios_scroll",
+      "direction": "up",
+      "duration": 0.3,
+      "delay_before": 1
+    },
+    {
+      "base_path": "cpta",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeStaticText[@name=\"Check Feature String\"]",
+      "wait": 4
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "multi_template",
+      "image_one": "Undefined_property_1.png",
+      "image_two": "Undefined_property_2.png",
+      "ref_img_name": "Undefined property_mac_reference.png",
+      "output_name": "Undefined_property_result.png",
+      "threshold": 0.5,
+      "max_retry": 3,
+      "wait": 4,
+      "validation": {
+        "success": [],
+        "failed": [
+          {
+            "base_path": "facets",
+            "widget_type": "radio_button",
+            "check_for": "Buffered_Audio",
+            "yes_xpath": "(//XCUIElementTypeRadioButton[@label='Yes' and (@value='1' or @value='0')])[1]",
+            "no_xpath": "(//XCUIElementTypeRadioButton[@label='No' and (@value='1' or @value='0')])",
+            "wait": 4,
+            "delay_before": 2,
+            "max_retry": 1,
+            "attempt_interval": 2
+          },
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "(//XCUIElementTypeButton[@label='Done'])[1]",
+            "wait": 4
+          },
+          {
+            "base_path": "facets",
+            "widget_type": "facet_page_source_search",
+            "parent_string": "Step 2",
+            "text_to_find": "Skipped",
+            "file_name": "page_source_1.xml",
+            "max_retry": 2,
+            "attempt_interval": 5,
+            "validation": {
+              "success": [],
+              "failed": [
+                {
+                  "base_path": "cpta",
+                  "widget_type": "single_template",
+                  "template_name": "mainbuffered.png",
+                  "ref_img_name": "mainbuffered_ref.png",
+                  "threshold": 0.3,
+                  "output_name": "result.png",
+                  "expect_match": true,
+                  "max_attempts": 2,
+                  "validation": {
+                    "success": [
+                      {
+                        "base_path": "cpta",
+                        "widget_type": "button",
+                        "xpath": "(//XCUIElementTypeSwitch[@value=\"1\"])[14]",
+                        "wait": 4
+                      },
+                      {
+                        "base_path": "facets",
+                        "widget_type": "button",
+                        "xpath": "//XCUIElementTypeButton[@label='Confirm']",
+                        "wait": 4
+                      }
+                    ],
+                    "failed": [
+                      {
+                        "base_path": "facets",
+                        "widget_type": "button",
+                        "xpath": "//XCUIElementTypeButton[@label='Confirm']",
+                        "wait": 4
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "multi_template",
+      "image_one": "Undefined_property_1.png",
+      "image_two": "Undefined_property_2.png",
+      "ref_img_name": "Undefined property_mac_reference.png",
+      "output_name": "Undefined_property_result.png",
+      "threshold": 0.5,
+      "max_retry": 3,
+      "wait": 4,
+      "validation": {
+        "success": [
+          {
+            "base_path": "facets",
+            "widget_type": "radio_button",
+            "check_for": "ENHANCED_SIRI",
+            "yes_xpath": "(//XCUIElementTypeRadioButton[@label='Yes' and (@value='1' or @value='0')])[2]",
+            "no_xpath": "(//XCUIElementTypeRadioButton[@label='No' and (@value='1' or @value='0')])[2]",
+            "wait": 4,
+            "delay_before": 0,
+            "max_retry": 3,
+            "attempt_interval": 0
+          }
+        ],
+        "failed": [
+          {
+            "base_path": "facets",
+            "widget_type": "facet_page_source_search",
+            "parent_string": "Step 2",
+            "text_to_find": "Skipped",
+            "file_name": "page_source_1.xml",
+            "max_retry": 2,
+            "attempt_interval": 5,
+            "validation": {
+              "success": [
+                {
+                  "base_path": "facets",
+                  "widget_type": "radio_button",
+                  "check_for": "ENHANCED_SIRI",
+                  "yes_xpath": "//XCUIElementTypeRadioButton[@label='Yes' and @value='1']",
+                  "no_xpath": "//XCUIElementTypeRadioButton[@label='No' and @value='0']",
+                  "wait": 4,
+                  "delay_before": 0,
+                  "max_retry": 3,
+                  "attempt_interval": 0
+                }
+              ],
+              "failed": [
+                {
+                  "base_path": "facets",
+                  "widget_type": "radio_button",
+                  "check_for": "ENHANCED_SIRI",
+                  "yes_xpath": "(//XCUIElementTypeRadioButton[@label='Yes' and (@value='1' or @value='0')])[2]",
+                  "no_xpath": "(//XCUIElementTypeRadioButton[@label='No' and (@value='1' or @value='0')])[2]",
+                  "wait": 4,
+                  "delay_before": 0,
+                  "max_retry": 3,
+                  "attempt_interval": 0
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "(//XCUIElementTypeButton[@label='Done'])[2]",
+      "wait": 4
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "facet_page_source_search",
+      "parent_string": "Step 4",
+      "text_to_find": "Skipped",
+      "file_name": "page_source_3.xml",
+      "max_retry": 2,
+      "attempt_interval": 5,
+      "validation": {
+        "success": [
+          {
+            "base_path": "facets",
+            "widget_type": "multi_template",
+            "image_one": "Undefined_property_1.png",
+            "image_two": "Undefined_property_2.png",
+            "ref_img_name": "Undefined property_mac_reference.png",
+            "output_name": "Undefined_property_result.png",
+            "threshold": 0.5,
+            "max_retry": 3,
+            "wait": 4,
+            "validation": {
+              "success": [],
+              "failed": [
+                {
+                  "base_path": "facets",
+                  "widget_type": "facet_page_source_search",
+                  "parent_string": "Step 2",
+                  "text_to_find": "Skipped",
+                  "file_name": "page_source_5.xml",
+                  "max_retry": 2,
+                  "attempt_interval": 5,
+                  "validation": {
+                    "success": [],
+                    "failed": [
+                      {
+                        "base_path": "cpta",
+                        "widget_type": "button",
+                        "xpath": "//XCUIElementTypeButton[@name=\"CHECK FEATURE STRING\"]",
+                        "wait": 4
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "failed": [
+          {
+            "base_path": "cpta",
+            "widget_type": "single_template",
+            "template_name": "enhanced_siri.png",
+            "ref_img_name": "enhanced_siri_ref.png",
+            "threshold": 0.3,
+            "output_name": "result.png",
+            "expect_match": true,
+            "max_attempts": 2,
+            "validation": {
+              "success": [
+                {
+                  "base_path": "cpta",
+                  "widget_type": "button",
+                  "xpath": "(//XCUIElementTypeSwitch[@value=\"1\"])[12]",
+                  "wait": 4
+                },
+                {
+                  "base_path": "cpta",
+                  "widget_type": "button",
+                  "xpath": "//XCUIElementTypeButton[@name=\"CHECK FEATURE STRING\"]",
+                  "wait": 4
+                },
+                {
+                  "base_path": "facets",
+                  "widget_type": "button",
+                  "xpath": "(//XCUIElementTypeButton[@label='Confirm'])[2]",
+                  "wait": 4
+                }
+              ],
+              "failed": [
+                {
+                  "base_path": "cpta",
+                  "widget_type": "button",
+                  "xpath": "//XCUIElementTypeButton[@name=\"CHECK FEATURE STRING\"]",
+                  "wait": 4
+                },
+                {
+                  "base_path": "facets",
+                  "widget_type": "button",
+                  "xpath": "(//XCUIElementTypeButton[@label='Confirm'])[2]",
+                  "wait": 4
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@label=\"Start Capture\"]",
+      "wait": 4,
+      "delay_before": 2,
+      "max_retry": 3
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@label=\"Continue\"and @enabled=\"true\"]",
+      "wait": 6,
+      "delay_before": 2,
+      "max_retry": 3
+    },
+    {
+      "common_command": "cp_connect.json"
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "scroll",
+      "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+      "direction": "down",
+      "distance": 200,
+      "wait": 6
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "radio_button",
+      "check_for": "R6_PRIOR",
+      "yes_xpath": "//XCUIElementTypeRadioButton[@label='Yes' and (@value='1' or @value='0')]",
+      "no_xpath": "//XCUIElementTypeRadioButton[@label='No' and (@value='1' or @value='0')]",
+      "wait": 15,
+      "delay_before": 2,
+      "max_retry": 3
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@label=\"Done\" and @enabled=\"true\"]",
+      "wait": 10,
+      "delay_before": 2
+    },
+    {
+      "common_command": "end_test.json"
+    },
+    {
+      "base_path": "cpta",
+      "widget_type": "terminate_app",
+      "bundle_id": "com.apple.carplaytests",
+      "delay_before": 2
+    }
+  ]
+}

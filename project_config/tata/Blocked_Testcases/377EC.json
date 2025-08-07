@@ -121,7 +121,7 @@
       "widget_type": "button",
       "xpath": "//XCUIElementTypeButton[@label='Confirm']",
       "wait": 4,
-      "max_retries": 3
+      "max_retry": 3
     },
 
     {

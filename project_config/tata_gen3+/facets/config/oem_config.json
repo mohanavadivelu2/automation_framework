@@ -1,6 +1,34 @@
 [
     {
         "variable": "DRIVER_SIDE_LEFT",
+        "value": "NO"
+    },
+    {
+        "variable": "DRIVER_SIDE_RIGHT",
+        "value": "YES"
+    },
+    {
+        "variable": "AUDIO_FORMAT_7",
+        "value": "NO"
+    },
+    {
+        "variable": "AUDIO_FORMAT_5",
+        "value": "NO"
+    },
+    {
+        "variable": "ENHANCED_SIRI",
+        "value": "YES"
+    },
+    {
+        "variable": "R6_PRIOR",
+        "value": "NO"
+    },
+    {
+        "variable": "AC_Back",
+        "value": "NO"
+    },
+    {
+        "variable": "Buffered_Audio",
         "value": "YES"
     }
 ]

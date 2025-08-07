@@ -24,6 +24,9 @@
       "wait": 4
     },
     {
+      "clean_up": "cleanup2.json"
+    },
+    {
       "base_path": "facets",
       "widget_type": "button",
       "xpath": "//XCUIElementTypeButton[@label=\"Start Capture\"]",
@@ -48,30 +51,19 @@
       "base_path": "facets",
       "widget_type": "button",
       "xpath": "//XCUIElementTypeButton[@label=\"Continue\"]",
+      "max_retry": 2,
+      "attempt_interval": 5,
       "wait": 5,
       "validation": {
-        "type": "exists",
-        "xpath": "//XCUIElementTypeButton[@label=\"Continue\"]",
-        "success": [
-          {
-            "base_path": "facets",
-            "widget_type": "button",
-            "common_command": "end_test.json",
-            "wait": 2
-          }
-        ],
+        "success": [],
         "failed": [
           {
             "base_path": "facets",
             "widget_type": "button",
             "xpath": "(//XCUIElementTypeButton[@label=\"Fail Step\"])[3]",
+            "max_retry": 2,
+            "attempt_interval": 5,
             "wait": 2
-          },
-          {
-            "base_path": "facets",
-            "widget_type": "button",
-            "xpath": "(//XCUIElementTypeScrollBar[@value=\"0\"])[2]/XCUIElementTypeButton[1]",
-            "wait": 4
           },
           {
             "base_path": "facets",
@@ -85,15 +77,51 @@
             "widget_type": "button",
             "xpath": "//XCUIElementTypeButton[@label=\"Done\"]",
             "wait": 4
-          },
-          {
-            "common_command": "end_test.json"
-          }         
+          }
         ]
       }
     },
     {
-      "common_command": "end_test.json"
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@label=\"Continue\"]",
+      "max_retry": 2,
+      "attempt_interval": 5,
+      "wait": 5,
+      "validation": {
+        "success": [
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label=\"OK\"]",
+            "wait": 5,
+            "max_retry": 3
+          },
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label=\"All\"]",
+            "wait": 2,
+            "max_retry": 3
+          }
+        ],
+        "failed": [
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label=\"OK\"]",
+            "wait": 5,
+            "max_retry": 3
+          },
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label=\"All\"]",
+            "wait": 2,
+            "max_retry": 3
+          }
+        ]
+      }
     }
   ]
 }

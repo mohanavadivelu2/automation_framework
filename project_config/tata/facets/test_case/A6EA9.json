@@ -14,17 +14,11 @@
     {
       "common_command": "start_test.json"
     },
-    
     {
       "common_command": "cp_connect.json"
     },
-
     {
       "common_command": "end_test.json"
     }
-      
   ]
 }
-
-
-

@@ -1,0 +1,45 @@
+{
+  "facet_id": "facets_clean_up",
+  "command": [
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeWindow/XCUIElementTypeButton[1]",
+      "wait": 3
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "single_template",
+      "template_name": "FACET_Cleanup_1.png",
+      "ref_img_name": "FACET_Cleanup_1_ref.png",
+      "threshold": 0.4,
+      "expect_match": true,
+      "max_attempts": 2,
+      "validation": {
+        "success": [
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label=\"Yes\"]",
+            "wait": 3
+          }
+        ],
+        "failed": [
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label=\"Stop Run and Upload Later\"]",
+            "wait": 3
+          }
+        ]
+      }
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//XCUIElementTypeButton[@label=\"All\"]",
+      "wait": 2,
+      "max_retry": 3
+    }
+  ]
+}

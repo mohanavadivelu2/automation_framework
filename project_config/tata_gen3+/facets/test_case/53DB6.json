@@ -35,7 +35,7 @@
         "select_capture": "//XCUIElementTypePopUpButton[@label=\"Select Capture\" and @value=\"Select Capture\"]",
         "select_item": "//XCUIElementTypeMenuItem[@title=\"Wireless CarPlay\"]",
         "wait": 4,
-        "max_retries":3  
+        "max_retry": 3  
       },
   
       {

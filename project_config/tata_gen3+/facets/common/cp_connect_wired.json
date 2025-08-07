@@ -1,0 +1,13 @@
+{
+    "command": [
+      {
+        "widget_type": "usb_set",
+        "base_path": "hu_device_manager",
+        "gpio_number": 387,
+        "port_action": "Port_disable_enable",
+        "wait": 2,
+        "unexport": true
+      }
+    ]
+  }
+  

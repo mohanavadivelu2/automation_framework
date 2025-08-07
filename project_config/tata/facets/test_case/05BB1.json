@@ -1,0 +1,89 @@
+{
+    "facet_id": "05BB1",
+    "command": [
+        {
+            "common_command": "cp_disconnect.json"
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "text",
+            "xpath": "//XCUIElementTypeTextField",
+            "wait": 4,
+            "text": "05BB1"
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "(//XCUIElementTypeButton[@label=\"Play\"])[2]",
+            "wait": 4
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label=\"Start Test\"]",
+            "wait": 4,
+            "max_retry": 3
+        },
+        {
+            "clean_up": "cleanup2.json"
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "multi_template",
+            "image_one": "Undefined_property_1.png",
+            "image_two": "Undefined_property_2.png",
+            "ref_img_name": "Undefined property_mac_reference.png",
+            "output_name": "Undefined_property_result.png",
+            "threshold": 0.5,
+            "max_retry": 3,
+            "wait": 4,
+            "validation": {
+                "success": [],
+                "failed": [
+                    {
+                        "base_path": "facets",
+                        "widget_type": "radio_button",
+                        "check_for": "AC_Back",
+                        "yes_xpath": "//XCUIElementTypeRadioButton[@label=\"Yes\" and @value=\"1\"]",
+                        "no_xpath": "//XCUIElementTypeRadioButton[@label=\"No\" and @value=\"0\"]",
+                        "wait": 4,
+                        "delay_before": 2,
+                        "max_retry": 1,
+                        "attempt_interval": 2
+                    }
+                ]
+            }
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "mac_popup_button",
+            "select_capture": "//XCUIElementTypePopUpButton[@label=\"Select Capture\" and @value=\"Select Capture\"]",
+            "select_item": "//XCUIElementTypeMenuItem[@title=\"Wireless CarPlay\"]",
+            "wait": 4,
+            "max_retry": 3
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label=\"Start Capture\"]",
+            "wait": 4,
+            "delay_before": 2,
+            "max_retry": 3
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label=\"Continue\"]",
+            "wait": 6,
+            "delay_before": 2,
+            "max_retry": 3,
+            "attempt_interval": 2
+        },
+        {
+            "common_command": "cp_connect.json"
+        },
+        {
+            "common_command": "end_test.json"
+        }
+    ]
+}

@@ -70,9 +70,17 @@
         {
             "base_path": "hu_device_manager",
             "widget_type": "adb",
-            "package_name": "com.harman.connectivity.projection.screen",
-            "activity_name": ".TmlCPActivity",
+            "package_name": "com.harman.connectivity.carplay.app",
+            "activity_name": "com.harman.connectivity.carplay.app.TmlCPActivity",
             "wait": 4
+        },
+        {
+            "base_path": "facets",
+            "widget_type": "scroll",
+            "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+            "direction": "down",
+            "distance": 200,
+            "wait": 6
         },
         {
             "base_path": "hu_device_manager",
@@ -88,7 +96,7 @@
                     {
                         "base_path": "facets",
                         "widget_type": "button",
-                        "xpath": "(//XCUIElementTypeRadioButton[@label='Yes' and @value='0'])[last()]",
+                        "xpath": "(//XCUIElementTypeRadioButton[@label='Yes' and (@value='1' or @value='0')])[last()]",
                         "wait": 4
                     }
                 ],
@@ -96,8 +104,16 @@
                     {
                         "base_path": "facets",
                         "widget_type": "button",
-                        "xpath": "(//XCUIElementTypeRadioButton[@label='No' and @value='0'])[last()]",
+                        "xpath": "(//XCUIElementTypeRadioButton[@label='No' and (@value='1' or @value='0')])[last()]",
                         "wait": 4
+                    },
+                    {
+                        "base_path": "facets",
+                        "widget_type": "scroll",
+                        "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+                        "direction": "down",
+                        "distance": 50,
+                        "wait": 6
                     },
                     {
                         "base_path": "facets",

@@ -1,11 +1,9 @@
 {
   "facet_id": "F2DE7",
   "command": [
-    
     {
       "common_command": "cp_disconnect.json"
     },
-    
     {
       "base_path": "facets",
       "widget_type": "text",
@@ -13,19 +11,14 @@
       "wait": 4,
       "text": "F2DE7"
     },
-
     {
       "common_command": "start_test.json"
     },
-
     {
       "common_command": "cp_connect.json"
     },
-
     {
       "common_command": "end_test.json"
     }
   ]
 }
-
- 

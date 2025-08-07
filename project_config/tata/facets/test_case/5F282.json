@@ -1,0 +1,257 @@
+{
+  "facet_id": "5F282",
+  "command": [
+    {
+      "common_command": "cp_disconnect.json"
+    },
+    
+    {
+      "base_path": "facets",
+      "widget_type": "text",
+      "xpath": "//XCUIElementTypeTextField[1]",
+      "wait": 4,
+      "text": "5F282"
+    },
+    {
+      "common_command": "start_test.json"
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "scroll",
+      "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+      "direction": "down",
+      "distance": 100,
+      "wait": 6
+    },
+    {
+      "common_command": "cp_connect.json"
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "facet_page_source_search",
+      "parent_string": "Step 3",
+      "text_to_find": "Failed",
+      "file_name": "page_source_1.xml",
+      "max_retry": 2,
+      "attempt_interval": 5,
+      "wait": 6,
+      "validation": {
+        "success": [
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeRadioButton[@label='Yes' and @value='0']",
+            "wait": 5
+          }
+        ],
+        "failed": [
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeRadioButton[@label='No' and @value='0']",
+            "wait": 5
+          }
+        ]
+      }
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "scroll",
+      "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+      "direction": "down",
+      "distance": 50,
+      "wait": 6
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "facet_page_source_search",
+      "parent_string": "Step 4",
+      "text_to_find": "Failure Reason",
+      "file_name": "page_source_2.xml",
+      "max_retry": 2,
+      "attempt_interval": 5,
+      "wait": 6,
+      "validation": {
+        "success": [
+          {
+            "base_path": "facets",
+            "widget_type": "text",
+            "xpath": "//XCUIElementTypeTextField",
+            "wait": 4,
+            "text": "Fail"
+          },
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label='Done']",
+            "wait": 6
+          }
+        ],
+        "failed": [
+          {
+            "base_path": "facets",
+            "widget_type": "scroll",
+            "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+            "direction": "down",
+            "distance": 100,
+            "wait": 6
+          }
+        ]
+      }
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "facet_page_source_search",
+      "parent_string": "Step 5",
+      "text_to_find": "Passed",
+      "file_name": "page_source_4.xml",
+      "max_retry": 2,
+      "attempt_interval": 5,
+      "wait": 6,
+      "validation": {
+        "success": [
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeRadioButton[@label='Yes' and @value='0']",
+            "wait": 10
+          }
+        ],
+        "failed": [
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeRadioButton[@label='No' and @value='0']",
+            "wait": 10
+          },
+          {
+            "base_path": "facets",
+            "widget_type": "scroll",
+            "xpath": "//XCUIElementTypeWindow/XCUIElementTypeGroup/XCUIElementTypeSplitGroup/XCUIElementTypeGroup/XCUIElementTypeScrollView/XCUIElementTypeScrollBar/XCUIElementTypeButton",
+            "direction": "down",
+            "distance": 50,
+            "wait": 6
+          }
+        ]
+      }
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "facet_page_source_search",
+      "parent_string": "Step 7",
+      "text_to_find": "Failure Reason",
+      "file_name": "page_source_5.xml",
+      "max_retry": 2,
+      "attempt_interval": 5,
+      "wait": 6,
+      "validation": {
+        "success": [
+          {
+            "base_path": "facets",
+            "widget_type": "text",
+            "xpath": "//XCUIElementTypeTextField[last()]",
+            "wait": 4,
+            "text": "Fail"
+          },
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label='Done'][last()]",
+            "wait": 6
+          },
+          {
+            "base_path": "facets",
+            "widget_type": "text_search",
+            "search_text": "Safari",
+            "search_method": "native",
+            "partial_match": true,
+            "wait": 4,
+            "delay_before": 6,
+            "max_attempts": 3,
+            "attempt_interval": 1,
+            "validation": {
+              "success": [
+                {
+                  "base_path": "facets",
+                  "widget_type": "button",
+                  "xpath": "//XCUIElementTypeRadioButton[@label='Yes' and @value='0')][last()]",
+                  "wait": 5
+                }
+              ],
+              "failed": [
+                {
+                  "base_path": "facets",
+                  "widget_type": "button",
+                  "xpath": "//XCUIElementTypeRadioButton[@label='No' and @value='0']",
+                  "wait": 5
+                }
+              ]
+            }
+          }
+        ],
+        "failed": [
+          {
+            "base_path": "facets",
+            "widget_type": "text_search",
+            "search_text": "Safari",
+            "search_method": "native",
+            "partial_match": true,
+            "wait": 4,
+            "delay_before": 6,
+            "max_attempts": 3,
+            "attempt_interval": 1,
+            "validation": {
+              "success": [
+                {
+                  "base_path": "facets",
+                  "widget_type": "button",
+                  "xpath": "//XCUIElementTypeRadioButton[@label='Yes' and @value='0']",
+                  "wait": 5
+                }
+              ],
+              "failed": [
+                {
+                  "base_path": "facets",
+                  "widget_type": "button",
+                  "xpath": "//XCUIElementTypeRadioButton[@label='No' and @value='0'][last()]",
+                  "wait": 5
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "facet_page_source_search",
+      "parent_string": "Step 8",
+      "text_to_find": "Failure Reason",
+      "file_name": "page_source_8.xml",
+      "max_retry": 2,
+      "attempt_interval": 5,
+      "wait": 6,
+      "validation": {
+        "success": [
+          {
+            "base_path": "facets",
+            "widget_type": "text",
+            "xpath": "//XCUIElementTypeTextField[last()]",
+            "wait": 4,
+            "text": "Fail"
+          },
+          {
+            "base_path": "facets",
+            "widget_type": "button",
+            "xpath": "//XCUIElementTypeButton[@label='Done'][last()]",
+            "wait": 6
+          }
+        ],
+        "failed": []
+      }
+    },
+    {
+      "common_command": "end_test.json"
+    }
+  ]
+}

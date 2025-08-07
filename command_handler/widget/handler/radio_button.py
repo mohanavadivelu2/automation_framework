@@ -139,29 +139,7 @@ class RadioButtonHandler(BaseHandler):
         # Step 5: Define radio button click operation for retry utility
         def radio_button_click_operation():
             try:
-                # Use the correct API for Selenium/Appium 4+
-                element = driver.find_element("xpath", target_xpath)
-                # Adjust the attribute and value as per your app's radio button implementation
-                is_selected = element.get_attribute("value") == "1"
-                if is_selected:
-                    tlog.d("Radio button already selected, skipping click.")
-                    return True, "RADIO_BUTTON_ALREADY_SELECTED"
-            except Exception as e:
-                tlog.e(f"Exception during pre-check: {str(e)}")
-                # Optionally, continue to click attempt or return failure
-
-            # If not selected, proceed to click as usual
-            # (your existing click logic here)
-            try:
-                element = driver.find_element_by_xpath(target_xpath)
-                is_selected = element.get_attribute("value") == "1"  # or use the correct attribute for your UI
-
-                if is_selected:
-                    tlog.d("Radio button already selected, skipping click.")
-                    return True, "RADIO_BUTTON_ALREADY_SELECTED"
-                else:
-                    # proceed to click as usual
-                    return WidgetUtils.click_element(driver, target_xpath, "radio button", wait_time, tlog)
+                return WidgetUtils.click_element(driver, target_xpath, "radio button", wait_time, tlog)
             except Exception as e:
                 tlog.e(f"Exception during radio button click: {str(e)}")
                 tlog.e(traceback.format_exc())

@@ -22,14 +22,14 @@
         "widget_type": "button",
         "xpath": "//android.widget.ImageView[@resource-id=\"com.harman.devicemanager:id/list_item_icon2\"]",
         "wait": 4,
-        "max_retries":3  
+        "max_retry": 3
       },
       {
         "base_path": "hu_device_manager",
         "widget_type": "button",
         "xpath": "//android.widget.TextView[@text='Yes']",
         "wait": 4,
-        "max_retries":3  
+        "max_retry": 3
       },
       {
         "base_path": "ios-iphone_applemusic",
