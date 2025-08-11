@@ -12,6 +12,7 @@ from command_handler.widget.handler.ios_scroll import ScrollIosHandler
 from command_handler.widget.handler.page_source import PageSourceHandler
 from command_handler.widget.handler.facet_page_source_search import FacetPageSourceSearchHandler
 from command_handler.widget.handler.usb_handler import USBHandler
+from command_handler.widget.handler.pcts_launcher import PctsLauncherHandler
 # Import all ADB-related handlers from the consolidated adb_commands.py
 from command_handler.widget.handler.adb_commands import (
     ADBHandler,
@@ -47,7 +48,8 @@ class WidgetFactory:
         "terminate_app": TerminateAppHandler,
         "activate_app": ActivateAppHandler,
         "adb_swipe_xy": ADBSwipeXYHandler,
-        "usb_reset": USBHandler
+        "usb_reset": USBHandler,
+        "pcts_launcher": PctsLauncherHandler
     }
 
     @staticmethod

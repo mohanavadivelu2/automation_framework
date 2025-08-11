@@ -1,0 +1,14 @@
+{
+   "ServerConfiguration": [
+      {
+         "platform_name": "Android",
+         "port": "4529",
+         "base_path": "android_phone_pctsverifier",
+         "platform_version": "16",
+         "device_name": "38031FDJH00D0P",
+         "app_package": "com.google.android.projection.gearhead.pctsverifier",
+         "app_activity": ".shell.TestListActivity",
+         "automation_name": "UiAutomator2"
+      }
+   ]
+}
