@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="android-scroll-utilities">Android Scroll Utilities</h1>
+<p>A comprehensive Python utility module for Android list automation using Appium WebDriver. This module provides intelligent scrolling, element detection, screenshot analysis, and arrow direction recognition for Android UI testing.</p>
+<h2 id="%F0%9F%9A%80-features">🚀 Features</h2>
+<ul>
+<li><strong>🎯 Smart Text Finding</strong>: Automatically scroll through lists to find specific text elements</li>
+<li><strong>📱 Element Analysis</strong>: Extract XPath, bounds, and visual details of UI elements</li>
+<li><strong>📸 Screenshot Integration</strong>: Automatic screenshot capture and element cropping</li>
+<li><strong>🔄 Arrow Direction Detection</strong>: AI-powered detection of UI arrow directions (up/down/unknown)</li>
+<li><strong>⚡ Smart Element Toggling</strong>: Intelligent expand/collapse based on current arrow state</li>
+<li><strong>🏗️ Modular Design</strong>: Clean public/private API separation with robust error handling</li>
+<li><strong>📊 Comprehensive Logging</strong>: Detailed logging for debugging and monitoring</li>
+</ul>
+<h2 id="%F0%9F%93%8B-prerequisites">📋 Prerequisites</h2>
+<ul>
+<li><strong>Python 3.7+</strong></li>
+<li><strong>Appium Server</strong> running on your system</li>
+<li><strong>Android device/emulator</strong> connected and accessible</li>
+</ul>
+<h2 id="%F0%9F%93%A6-installation">📦 Installation</h2>
+<pre class="hljs"><code><div><span class="hljs-comment"># Install required packages</span>
+pip install appium-python-client pillow selenium
+</div></code></pre>
+<h2 id="%F0%9F%94%A7-configuration">🔧 Configuration</h2>
+<p>Update the constants in your code to match your Android app:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># PCTS App Configuration (example)</span>
+PCTS_SCROLLABLE_RESOURCE_LIST_ID = <span class="hljs-string">"com.google.android.projection.gearhead.pctsverifier:id/list"</span>
+PCTS_TOP_LIST_RESOURCE_ID = <span class="hljs-string">"android:id/text1"</span>
+PCTS_SUB_LIST_RESOURCE_ID = <span class="hljs-string">"com.google.android.projection.gearhead.pctsverifier:id/test_caption"</span>
+
+<span class="hljs-comment"># Your App Configuration</span>
+YOUR_SCROLLABLE_LIST_ID = <span class="hljs-string">"com.yourapp.package:id/your_list"</span>
+YOUR_TOP_ITEM_ID = <span class="hljs-string">"com.yourapp.package:id/your_text_element"</span>
+</div></code></pre>
+<h2 id="%F0%9F%93%9A-api-reference">📚 API Reference</h2>
+<h3 id="%F0%9F%8E%AF-core-scrolling-functions">🎯 Core Scrolling Functions</h3>
+<h4 id="scrolltotextdriver-targettext"><code>scroll_to_text(driver, target_text)</code></h4>
+<p>Intelligently scrolls through a list until the specified text becomes visible.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>driver</code> (WebDriver): Appium WebDriver instance</li>
+<li><code>target_text</code> (str): Text to scroll to and find (supports substring matching)</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>bool</code>: True if text was found and is visible, False otherwise</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Find and scroll to "AudioTests" in the list</span>
+<span class="hljs-keyword">if</span> scroll_to_text(driver, <span class="hljs-string">"AudioTests"</span>):
+    logger.info(<span class="hljs-string">"AudioTests is now visible on screen"</span>)
+<span class="hljs-keyword">else</span>:
+    logger.error(<span class="hljs-string">"AudioTests not found in the list"</span>)
+</div></code></pre>
+<h4 id="scrolltotopdriver-resourceid"><code>scroll_to_top(driver, resource_id)</code></h4>
+<p>Scrolls the list to the very beginning/top position.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>driver</code> (WebDriver): Appium WebDriver instance</li>
+<li><code>resource_id</code> (str): Resource ID of the scrollable list element</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>bool</code>: True if successfully scrolled to top, False otherwise</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> scroll_to_top(driver, PCTS_SCROLLABLE_RESOURCE_LIST_ID):
+    logger.info(<span class="hljs-string">"Successfully scrolled to top of list"</span>)
+</div></code></pre>
+<h3 id="%F0%9F%93%B1-element-detection--analysis">📱 Element Detection &amp; Analysis</h3>
+<h4 id="getxpathandboundsfortextitemdriver-targettext"><code>get_xpath_and_bounds_for_text_item(driver, target_text)</code></h4>
+<p>Finds an element and returns its XPath and screen bounds for interaction.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>driver</code> (WebDriver): Appium WebDriver instance</li>
+<li><code>target_text</code> (str): Text of the element to locate</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>tuple</code>: (xpath_string, bounds_dict) or (None, None) if not found</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre class="hljs"><code><div>xpath, bounds = get_xpath_and_bounds_for_text_item(driver, <span class="hljs-string">"VideoTests"</span>)
+<span class="hljs-keyword">if</span> xpath:
+    logger.info(<span class="hljs-string">f"Element found at bounds: <span class="hljs-subst">{bounds}</span>"</span>)
+    <span class="hljs-comment"># Click the element</span>
+    driver.find_element(AppiumBy.XPATH, xpath).click()
+</div></code></pre>
+<h4 id="getvisibletextsfromresourcedriver-resourceid"><code>get_visible_texts_from_resource(driver, resource_id)</code></h4>
+<p>Gets all visible text items that match a specific resource ID.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>driver</code> (WebDriver): Appium WebDriver instance</li>
+<li><code>resource_id</code> (str): Resource ID to filter elements by</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>list</code>: List of visible text strings</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Get all visible main category items</span>
+visible_items = get_visible_texts_from_resource(driver, PCTS_TOP_LIST_RESOURCE_ID)
+logger.info(<span class="hljs-string">f"Visible categories: <span class="hljs-subst">{visible_items}</span>"</span>)
+</div></code></pre>
+<h3 id="%F0%9F%93%B8-screenshot--image-analysis">📸 Screenshot &amp; Image Analysis</h3>
+<h4 id="takescreenshotdriver-filename"><code>take_screenshot(driver, file_name)</code></h4>
+<p>Captures a screenshot and saves it with automatic directory creation.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>driver</code> (WebDriver): Appium WebDriver instance</li>
+<li><code>file_name</code> (str): Name for the screenshot file (auto-adds .png if needed)</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>str</code>: Path to saved screenshot, or None if failed</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre class="hljs"><code><div>screenshot_path = take_screenshot(driver, <span class="hljs-string">"debug_screenshot"</span>)
+<span class="hljs-keyword">if</span> screenshot_path:
+    logger.info(<span class="hljs-string">f"Screenshot saved: <span class="hljs-subst">{screenshot_path}</span>"</span>)
+</div></code></pre>
+<h4 id="cropelementfromscreenshotscreenshotpath-bounds-outputnamenone"><code>crop_element_from_screenshot(screenshot_path, bounds, output_name=None)</code></h4>
+<p>Crops a specific element from a full screenshot using element bounds.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>screenshot_path</code> (str): Path to the full screenshot</li>
+<li><code>bounds</code> (dict): Element bounds with 'x', 'y', 'width', 'height' keys</li>
+<li><code>output_name</code> (str, optional): Custom name for cropped image</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>str</code>: Path to cropped image, or None if failed</li>
+</ul>
+<h4 id="checkarrowdirectioncroppedimagepath"><code>check_arrow_direction(cropped_image_path)</code></h4>
+<p>Analyzes a cropped element image to detect arrow direction using advanced image processing.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>cropped_image_path</code> (str): Path to the cropped element image</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>str</code>: 'up', 'down', or 'unknown' based on detected arrow direction</li>
+</ul>
+<h3 id="%E2%9A%A1-smart-element-control">⚡ Smart Element Control</h3>
+<h4 id="toggleelementvisibilitydriver-targettext-mode"><code>toggle_element_visibility(driver, target_text, mode)</code></h4>
+<p>Intelligently toggles element visibility based on current arrow direction and desired state.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>driver</code> (WebDriver): Appium WebDriver instance</li>
+<li><code>target_text</code> (str): Text of the element to toggle</li>
+<li><code>mode</code> (str): &quot;show&quot; (expand) or &quot;hide&quot; (collapse)</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>bool</code>: True if action completed or element already in desired state</li>
+</ul>
+<p><strong>Smart Logic:</strong></p>
+<ul>
+<li><strong>&quot;show&quot; mode</strong>:
+<ul>
+<li>⬇️ Down arrow → Clicks to expand</li>
+<li>⬆️ Up arrow → Already expanded, no action</li>
+<li>❓ Unknown → Returns False (cannot determine state)</li>
+</ul>
+</li>
+<li><strong>&quot;hide&quot; mode</strong>:
+<ul>
+<li>⬆️ Up arrow → Clicks to collapse</li>
+<li>⬇️ Down arrow → Already collapsed, no action</li>
+<li>❓ Unknown → Returns False (cannot determine state)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Expand AudioTests if it's currently collapsed</span>
+<span class="hljs-keyword">if</span> toggle_element_visibility(driver, <span class="hljs-string">"AudioTests"</span>, <span class="hljs-string">"show"</span>):
+    logger.info(<span class="hljs-string">"AudioTests expanded successfully"</span>)
+    
+    <span class="hljs-comment"># Wait for UI animation</span>
+    time.sleep(<span class="hljs-number">1</span>)
+    
+    <span class="hljs-comment"># Collapse it back</span>
+    <span class="hljs-keyword">if</span> toggle_element_visibility(driver, <span class="hljs-string">"AudioTests"</span>, <span class="hljs-string">"hide"</span>):
+        logger.info(<span class="hljs-string">"AudioTests collapsed successfully"</span>)
+</div></code></pre>
+<h4 id="launchpctstestcasedriver-maintestcasename-testcasename"><code>launch_pcts_test_case(driver, main_test_case_name, test_case_name)</code></h4>
+<p>Complete workflow to expand a main test category and launch a specific sub-test case.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>driver</code> (WebDriver): Appium WebDriver instance</li>
+<li><code>main_test_case_name</code> (str): Name of the main test category to expand</li>
+<li><code>test_case_name</code> (str): Name of the specific test case to launch</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>bool</code>: True if test case was successfully launched</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Expand TouchTests category and launch PTEP1 test</span>
+<span class="hljs-keyword">if</span> launch_pcts_test_case(driver, <span class="hljs-string">"TouchTests"</span>, <span class="hljs-string">"PTEP1"</span>):
+    logger.info(<span class="hljs-string">"PTEP1 test launched successfully"</span>)
+</div></code></pre>
+<h3 id="%F0%9F%8E%AF-pcts-specific-helper-functions">🎯 PCTS-Specific Helper Functions</h3>
+<p>These functions are pre-configured for PCTS app testing:</p>
+<h4 id="pctsscrolltotopdriver"><code>pcts_scroll_to_top(driver)</code></h4>
+<p>Scrolls to top of PCTS test list (uses pre-configured resource ID).</p>
+<h4 id="pctsgetvisibletoplistitemsdriver"><code>pcts_get_visible_top_list_items(driver)</code></h4>
+<p>Gets visible main category items in PCTS app.</p>
+<h4 id="pctsgetvisiblesublistitemsdriver"><code>pcts_get_visible_sub_list_items(driver)</code></h4>
+<p>Gets visible sub-test items in PCTS app.</p>
+<h2 id="%F0%9F%94%A7-configuration-constants">🔧 Configuration Constants</h2>
+<p>The module uses these configurable constants:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Scroll behavior configuration</span>
+MAX_SCROLL_ATTEMPTS = <span class="hljs-number">50</span>        <span class="hljs-comment"># Maximum scroll attempts before giving up</span>
+SCROLL_DELAY = <span class="hljs-number">1.0</span>             <span class="hljs-comment"># Delay after major scroll operations (seconds)</span>
+SMALL_SCROLL_DELAY = <span class="hljs-number">0.5</span>       <span class="hljs-comment"># Delay after minor scroll operations (seconds)</span>
+SCROLL_BEGINNING_MAX_SWIPES = <span class="hljs-number">25</span>  <span class="hljs-comment"># Max swipes when scrolling to beginning</span>
+
+<span class="hljs-comment"># PCTS App specific resource IDs</span>
+PCTS_SCROLLABLE_RESOURCE_LIST_ID = <span class="hljs-string">"com.google.android.projection.gearhead.pctsverifier:id/list"</span>
+PCTS_TOP_LIST_RESOURCE_ID = <span class="hljs-string">"android:id/text1"</span>
+PCTS_SUB_LIST_RESOURCE_ID = <span class="hljs-string">"com.google.android.projection.gearhead.pctsverifier:id/test_caption"</span>
+</div></code></pre>
+<h2 id="%F0%9F%9A%80-usage-examples">🚀 Usage Examples</h2>
+<h3 id="basic-text-finding">Basic Text Finding</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> scroll_utils <span class="hljs-keyword">import</span> scroll_to_text, take_screenshot
+
+<span class="hljs-comment"># Find and scroll to specific text</span>
+<span class="hljs-keyword">if</span> scroll_to_text(driver, <span class="hljs-string">"BluetoothTests"</span>):
+    <span class="hljs-comment"># Take screenshot when found</span>
+    take_screenshot(driver, <span class="hljs-string">"bluetooth_tests_found"</span>)
+    logger.info(<span class="hljs-string">"BluetoothTests is now visible"</span>)
+</div></code></pre>
+<h3 id="element-interaction-workflow">Element Interaction Workflow</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> scroll_utils <span class="hljs-keyword">import</span> scroll_to_text, get_xpath_and_bounds_for_text_item
+
+<span class="hljs-comment"># Complete element interaction workflow</span>
+target_text = <span class="hljs-string">"SpeechRecognitionTests"</span>
+
+<span class="hljs-comment"># Step 1: Scroll to find the element</span>
+<span class="hljs-keyword">if</span> scroll_to_text(driver, target_text):
+    <span class="hljs-comment"># Step 2: Get element details for interaction</span>
+    xpath, bounds = get_xpath_and_bounds_for_text_item(driver, target_text)
+    
+    <span class="hljs-keyword">if</span> xpath:
+        logger.info(<span class="hljs-string">f"Found element at coordinates: <span class="hljs-subst">{bounds}</span>"</span>)
+        <span class="hljs-comment"># Step 3: Interact with the element</span>
+        driver.find_element(AppiumBy.XPATH, xpath).click()
+        logger.info(<span class="hljs-string">f"Successfully clicked <span class="hljs-subst">{target_text}</span>"</span>)
+</div></code></pre>
+<h3 id="smart-element-toggling">Smart Element Toggling</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> scroll_utils <span class="hljs-keyword">import</span> toggle_element_visibility
+<span class="hljs-keyword">import</span> time
+
+<span class="hljs-comment"># Smart expand/collapse workflow</span>
+test_category = <span class="hljs-string">"AudioTests"</span>
+
+<span class="hljs-comment"># Expand the category</span>
+<span class="hljs-keyword">if</span> toggle_element_visibility(driver, test_category, <span class="hljs-string">"show"</span>):
+    logger.info(<span class="hljs-string">f"<span class="hljs-subst">{test_category}</span> expanded"</span>)
+    
+    <span class="hljs-comment"># Wait for expansion animation</span>
+    time.sleep(<span class="hljs-number">2</span>)
+    
+    <span class="hljs-comment"># Do something with expanded content...</span>
+    
+    <span class="hljs-comment"># Collapse back</span>
+    <span class="hljs-keyword">if</span> toggle_element_visibility(driver, test_category, <span class="hljs-string">"hide"</span>):
+        logger.info(<span class="hljs-string">f"<span class="hljs-subst">{test_category}</span> collapsed"</span>)
+</div></code></pre>
+<h3 id="complete-test-case-launch">Complete Test Case Launch</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> scroll_utils <span class="hljs-keyword">import</span> launch_pcts_test_case
+
+<span class="hljs-comment"># Launch a specific test case</span>
+main_category = <span class="hljs-string">"TouchTests"</span>
+specific_test = <span class="hljs-string">"PTEP1"</span>
+
+<span class="hljs-keyword">if</span> launch_pcts_test_case(driver, main_category, specific_test):
+    logger.info(<span class="hljs-string">f"Successfully launched <span class="hljs-subst">{specific_test}</span> from <span class="hljs-subst">{main_category}</span>"</span>)
+<span class="hljs-keyword">else</span>:
+    logger.error(<span class="hljs-string">f"Failed to launch <span class="hljs-subst">{specific_test}</span>"</span>)
+</div></code></pre>
+<h2 id="%F0%9F%93%81-file-structure">📁 File Structure</h2>
+<pre class="hljs"><code><div>android_scroll/
+├── scroll_utils.py          # Main utility module
+├── main.py                  # Example usage and testing
+├── README.md               # This documentation
+├── screenshots/            # Auto-created directory for screenshots
+└── __pycache__/           # Python cache directory
+</div></code></pre>
+<h2 id="%F0%9F%90%9B-error-handling">🐛 Error Handling</h2>
+<p>All functions include comprehensive error handling:</p>
+<ul>
+<li><strong>Input Validation</strong>: Functions validate parameters before execution</li>
+<li><strong>Specific Exception Handling</strong>: Catches Appium-specific exceptions separately</li>
+<li><strong>Graceful Degradation</strong>: Functions return False/None on failure instead of crashing</li>
+<li><strong>Detailed Logging</strong>: All operations are logged with appropriate levels (INFO/WARNING/ERROR)</li>
+</ul>
+<h2 id="%F0%9F%94%8D-debugging">🔍 Debugging</h2>
+<p>Enable debug logging to see detailed operation information:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> logging
+logging.basicConfig(level=logging.DEBUG)
+</div></code></pre>
+<p>This will show:</p>
+<ul>
+<li>Element search progress</li>
+<li>Scroll attempt details</li>
+<li>Screenshot and crop operations</li>
+<li>Arrow detection analysis</li>
+<li>Element interaction steps</li>
+</ul>
+<h2 id="%F0%9F%A4%9D-contributing">🤝 Contributing</h2>
+<ol>
+<li>Fork the repository</li>
+<li>Create a feature branch</li>
+<li>Add comprehensive tests for new functionality</li>
+<li>Update documentation</li>
+<li>Submit a pull request</li>
+</ol>
+<h2 id="%F0%9F%93%84-license">📄 License</h2>
+<p>This project is open source. See the LICENSE file for details.</p>
+<hr>
+<p><strong>Need Help?</strong> Check the example usage in <code>main.py</code> or enable debug logging for detailed operation insights.</p>
+<hr>
+<h4 id="getalllistitemsdriver"><code>get_all_list_items(driver)</code></h4>
+<p>Gets complete list of all items by scrolling through the entire list from top to bottom.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>driver</code> (WebDriver): Appium WebDriver instance</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>list</code>: Complete ordered list of all text items in the list</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre class="hljs"><code><div>all_items = get_all_list_items(driver)
+print(<span class="hljs-string">f"Total items in list: <span class="hljs-subst">{len(all_items)}</span>"</span>)
+print(<span class="hljs-string">f"First 5 items: <span class="hljs-subst">{all_items[:<span class="hljs-number">5</span>]}</span>"</span>)
+print(<span class="hljs-string">f"Last 5 items: <span class="hljs-subst">{all_items[<span class="hljs-number">-5</span>:]}</span>"</span>)
+</div></code></pre>
+<hr>
+<h4 id="findtextinlistdriver-searchtext"><code>find_text_in_list(driver, search_text)</code></h4>
+<p>Searches for specific text in the entire list by scrolling through it.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>driver</code> (WebDriver): Appium WebDriver instance</li>
+<li><code>search_text</code> (str): Text to search for</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>bool</code>: True if text is found anywhere in the list, False otherwise</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre class="hljs"><code><div>test_items = [<span class="hljs-string">"AudioTests"</span>, <span class="hljs-string">"VideoTests"</span>, <span class="hljs-string">"NetworkTests"</span>]
+<span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> test_items:
+    found = find_text_in_list(driver, item)
+    print(<span class="hljs-string">f"'<span class="hljs-subst">{item}</span>' exists in list: <span class="hljs-subst">{found}</span>"</span>)
+</div></code></pre>
+<h3 id="screenshot--analysis-functions">Screenshot &amp; Analysis Functions</h3>
+<h4 id="takescreenshotdriver-filename"><code>take_screenshot(driver, file_name)</code></h4>
+<p>Takes a screenshot of the current screen and saves it with a relative path return.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>driver</code> (WebDriver): Appium WebDriver instance</li>
+<li><code>file_name</code> (str): Base filename for the screenshot (without extension)</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>str</code> or <code>None</code>: Relative path to saved screenshot file, or None if failed</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre class="hljs"><code><div>screenshot_path = take_screenshot(driver, <span class="hljs-string">"current_screen"</span>)
+<span class="hljs-keyword">if</span> screenshot_path:
+    print(<span class="hljs-string">f"Screenshot saved: <span class="hljs-subst">{screenshot_path}</span>"</span>)
+</div></code></pre>
+<hr>
+<h4 id="cropelementfromscreenshotscreenshotpath-bounds-outputnamenone"><code>crop_element_from_screenshot(screenshot_path, bounds, output_name=None)</code></h4>
+<p>Crops a specific element from a screenshot based on element bounds.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>screenshot_path</code> (str): Path to the full screenshot image</li>
+<li><code>bounds</code> (dict): Element bounds with keys: x, y, width, height</li>
+<li><code>output_name</code> (str, optional): Custom name for cropped image</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>str</code> or <code>None</code>: Path to cropped image file, or None if failed</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre class="hljs"><code><div>bounds = {<span class="hljs-string">"x"</span>: <span class="hljs-number">100</span>, <span class="hljs-string">"y"</span>: <span class="hljs-number">200</span>, <span class="hljs-string">"width"</span>: <span class="hljs-number">300</span>, <span class="hljs-string">"height"</span>: <span class="hljs-number">50</span>}
+cropped_path = crop_element_from_screenshot(<span class="hljs-string">"screenshot.png"</span>, bounds, <span class="hljs-string">"my_element"</span>)
+<span class="hljs-keyword">if</span> cropped_path:
+    print(<span class="hljs-string">f"Cropped element saved: <span class="hljs-subst">{cropped_path}</span>"</span>)
+</div></code></pre>
+<hr>
+<h4 id="checkarrowdirectioncroppedimagepath"><code>check_arrow_direction(cropped_image_path)</code></h4>
+<p>Analyzes a cropped element image to detect arrow direction using advanced image processing.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>cropped_image_path</code> (str): Path to the cropped element image</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>str</code>: Arrow direction - 'up', 'down', 'none', or 'unknown'</li>
+</ul>
+<p><strong>Algorithm Details:</strong></p>
+<ul>
+<li>Uses adaptive thresholding for binary image conversion</li>
+<li>Analyzes triangular patterns in the middle section of the image</li>
+<li>Compares pixel density in upper vs lower regions</li>
+<li>Handles both filled and outlined arrow styles</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre class="hljs"><code><div>arrow_direction = check_arrow_direction(<span class="hljs-string">"element_cropped.png"</span>)
+<span class="hljs-keyword">if</span> arrow_direction == <span class="hljs-string">"down"</span>:
+    print(<span class="hljs-string">"Element has a downward arrow - likely expandable"</span>)
+<span class="hljs-keyword">elif</span> arrow_direction == <span class="hljs-string">"up"</span>:
+    print(<span class="hljs-string">"Element has an upward arrow - likely collapsible"</span>)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">"No clear arrow direction detected"</span>)
+</div></code></pre>
+<h3 id="legacy-compatibility-functions">Legacy Compatibility Functions</h3>
+<h4 id="printalllistitemsdriver"><code>print_all_list_items(driver)</code></h4>
+<p>Prints all items in the list and returns them as a list for backward compatibility.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>driver</code> (WebDriver): Appium WebDriver instance</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>list</code>: List of all items that were printed to console</li>
+</ul>
+<hr>
+<h4 id="scrollthroughlistandprintdriver"><code>scroll_through_list_and_print(driver)</code></h4>
+<p>Original legacy function that prints items while scrolling through the list.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>driver</code> (WebDriver): Appium WebDriver instance</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>None</code>: Just prints items to console</li>
+</ul>
+<h2 id="usage-examples">Usage Examples</h2>
+<h3 id="basic-element-analysis-workflow">Basic Element Analysis Workflow</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> scroll_utils <span class="hljs-keyword">import</span> scroll_to_text, get_element_details
+
+<span class="hljs-comment"># Complete workflow: Find element and analyze it</span>
+target = <span class="hljs-string">"VideoTests"</span>
+<span class="hljs-keyword">if</span> scroll_to_text(driver, target):
+    details = get_element_details(driver, target)
+    <span class="hljs-keyword">if</span> details:
+        print(<span class="hljs-string">f"✓ Found: <span class="hljs-subst">{details[<span class="hljs-string">'text'</span>]}</span>"</span>)
+        print(<span class="hljs-string">f"  Location: <span class="hljs-subst">{details[<span class="hljs-string">'bounds'</span>]}</span>"</span>)
+        print(<span class="hljs-string">f"  Screenshot: <span class="hljs-subst">{details[<span class="hljs-string">'screenshot_path'</span>]}</span>"</span>)
+        print(<span class="hljs-string">f"  Arrow: <span class="hljs-subst">{details[<span class="hljs-string">'arrow_direction'</span>]}</span>"</span>)
+        
+        <span class="hljs-comment"># Make decisions based on arrow direction</span>
+        <span class="hljs-keyword">if</span> details[<span class="hljs-string">'arrow_direction'</span>] == <span class="hljs-string">'down'</span>:
+            print(<span class="hljs-string">"  → This item can be expanded"</span>)
+        <span class="hljs-keyword">elif</span> details[<span class="hljs-string">'arrow_direction'</span>] == <span class="hljs-string">'up'</span>:
+            print(<span class="hljs-string">"  → This item is currently expanded"</span>)
+    <span class="hljs-keyword">else</span>:
+        print(<span class="hljs-string">f"✗ Could not analyze <span class="hljs-subst">{target}</span>"</span>)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">f"✗ <span class="hljs-subst">{target}</span> not found in list"</span>)
+</div></code></pre>
+<h3 id="smart-element-visibility-control">Smart Element Visibility Control</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> scroll_utils <span class="hljs-keyword">import</span> toggle_element_visibility
+
+<span class="hljs-comment"># Simple expand/collapse workflow</span>
+target = <span class="hljs-string">"AudioTests"</span>
+
+<span class="hljs-comment"># Expand element if needed</span>
+print(<span class="hljs-string">"Expanding element..."</span>)
+<span class="hljs-keyword">if</span> toggle_element_visibility(driver, target, <span class="hljs-string">"show"</span>):
+    print(<span class="hljs-string">"✓ Element is now expanded"</span>)
+    
+    <span class="hljs-comment"># Wait for UI animation</span>
+    time.sleep(<span class="hljs-number">1</span>)
+    
+    <span class="hljs-comment"># Collapse element if needed  </span>
+    print(<span class="hljs-string">"Collapsing element..."</span>)
+    <span class="hljs-keyword">if</span> toggle_element_visibility(driver, target, <span class="hljs-string">"hide"</span>):
+        print(<span class="hljs-string">"✓ Element is now collapsed"</span>)
+    <span class="hljs-keyword">else</span>:
+        print(<span class="hljs-string">"✗ Failed to collapse element"</span>)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">"✗ Failed to expand element"</span>)
+
+<span class="hljs-comment"># Advanced usage with error handling</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">smart_toggle_element</span><span class="hljs-params">(driver, element_name, desired_state)</span>:</span>
+    <span class="hljs-string">"""Safely toggle element with validation"""</span>
+    <span class="hljs-keyword">try</span>:
+        success = toggle_element_visibility(driver, element_name, desired_state)
+        <span class="hljs-keyword">if</span> success:
+            print(<span class="hljs-string">f"✓ <span class="hljs-subst">{element_name}</span> is now <span class="hljs-subst">{desired_state}</span>n"</span>)
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+        <span class="hljs-keyword">else</span>:
+            print(<span class="hljs-string">f"✗ Failed to <span class="hljs-subst">{desired_state}</span> <span class="hljs-subst">{element_name}</span>"</span>)
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
+    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+        print(<span class="hljs-string">f"✗ Error toggling <span class="hljs-subst">{element_name}</span>: <span class="hljs-subst">{e}</span>"</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
+
+<span class="hljs-comment"># Use the safe wrapper</span>
+smart_toggle_element(driver, <span class="hljs-string">"VideoTests"</span>, <span class="hljs-string">"show"</span>)
+</div></code></pre>
+<h3 id="batch-element-analysis">Batch Element Analysis</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> scroll_utils <span class="hljs-keyword">import</span> scroll_to_text, get_element_details
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">analyze_test_items</span><span class="hljs-params">(driver, test_names)</span>:</span>
+    <span class="hljs-string">"""Analyze multiple test items and categorize them"""</span>
+    results = {
+        <span class="hljs-string">'expandable'</span>: [],
+        <span class="hljs-string">'expanded'</span>: [], 
+        <span class="hljs-string">'regular'</span>: [],
+        <span class="hljs-string">'not_found'</span>: []
+    }
+    
+    <span class="hljs-keyword">for</span> test_name <span class="hljs-keyword">in</span> test_names:
+        <span class="hljs-keyword">if</span> scroll_to_text(driver, test_name):
+            details = get_element_details(driver, test_name)
+            <span class="hljs-keyword">if</span> details:
+                arrow = details[<span class="hljs-string">'arrow_direction'</span>]
+                <span class="hljs-keyword">if</span> arrow == <span class="hljs-string">'down'</span>:
+                    results[<span class="hljs-string">'expandable'</span>].append(test_name)
+                <span class="hljs-keyword">elif</span> arrow == <span class="hljs-string">'up'</span>:
+                    results[<span class="hljs-string">'expanded'</span>].append(test_name)
+                <span class="hljs-keyword">else</span>:
+                    results[<span class="hljs-string">'regular'</span>].append(test_name)
+            <span class="hljs-keyword">else</span>:
+                results[<span class="hljs-string">'not_found'</span>].append(test_name)
+        <span class="hljs-keyword">else</span>:
+            results[<span class="hljs-string">'not_found'</span>].append(test_name)
+    
+    <span class="hljs-keyword">return</span> results
+
+<span class="hljs-comment"># Usage</span>
+test_items = [<span class="hljs-string">"AudioTests"</span>, <span class="hljs-string">"VideoTests"</span>, <span class="hljs-string">"NetworkTests"</span>, <span class="hljs-string">"BluetoothTests"</span>]
+analysis = analyze_test_items(driver, test_items)
+print(<span class="hljs-string">f"Expandable items: <span class="hljs-subst">{analysis[<span class="hljs-string">'expandable'</span>]}</span>"</span>)
+print(<span class="hljs-string">f"Currently expanded: <span class="hljs-subst">{analysis[<span class="hljs-string">'expanded'</span>]}</span>"</span>)
+</div></code></pre>
+<h3 id="list-navigation-and-content-analysis">List Navigation and Content Analysis</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> scroll_utils <span class="hljs-keyword">import</span> get_all_list_items, get_visible_items, scroll_to_top
+
+<span class="hljs-comment"># Get complete inventory</span>
+all_items = get_all_list_items(driver)
+print(<span class="hljs-string">f"Total test categories: <span class="hljs-subst">{len(all_items)}</span>"</span>)
+
+<span class="hljs-comment"># Filter items by keyword</span>
+audio_tests = [item <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> all_items <span class="hljs-keyword">if</span> <span class="hljs-string">'Audio'</span> <span class="hljs-keyword">in</span> item]
+video_tests = [item <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> all_items <span class="hljs-keyword">if</span> <span class="hljs-string">'Video'</span> <span class="hljs-keyword">in</span> item]
+
+print(<span class="hljs-string">f"Audio-related tests: <span class="hljs-subst">{audio_tests}</span>"</span>)
+print(<span class="hljs-string">f"Video-related tests: <span class="hljs-subst">{video_tests}</span>"</span>)
+
+<span class="hljs-comment"># Quick current view check</span>
+scroll_to_top(driver)
+visible_now = get_visible_items(driver)
+print(<span class="hljs-string">f"Items visible at top: <span class="hljs-subst">{visible_now}</span>"</span>)
+</div></code></pre>
+<h3 id="screenshot-and-image-analysis">Screenshot and Image Analysis</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> scroll_utils <span class="hljs-keyword">import</span> take_screenshot, crop_element_from_screenshot, check_arrow_direction
+
+<span class="hljs-comment"># Take full screenshot</span>
+screen_path = take_screenshot(driver, <span class="hljs-string">"full_list_view"</span>)
+
+<span class="hljs-comment"># Manually crop an area and analyze</span>
+custom_bounds = {<span class="hljs-string">"x"</span>: <span class="hljs-number">150</span>, <span class="hljs-string">"y"</span>: <span class="hljs-number">300</span>, <span class="hljs-string">"width"</span>: <span class="hljs-number">400</span>, <span class="hljs-string">"height"</span>: <span class="hljs-number">60</span>}
+cropped_path = crop_element_from_screenshot(screen_path, custom_bounds, <span class="hljs-string">"custom_element"</span>)
+
+<span class="hljs-keyword">if</span> cropped_path:
+    arrow_dir = check_arrow_direction(cropped_path)
+    print(<span class="hljs-string">f"Custom area arrow direction: <span class="hljs-subst">{arrow_dir}</span>"</span>)
+</div></code></pre>
+<h3 id="error-handling-best-practices">Error Handling Best Practices</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> scroll_utils <span class="hljs-keyword">import</span> scroll_to_text, get_element_details
+<span class="hljs-keyword">import</span> logging
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">safe_element_analysis</span><span class="hljs-params">(driver, target_text)</span>:</span>
+    <span class="hljs-string">"""Safely analyze an element with proper error handling"""</span>
+    <span class="hljs-keyword">try</span>:
+        <span class="hljs-comment"># Step 1: Try to find the element</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> scroll_to_text(driver, target_text):
+            logging.warning(<span class="hljs-string">f"Element '<span class="hljs-subst">{target_text}</span>' not found in list"</span>)
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>
+        
+        <span class="hljs-comment"># Step 2: Get detailed analysis</span>
+        details = get_element_details(driver, target_text)
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> details:
+            logging.error(<span class="hljs-string">f"Failed to get details for '<span class="hljs-subst">{target_text}</span>'"</span>)
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>
+            
+        <span class="hljs-comment"># Step 3: Validate the results</span>
+        required_keys = [<span class="hljs-string">'text'</span>, <span class="hljs-string">'xpath'</span>, <span class="hljs-string">'bounds'</span>, <span class="hljs-string">'screenshot_path'</span>, <span class="hljs-string">'arrow_direction'</span>]
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> all(key <span class="hljs-keyword">in</span> details <span class="hljs-keyword">for</span> key <span class="hljs-keyword">in</span> required_keys):
+            logging.error(<span class="hljs-string">"Incomplete element details returned"</span>)
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>
+            
+        <span class="hljs-keyword">return</span> details
+        
+    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+        logging.error(<span class="hljs-string">f"Exception during element analysis: <span class="hljs-subst">{e}</span>"</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>
+
+<span class="hljs-comment"># Usage with error handling</span>
+result = safe_element_analysis(driver, <span class="hljs-string">"AudioTests"</span>)
+<span class="hljs-keyword">if</span> result:
+    print(<span class="hljs-string">"Analysis successful:"</span>, result[<span class="hljs-string">'arrow_direction'</span>])
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">"Analysis failed - check logs"</span>)
+</div></code></pre>
+<h2 id="advanced-features">Advanced Features</h2>
+<h3 id="arrow-detection-algorithm">Arrow Detection Algorithm</h3>
+<p>The <code>check_arrow_direction()</code> function uses sophisticated image processing:</p>
+<ol>
+<li><strong>Adaptive Thresholding</strong>: Automatically adjusts threshold based on image brightness</li>
+<li><strong>Middle Section Analysis</strong>: Focuses on the center region where arrows typically appear</li>
+<li><strong>Shape Pattern Recognition</strong>: Identifies triangular patterns indicating arrow directions</li>
+<li><strong>Noise Filtering</strong>: Handles various arrow styles (filled, outlined, different sizes)</li>
+</ol>
+<h3 id="performance-optimization-tips">Performance Optimization Tips</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Fast existence check (current view only)</span>
+<span class="hljs-keyword">from</span> scroll_utils <span class="hljs-keyword">import</span> get_visible_items
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">quick_check_visible</span><span class="hljs-params">(driver, target_text)</span>:</span>
+    <span class="hljs-string">"""Quick check if item is visible without scrolling"""</span>
+    <span class="hljs-keyword">return</span> target_text <span class="hljs-keyword">in</span> get_visible_items(driver)
+
+<span class="hljs-comment"># Efficient batch processing</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">find_multiple_items_efficiently</span><span class="hljs-params">(driver, target_list)</span>:</span>
+    <span class="hljs-string">"""Find multiple items with minimal scrolling"""</span>
+    found_items = {}
+    all_items = get_all_list_items(driver)  <span class="hljs-comment"># One complete scan</span>
+    
+    <span class="hljs-keyword">for</span> target <span class="hljs-keyword">in</span> target_list:
+        found_items[target] = target <span class="hljs-keyword">in</span> all_items
+    
+    <span class="hljs-keyword">return</span> found_items
+</div></code></pre>
+<h3 id="integration-with-test-frameworks">Integration with Test Frameworks</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> pytest
+<span class="hljs-keyword">from</span> scroll_utils <span class="hljs-keyword">import</span> scroll_to_text, get_element_details
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestAndroidList</span>:</span>
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_expandable_items_have_arrows</span><span class="hljs-params">(self, driver)</span>:</span>
+        <span class="hljs-string">"""Test that expandable items show down arrows"""</span>
+        expandable_items = [<span class="hljs-string">"AudioTests"</span>, <span class="hljs-string">"VideoTests"</span>] 
+        
+        <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> expandable_items:
+            <span class="hljs-keyword">assert</span> scroll_to_text(driver, item), <span class="hljs-string">f"Could not find <span class="hljs-subst">{item}</span>"</span>
+            details = get_element_details(driver, item)
+            <span class="hljs-keyword">assert</span> details <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>, <span class="hljs-string">f"Could not get details for <span class="hljs-subst">{item}</span>"</span>
+            <span class="hljs-keyword">assert</span> details[<span class="hljs-string">'arrow_direction'</span>] <span class="hljs-keyword">in</span> [<span class="hljs-string">'down'</span>, <span class="hljs-string">'up'</span>], \
+                <span class="hljs-string">f"<span class="hljs-subst">{item}</span> should have an arrow but got: <span class="hljs-subst">{details[<span class="hljs-string">'arrow_direction'</span>]}</span>"</span>
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_all_test_categories_present</span><span class="hljs-params">(self, driver)</span>:</span>
+        <span class="hljs-string">"""Verify all expected test categories are in the list"""</span>
+        expected_categories = [<span class="hljs-string">"Audio"</span>, <span class="hljs-string">"Video"</span>, <span class="hljs-string">"Network"</span>, <span class="hljs-string">"Bluetooth"</span>]
+        all_items = get_all_list_items(driver)
+        all_text = <span class="hljs-string">" "</span>.join(all_items)
+        
+        <span class="hljs-keyword">for</span> category <span class="hljs-keyword">in</span> expected_categories:
+            <span class="hljs-keyword">assert</span> any(category <span class="hljs-keyword">in</span> item <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> all_items), \
+                <span class="hljs-string">f"No <span class="hljs-subst">{category}</span> tests found in list"</span>
+</div></code></pre>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-issues">Common Issues</h3>
+<ol>
+<li>
+<p><strong>Arrow Detection Returns 'unknown'</strong></p>
+<ul>
+<li>Check if the cropped image contains a clear arrow</li>
+<li>Verify the element bounds are correct</li>
+<li>Some UI elements may not have arrows</li>
+</ul>
+</li>
+<li>
+<p><strong>Elements Not Found</strong></p>
+<ul>
+<li>Verify the <code>SCROLLABLE_LIST_ID</code> constant matches your app</li>
+<li>Check if the list is actually scrollable</li>
+<li>Ensure elements have text content</li>
+</ul>
+</li>
+<li>
+<p><strong>Screenshot/Cropping Failures</strong></p>
+<ul>
+<li>Check write permissions in the screenshots directory</li>
+<li>Verify PIL (Pillow) is properly installed</li>
+<li>Bounds coordinates should be within screen dimensions</li>
+</ul>
+</li>
+</ol>
+<h3 id="debug-mode">Debug Mode</h3>
+<p>Enable debug logging to troubleshoot issues:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> logging
+logging.basicConfig(level=logging.DEBUG)
+
+<span class="hljs-comment"># Now scroll_utils will provide detailed debug output</span>
+</div></code></pre>
+<h2 id="module-architecture">Module Architecture</h2>
+<h3 id="public-vs-private-methods">Public vs Private Methods</h3>
+<p><strong>Public API (use these in your code):</strong></p>
+<ul>
+<li>All functions documented above are part of the public API</li>
+<li>Stable interface, backward compatible</li>
+<li>Full error handling and logging</li>
+</ul>
+<p><strong>Private Methods (internal use only):</strong></p>
+<ul>
+<li><code>_scroll_down_once()</code> - Internal scrolling mechanism</li>
+<li><code>_analyze_by_shape_position()</code> - Internal arrow analysis algorithm</li>
+</ul>
+<h3 id="constants-configuration">Constants Configuration</h3>
+<p>Update these constants for your specific Android app:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># In scroll_utils.py, modify these lines:</span>
+SCROLLABLE_LIST_ID = <span class="hljs-string">"your.app.package:id/your_list_id"</span>
+SCROLL_XPATH = <span class="hljs-string">f'//YourListViewType[@resource-id="<span class="hljs-subst">{SCROLLABLE_LIST_ID}</span>"]//android.widget.TextView'</span>
+</div></code></pre>
+<h2 id="license">License</h2>
+<p>This utility module is provided as-is for Android automation testing purposes.</p>
+
+</body>
+</html>
