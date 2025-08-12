@@ -24,6 +24,7 @@ Example for "launch":
    "action": "launch",
    "main_test_case": "TouchTests",
    "sub_test_case": "PTEP1",
+   "exact_match": true,
    "delay_before": 2
 }
 
@@ -32,6 +33,7 @@ Example for "close":
    "widget_type": "pcts_launcher",
    "action": "close",
    "main_test_case": "TouchTests",
+   "exact_match": true,
    "delay_before": 2
 }
 """

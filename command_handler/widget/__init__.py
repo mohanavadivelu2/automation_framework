@@ -11,6 +11,7 @@ from .handler.image_click import ImageClickHandler
 from .handler.multi_template import MultiTemplateHandler
 from .handler.text_search import TextSearchHandler
 from .handler.usb_handler import USBHandler
+from .handler.button_by_name import ButtonByNameHandler
 from .handler.adb_commands import (
     ADBHandler,
     ADBLaunchHandler,
@@ -46,5 +47,6 @@ __all__ = [
     'ImageClickHandler',
     'MultiTemplateHandler',
     'TextSearchHandler',
-    'USBHandler'
+    'USBHandler',
+    'ButtonByNameHandler'
 ]
