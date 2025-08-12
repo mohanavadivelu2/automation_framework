@@ -60,6 +60,7 @@ class PctsLauncherHandler(BaseHandler):
         main_test_case = command_data.get("main_test_case")
         sub_test_case = command_data.get("sub_test_case")
         delay_before = command_data.get("delay_before", 0)
+        exact_match = command_data.get("exact_match", False)
 
         # Step 3: Get driver instance
         success, result = WidgetUtils.get_driver(base_path, tlog)
@@ -77,7 +78,7 @@ class PctsLauncherHandler(BaseHandler):
             if not sub_test_case:
                 status, message = False, "sub_test_case is required for launch action"
             else:
-                success = scroll_utils.launch_pcts_test_case(driver, main_test_case, sub_test_case)
+                success = scroll_utils.launch_pcts_test_case(driver, main_test_case, sub_test_case, exact_match)
                 if success:
                     tlog.i(f"Launched test case: {main_test_case} -> {sub_test_case}")
                     status, message = True, "LAUNCH_SUCCESS"
@@ -85,7 +86,7 @@ class PctsLauncherHandler(BaseHandler):
                     status, message = False, "LAUNCH_FAILED"
 
         elif action == "close":
-            success = scroll_utils.toggle_element_visibility(driver, main_test_case, "hide")
+            success = scroll_utils.toggle_element_visibility(driver, main_test_case, "hide", exact_match)
             if success:
                 tlog.i(f"Closed test case: {main_test_case}")
                 status, message = True, "CLOSE_SUCCESS"

@@ -101,13 +101,14 @@ def find_list_item_in_page(driver, resource_id, expected_text):
         logger.error(f"Unexpected error in find_list_item_in_page: {e}")
         return None
 
-def scroll_to_text(driver, target_text):
+def scroll_to_text(driver, target_text, exact_match=False):
     """
-    Scrolls through a list until the specified text (substring match) becomes visible on screen.
+    Scrolls through a list until the specified text is visible on screen.
 
     Args:
         driver: Appium WebDriver instance.
-        target_text: Substring to locate within visible list items.
+        target_text (str): Text to locate within visible list items.
+        exact_match (bool): If True, match text exactly. If False, match as substring.
 
     Returns:
         bool: True if the target_text was found and is visible, False otherwise.
@@ -117,8 +118,11 @@ def scroll_to_text(driver, target_text):
         raise ValueError("Driver cannot be None")
     if not target_text or not target_text.strip():
         raise ValueError("Target text cannot be empty")
-    
-    logger.info(f"Starting scroll to find text containing: '{target_text}'")
+
+    match_type = "exact" if exact_match else "substring"
+    logger.info(f"Starting scroll to find text ({match_type} match): '{target_text}'")
+
+    # Scroll to the top before searching
     pcts_scroll_to_top(driver)
     max_scrolls = MAX_SCROLL_ATTEMPTS
 
@@ -129,15 +133,21 @@ def scroll_to_text(driver, target_text):
         # Log visible items for debugging
         logger.debug(f"Visible items: {visible_items}")
 
-        if any(target_text in item for item in visible_items):
-            logger.info(f"Text containing '{target_text}' is now visible on screen.")
+        # Matching logic
+        if exact_match:
+            found = any(item == target_text for item in visible_items)
+        else:
+            found = any(target_text in item for item in visible_items)
+
+        if found:
+            logger.info(f"Text ({match_type} match) '{target_text}' is now visible on screen.")
             return True
 
         if not scroll_down_once(driver):
-            logger.warning(f"Reached end of list without finding text containing '{target_text}'.")
+            logger.warning(f"Reached end of list without finding text ({match_type} match) '{target_text}'.")
             break
 
-    logger.error(f"Failed to find text containing '{target_text}' after {max_scrolls} scrolls.")
+    logger.error(f"Failed to find text ({match_type} match) '{target_text}' after {max_scrolls} scrolls.")
     return False
 
 
@@ -570,7 +580,7 @@ def analyze_by_shape_position(arrow_region):
         return 'unknown'
 
 
-def toggle_element_visibility(driver, target_text, mode):
+def toggle_element_visibility(driver, target_text, mode, exact_match=False):
     """
     Scrolls to the given element, checks its arrow direction, and toggles visibility.
 
@@ -604,7 +614,7 @@ def toggle_element_visibility(driver, target_text, mode):
 
     # Step 1: Ensure the target text is visible by scrolling to it
     # - If scroll_to_text returns False, we couldn't locate the item on the list.
-    if not scroll_to_text(driver, target_text):
+    if not scroll_to_text(driver, target_text, exact_match):
         logger.error(f"Could not find '{target_text}' after scrolling.")
         return False
 
@@ -691,7 +701,7 @@ def toggle_element_visibility(driver, target_text, mode):
     return True
 
 
-def launch_pcts_test_case(driver, main_test_case_name, test_case_name):
+def launch_pcts_test_case(driver, main_test_case_name, test_case_name, exact_match=False):
     """
     Launches a PCTS test case by expanding the main test case and clicking the sub-test case.
 
@@ -710,11 +720,11 @@ def launch_pcts_test_case(driver, main_test_case_name, test_case_name):
     logger.info(f"[START] Launching PCTS test case '{main_test_case_name}' → '{test_case_name}'")
 
     # Step 1: Expand the main test case section
-    if toggle_element_visibility(driver, main_test_case_name, "show"):
+    if toggle_element_visibility(driver, main_test_case_name, "show", exact_match):
         logger.info(f"Main test case '{main_test_case_name}' expanded successfully.")
 
         # Step 2: Scroll until the sub-test case is visible
-        if scroll_to_text(driver, test_case_name):
+        if scroll_to_text(driver, test_case_name, False):
             logger.info(f"Sub-test case '{test_case_name}' found on screen.")
 
             # Step 3: Get the XPath and bounds of the sub-test case element
