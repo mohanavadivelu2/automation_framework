@@ -1,0 +1,21 @@
+{
+  "facet_id": "NF6",
+  "command": [ 
+    {
+      "base_path": "android_phone_pctsverifier",
+      "widget_type": "pcts_launcher",
+      "action": "launch",
+      "main_test_case": "NavigationFocusTests",
+      "sub_test_case": "NF6",
+      "delay_before": 5
+    },
+
+    {
+      "base_path": "android_phone_pctsverifier",
+      "widget_type": "pcts_launcher",
+      "action": "close",
+      "main_test_case": "NavigationFocusTests",
+      "delay_before": 5
+    }
+  ]
+}

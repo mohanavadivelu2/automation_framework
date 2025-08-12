@@ -1,0 +1,26 @@
+{
+  "facet_id": "A116",
+  "command": [ 
+    {
+      "base_path": "android_phone_pctsverifier",
+      "widget_type": "pcts_launcher",
+      "action": "launch",
+      "main_test_case": "AudioTests",
+      "sub_test_case": "A116"
+    },
+    {
+      "base_path": "android_phone_pctsverifier",
+      "widget_type": "pcts_launcher",
+      "action": "close",
+      "main_test_case": "AudioTests",
+      "delay_before": 5
+    },
+    {
+      "base_path": "android_phone_pctsverifier",
+      "widget_type": "pcts_launcher",
+      "action": "close",
+      "main_test_case": "AudioTests",
+      "delay_before": 5
+    }
+  ]
+}

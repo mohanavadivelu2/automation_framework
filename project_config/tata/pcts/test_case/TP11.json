@@ -1,0 +1,18 @@
+{
+  "facet_id": "TP11",
+  "command": [ 
+    {
+      "base_path": "android_phone_pctsverifier",
+      "widget_type": "pcts_launcher",
+      "action": "launch",
+      "main_test_case": "TouchpadTests",
+      "sub_test_case": "TP11"
+    },
+    {
+      "base_path": "android_phone_pctsverifier",
+      "widget_type": "pcts_launcher",
+      "action": "close",
+      "main_test_case": "TouchpadTests"
+    }
+  ]
+}

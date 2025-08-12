@@ -1,0 +1,24 @@
+{
+  "facet_id": "R2",
+  "command": [ 
+    {
+      "base_path": "android_phone_pctsverifier",
+      "widget_type": "pcts_launcher",
+      "action": "launch",
+      "main_test_case": "ReliabilityTests",
+      "sub_test_case": "R2"
+    },
+    {
+      "base_path": "android_phone_pctsverifier",
+      "widget_type": "pcts_launcher",
+      "action": "close",
+      "main_test_case": "ReliabilityTests"
+    },
+    {
+      "base_path": "facets",
+      "widget_type": "button",
+      "xpath": "//android.widget.Button[@resource-id=\"com.google.android.projection.gearhead.pctsverifier:id/positive_button\"]",
+      "wait": 4
+  }
+  ]
+}

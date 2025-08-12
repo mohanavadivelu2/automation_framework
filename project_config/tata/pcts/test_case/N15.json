@@ -1,0 +1,21 @@
+{
+  "facet_id": "N15",
+  "command": [ 
+    {
+      "base_path": "android_phone_pctsverifier",
+      "widget_type": "pcts_launcher",
+      "action": "launch",
+      "main_test_case": "NavigationStatusTests",
+      "sub_test_case": "N15",
+      "delay_before": 5
+    },
+
+    {
+      "base_path": "android_phone_pctsverifier",
+      "widget_type": "pcts_launcher",
+      "action": "close",
+      "main_test_case": "NavigationStatusTests",
+      "delay_before": 5
+    }
+  ]
+}

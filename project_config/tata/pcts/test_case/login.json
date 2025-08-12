@@ -1,0 +1,47 @@
+{
+  "PCTS_id": "login",
+  "command": [
+    {
+      "base_path": "android_phone_pctsverifier",
+      "widget_type": "button",
+      "xpath": "//android.widget.Button[@resource-id=\"com.android.permissioncontroller:id/permission_allow_foreground_only_button\"]",
+      "wait": 4,
+      "max_retry": 3
+  },
+  {
+    "base_path": "android_phone_pctsverifier",
+    "widget_type": "button",
+    "xpath": "//android.widget.Button[@resource-id=\"com.android.permissioncontroller:id/permission_allow_foreground_only_button\"]",
+    "wait": 4,
+    "max_retry": 3
+},
+{
+  "base_path": "android_phone_pctsverifier",
+  "widget_type": "button",
+  "xpath": "//android.widget.Button[@resource-id=\"com.android.permissioncontroller:id/permission_allow_foreground_only_button\"]",
+  "wait": 4,
+  "max_retry": 3
+},
+{
+  "base_path": "android_phone_pctsverifier",
+  "widget_type": "button",
+  "xpath": "//android.widget.Button[@resource-id=\"com.android.permissioncontroller:id/permission_allow_button\"]",
+  "wait": 4,
+  "max_retry": 3
+},
+{
+  "base_path": "android_phone_pctsverifier",
+  "widget_type": "button",
+  "xpath": "//android.widget.Button[@resource-id=\"com.android.permissioncontroller:id/permission_allow_button\"]",
+  "wait": 4,
+  "max_retry": 3
+},
+{
+  "base_path": "android_phone_pctsverifier",
+  "widget_type": "button",
+  "xpath": "//android.widget.Button[@resource-id=\"com.android.permissioncontroller:id/permission_allow_button\"]",
+  "wait": 4,
+  "max_retry": 3
+}
+  ]
+}

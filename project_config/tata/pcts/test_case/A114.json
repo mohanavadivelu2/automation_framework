@@ -1,0 +1,18 @@
+{
+  "facet_id": "A114",
+  "command": [ 
+    {
+      "base_path": "android_phone_pctsverifier",
+      "widget_type": "pcts_launcher",
+      "action": "launch",
+      "main_test_case": "AudioTests",
+      "sub_test_case": "A114"
+    },
+    {
+      "base_path": "android_phone_pctsverifier",
+      "widget_type": "pcts_launcher",
+      "action": "close",
+      "main_test_case": "AudioTests"
+    }
+  ]
+}

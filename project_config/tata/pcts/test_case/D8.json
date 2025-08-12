@@ -1,0 +1,21 @@
+{
+  "facet_id": "D8",
+  "command": [ 
+    {
+      "base_path": "android_phone_pctsverifier",
+      "widget_type": "pcts_launcher",
+      "action": "launch",
+      "main_test_case": "DisplayTests",
+      "sub_test_case": "D8",
+      "delay_before": 5
+    },
+
+    {
+      "base_path": "android_phone_pctsverifier",
+      "widget_type": "pcts_launcher",
+      "action": "close",
+      "main_test_case": "DisplayTests",
+      "delay_before": 5
+    }
+  ]
+}

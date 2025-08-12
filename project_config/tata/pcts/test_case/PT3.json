@@ -1,0 +1,18 @@
+{
+  "facet_id": "PT3",
+  "command": [ 
+    {
+      "base_path": "android_phone_pctsverifier",
+      "widget_type": "pcts_launcher",
+      "action": "launch",
+      "main_test_case": "PerformanceTests",
+      "sub_test_case": "PT3"
+    },
+    {
+      "base_path": "android_phone_pctsverifier",
+      "widget_type": "pcts_launcher",
+      "action": "close",
+      "main_test_case": "PerformanceTests"
+    }
+  ]
+}
