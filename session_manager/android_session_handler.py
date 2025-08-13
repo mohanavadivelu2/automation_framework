@@ -3,6 +3,8 @@ from appium import webdriver
 from .platform_session_handler import PlatformSessionHandler
 from .validation.android_validator import AndroidValidator
 
+SESSION_MANAGEMENT_SETTINGS = True
+PERFORMANCE_SETTINGS = True
 class AndroidSessionHandler(PlatformSessionHandler):
     """
     Handler for Android platform sessions.
@@ -79,7 +81,20 @@ class AndroidSessionHandler(PlatformSessionHandler):
             options.set_capability('appPackage', app_package)
             options.set_capability('appActivity', app_activity)
             options.set_capability('automationName', 'UiAutomator2')
-            options.set_capability('newCommandTimeout', 6000)
+            options.set_capability('newCommandTimeout', 6000)      # Extend timeout for slow operations
+
+            # Session management settings
+            if SESSION_MANAGEMENT_SETTINGS == True:
+                options.set_capability('noReset', True)                # Don't reinstall app
+                options.set_capability('dontStopAppOnReset', True)     # Keep app running
+                options.set_capability('autoLaunch', True)             # Auto-launch app
+
+            # Performance settings
+            if PERFORMANCE_SETTINGS == True:
+                options.set_capability('appium:waitForIdleTimeout', 0)                  # Disable wait for idle
+                options.set_capability('appium:disableWindowAnimation', True)           # Disable window animation
+                options.set_capability('appium:settings[ignoreUnimportantViews]', True) # Ignore unimportant views
+                options.set_capability('appium:skipServerInstallation', True)           # Skip server installation
 
             logger.d(f"Android session configured for basePath: {base_path}, URL: {command_executor}")
             return webdriver.Remote(command_executor=command_executor, options=options)
