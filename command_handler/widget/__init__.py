@@ -13,6 +13,7 @@ from .handler.text_search import TextSearchHandler
 from .handler.usb_handler import USBHandler
 from .handler.button_by_name import ButtonByNameHandler
 from .handler.button_click_by_config import ButtonByConfigHandler
+from .handler.button_by_match import ButtonByMatchHandler
 from .handler.adb_commands import (
     ADBHandler,
     ADBLaunchHandler,
@@ -50,5 +51,6 @@ __all__ = [
     'TextSearchHandler',
     'USBHandler',
     'ButtonByNameHandler',
-    'ButtonByConfigHandler'
+    'ButtonByConfigHandler',
+    'ButtonByMatchHandler'
 ]

@@ -15,6 +15,7 @@ from command_handler.widget.handler.usb_handler import USBHandler
 from command_handler.widget.handler.pcts_launcher import PctsLauncherHandler
 from command_handler.widget.handler.button_by_name import ButtonByNameHandler
 from command_handler.widget.handler.button_click_by_config import ButtonByConfigHandler
+from command_handler.widget.handler.button_by_match import ButtonByMatchHandler
 # Import all ADB-related handlers from the consolidated adb_commands.py
 from command_handler.widget.handler.adb_commands import (
     ADBHandler,
@@ -53,7 +54,8 @@ class WidgetFactory:
         "usb_reset": USBHandler,
         "pcts_launcher": PctsLauncherHandler,
         "button_by_name": ButtonByNameHandler,
-        "button_click_by_config": ButtonByConfigHandler
+        "button_click_by_config": ButtonByConfigHandler,
+        "button_click_by_match": ButtonByMatchHandler
     }
 
     @staticmethod
