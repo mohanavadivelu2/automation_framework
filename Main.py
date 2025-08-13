@@ -11,7 +11,7 @@ def main():
     #Initialize application logger
     log_manager = LogManager.get_instance()
     alog = log_manager.initialize_application_logger(APP_LOG_FOLDER_PATH, APP_LOG_FILE_NAME)
-    alog.i("Automation tool version - 2.2.0 - PCTS Scroll, 3 Button utility (Button check without xpath)")
+    alog.i("Automation tool version - 2.2.1 - Adding ClickByTextHandler")
 
     # Initialize the application
     manager = ApplicationManager.get_instance()
